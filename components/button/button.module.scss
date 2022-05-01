@@ -1,0 +1,75 @@
+@import "../../styles/globals.scss";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: fit-content;
+  border: 2px solid $color-3;
+  border-radius: 4px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+  text-transform: capitalize;
+  color: $color-1;
+  background-color: $color-3;
+  transition: 0.25s;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  &:hover {
+    color: $color-3;
+    background-color: $color-1;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__inverse {
+    background-color: transparent;
+
+    &:hover {
+      color: $color-1;
+      background-color: $color-3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 0.625rem;
+    padding: 0.625rem 1.5625rem;
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 769px) {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+.linkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: fit-content;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+
+  @media (max-width: 768px) {
+    margin: 0 0.625rem;
+  }
+
+  @media (min-width: 769px) {
+    margin: 0 0.5rem;
+  }
+
+  .button {
+    margin: 0;
+  }
+}

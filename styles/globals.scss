@@ -1,0 +1,79 @@
+
+.app {
+  &>*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+// INFO: color scheme
+$color-1: #ffffff;
+$color-2: #0d0f19;
+$color-3: #303fe1;
+$color-4: #151720;
+$color-5: #1c1e27;
+$color-6: #20222b;
+
+$green: #4caf50;
+$lightgreen: #8bc34a;
+
+$grey: #758491;
+$lightgrey: #7584917d;
+
+$red: #f44336;
+
+.MuiStepper-alternativeLabel {
+  width: 100%;
+}
+
+.MuiStepLabel-label.MuiStepLabel-alternativeLabel {
+  color: $grey;
+}
+.MuiStepLabel-label.MuiStepLabel-completed,
+.MuiStepLabel-label.MuiStepLabel-alternativeLabel.MuiStepLabel-active {
+  color: $color-1 !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed {
+  color: $green !important;
+}
+
+.MuiStepLabel-alternativeLabel {
+  .MuiStepIcon-root {
+    color: $grey;
+  }
+}
+
+.MuiCheckbox-root:not(.Mui-checked) {
+  .MuiSvgIcon-root {
+    color: white;
+  }
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 30px;
+  height: 30px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.MuiStepIcon-root {
+  width: 1.3em !important;
+  height: 1.3em !important;
+}
+
+.MuiStepConnector-alternativeLabel {
+  top: 16px !important;
+}
