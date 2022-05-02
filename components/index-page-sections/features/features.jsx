@@ -2,23 +2,6 @@ import React from "react";
 import classnames from "classnames/bind";
 
 import { LayoutSectionContainer } from "../../layout";
-import featureDefaultImage from "../../../assets/images/feature-image-default.jpeg";
-import featureGithub from "../../../assets/images/home_features/saas-cicd.webp";
-import featureTeamcity from "../../../assets/images/home_features/jenkins-teamcity.webp";
-import featurePostman from "../../../assets/images/home_features/postman-min.webp";
-import featureSmart from "../../../assets/images/home_features/smart-assignment-min.webp";
-import featureReadyApi from "../../../assets/images/home_features/readyapi-min.webp";
-import featureKatalon from "../../../assets/images/home_features/katalon-min.webp";
-import featureCLI from "../../../assets/images/home_features/cli.webp";
-import featureJava from "../../../assets/images/home_features/java.webp";
-import featureSelenium from "../../../assets/images/home_features/selenium.webp";
-import featurePython from "../../../assets/images/home_features/python.webp";
-import featureNET from "../../../assets/images/home_features/net.webp";
-import featureCypress from "../../../assets/images/home_features/cypress.webp";
-import featureSupport from "../../../assets/images/home_features/support.webp";
-import featureMapping from "../../../assets/images/home_features/mapping.webp";
-import featureBDD from "../../../assets/images/home_features/bdd.webp";
-import featureAutomatic from "../../../assets/images/home_features/automatic.webp";
 
 import Button from "../../button";
 import CalendlyButton from "../../calendly-button";
@@ -38,7 +21,7 @@ const features = [
       "Integrate JUnit, TestNG, Cucumber, and many more",
       "Compatible with TestRail On Prem and Cloud ",
     ],
-    image: featureTeamcity,
+    image: "/images/home_features/jenkins-teamcity.webp",
   },
   {
     id: "gitlab-circleli",
@@ -50,7 +33,7 @@ const features = [
       "Integrate JUnit, TestNG, Cucumber, and many more",
       "Compatible with TestRail On Prem and Cloud ",
     ],
-    image: featureGithub,
+    image: "/images/home_features/saas-cicd.webp",
   },
   {
     id: "automatic-test-run",
@@ -62,7 +45,7 @@ const features = [
       "Automatically create Milestones ",
       "Automatically create Configurations",
     ],
-    image: featureAutomatic,
+    image: "/images/home_features/automatic.webp",
   },
   {
     id: "smart-test",
@@ -74,7 +57,7 @@ const features = [
       "Round robin test failures assignment ",
       "Easy and flexible configuration",
     ],
-    image: featureSmart,
+    image: "/images/home_features/smart-assignment-min.webp",
   },
   {
     id: "postman",
@@ -86,7 +69,7 @@ const features = [
       "Flexible configuration and rules",
       "No need for external newman reporters",
     ],
-    image: featurePostman,
+    image: "/images/home_features/postman-min.webp",
   },
   {
     id: "testrail-cmd-line",
@@ -98,7 +81,7 @@ const features = [
       "Installable via NPM and Docker image",
       "Zero-Code. Built-in support for many test frameworks",
     ],
-    image: featureCLI,
+    image: "/images/home_features/cli.webp",
   },
   {
     id: "selenium-webdriver",
@@ -110,7 +93,7 @@ const features = [
       "JAVA and Python SDK for deep integration",
       "Capture screenshots and post them into TestRail",
     ],
-    image: featureSelenium,
+    image: "/images/home_features/selenium.webp",
   },
   {
     id: "testrail-cypress",
@@ -122,7 +105,7 @@ const features = [
       "Capture screenshots and post them into TestRail",
       "Detailed test steps and assertions results",
     ],
-    image: featureCypress,
+    image: "/images/home_features/cypress.webp",
   },
   {
     id: "testrail-cucumber",
@@ -135,7 +118,7 @@ const features = [
       "Integrated step level BDD reporting using TestRail",
       "Improve communication between analyst and engineers",
     ],
-    image: featureBDD,
+    image: "/images/home_features/bdd.webp",
   },
   {
     id: "readyapi",
@@ -148,9 +131,8 @@ const features = [
       "Capture ReadyAPI request and response to TestRail",
       "Run via ReadyAPI GUI or CLI using CICD",
     ],
-    image: featureReadyApi,
+    image: "/images/home_features/readyapi-min.webp",
   },
-
   {
     id: "python-pytest",
     route: "python-pytest",
@@ -161,7 +143,7 @@ const features = [
       "Builtin integration with pytest-splinter",
       "Easy to follow examples on Github",
     ],
-    image: featurePython,
+    image: "/images/home_features/python.webp",
   },
   {
     id: "java-framework",
@@ -173,7 +155,7 @@ const features = [
       "Utility classes for automatic screenshot capture",
       "Easy to follow examples on Github",
     ],
-    image: featureJava,
+    image: "/images/home_features/java.webp",
   },
   {
     id: "msft-test",
@@ -185,7 +167,7 @@ const features = [
       "Utility classes for automatic screenshot capture",
       "Easy to follow examples on Github",
     ],
-    image: featureNET,
+    image: "/images/home_features/net.webp",
   },
   /*
   {
@@ -234,9 +216,8 @@ const features = [
       "Improve colloboration betweens engineers and analysts",
       "End to end test tracebility across features and teams",
     ],
-    image: featureMapping,
+    image: "/images/home_features/mapping.webp",
   },
-
   {
     id: "customer-support",
     route: "customer-support",
@@ -247,7 +228,7 @@ const features = [
       "Consulting help for TestRail REST API",
       "Still thinking? Try us free for 14 days",
     ],
-    image: featureSupport,
+    image: "/images/home_features/support.webp",
   },
 ];
 
@@ -259,13 +240,13 @@ const Features = () => {
           <div key={feature.id} className={cx("features_sectionContainer")}>
             <div className={cx("featuresLeft", "features_section")}>
               <h1 className={cx("featuresLeft_title")}>{feature.title}</h1>
-              <p className={cx("featuresLeft_text")}>
+              <div className={cx("featuresLeft_text")}>
                 <ul>
-                  {feature.features.map((featureText) => (
-                    <li>{featureText}</li>
+                  {feature.features.map((featureText, idx) => (
+                    <li key={idx}>{featureText}</li>
                   ))}
                 </ul>
-              </p>
+              </div>
               <div className={cx("features_buttonWrapper")}>
                 {/* <Button
                   to={`/features/${feature.route}`}
