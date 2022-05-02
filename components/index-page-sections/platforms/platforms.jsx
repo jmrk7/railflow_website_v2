@@ -6,25 +6,14 @@ import {
   Dialog,
   DialogContent,
   DialogContentText,
+  DialogTitle,
   IconButton,
-} from "@material-ui/core";
+  Typography,
+} from "@mui/material";
 
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-import dialogImage from "../../../assets/images/integrate_image.png";
+import CloseIcon from "@mui/icons-material/Close";
 
-import CircleCIImage from "../../../assets/images/circleci.webp";
-import JenkinsImage from "../../../assets/images/jenkins.webp";
-import JUnitImage from "../../../assets/images/junit.webp";
-import PostmanImage from "../../../assets/images/postman.webp";
-import TeamCityImage from "../../../assets/images/teamcity.webp";
-import ReadyAPIImage from "../../../assets/images/readyapi.webp";
-import SeleniumImage from "../../../assets/images/selenium.webp";
-import TestNGImage from "../../../assets/images/testng.webp";
-import KatalonImage from "../../../assets/images/katalon.webp";
-
-import ArrowRightIcon from "../../../assets/icons/arrow_right.svg";
+import ArrowRightIcon from "../../../public/icons/arrow_right.svg";
 import * as styles from "./platforms.module.scss";
 
 const cx = classnames.bind(styles);
@@ -34,63 +23,63 @@ const platforms = [
   {
     id: "jenkins",
     title: "Jenkins",
-    image: JenkinsImage,
+    image: "/images/jenkins.webp",
     description:
       "Railflow native Jenkins plugin for easy setup, configuration, and integration of Jenkins jobs with TestRail",
   },
   {
     id: "teamcity",
     title: "TeamCity",
-    image: TeamCityImage,
+    image: "/images/teamcity.webp",
     description:
       "Railflow native Teamcity plugin for easy setup, configuration, and integration of TeamCity jobs with TestRail",
   },
   {
     id: "circleci",
     title: "CircleCI",
-    image: CircleCIImage,
+    image: "/images/circleci.webp",
     description:
       "Railflow NPM package and Docker image makes CircleCI integration with TestRail a breeze. Get up and running in 5 mins",
   },
   {
     id: "postman",
     title: "Postman",
-    image: PostmanImage,
+    image: "/images/postman.webp",
     description:
       "Railflow's Postman integration is different than all the other open source and unsupported solutions. Come see how our flexible approach can help your teams",
   },
   {
     id: "readyapi",
     title: "ReadyAPI",
-    image: ReadyAPIImage,
+    image: "/images/readyapi.webp",
     description:
       "Railflow uses ReadyAPIs incredible plugin architecture and exposes a highly integrated UI based TestRail configuration panel. Truely the best and only solution.",
   },
   {
     id: "katalon",
     title: "Katalon",
-    image: KatalonImage,
+    image: "/images/katalon.webp",
     description:
       "Railflow uses Katalons plugin SDK to expose a highly integrated TestRail configuration panel with the same powerful features as in all other Railflow integrations. ",
   },
   {
     id: "selenium",
     title: "Selenium",
-    image: SeleniumImage,
+    image: "/images/selenium.webp",
     description:
       "Create powerful Selenium tests that can automtically take screenshots upon failure and post the results and history to TestRail.",
   },
   {
     id: "junit",
     title: "JUnit",
-    image: JUnitImage,
+    image: "/images/junit.webp",
     description:
       "Use Railflow's JUNIT annotations SDK to map junit tests to existing tests in TestRail, define custom fields, map muliple tests to a single test, and much more",
   },
   {
     id: "testng",
     title: "TestNG",
-    image: TestNGImage,
+    image: "/images/testng.webp",
     description:
       "Use Railflow's TestNG annotations SDK to map TestNG tests to existing tests in TestRail, define custom fields, map muliple tests to a single test, and much more",
   },
@@ -135,8 +124,10 @@ const Platforms = () => {
                 className={cx("platformsGridPlatformLink")}
               >
                 Railfllow Docs
-                <ArrowRightIcon
+                <img
                   className={cx("platformsGridPlatformLink_icon")}
+                  src={"/icons/arrow_right.svg"}
+                  alt="Right Arrow Icon"
                 />
               </a>
             </div>
@@ -144,7 +135,7 @@ const Platforms = () => {
         </div>
       </LayoutSectionContainer>
       <Dialog onClose={() => setDialogOpen(false)} open={isDialogOpen}>
-        <MuiDialogTitle>
+        <DialogTitle>
           <Typography variant="h6">Coming very soon</Typography>
           <IconButton
             aria-label="close"
@@ -153,12 +144,12 @@ const Platforms = () => {
           >
             <CloseIcon />
           </IconButton>
-        </MuiDialogTitle>
+        </DialogTitle>
         <DialogContent>
           <img
             alt="Coming very soon"
             className={cx("platforms_dialogImage")}
-            src={dialogImage}
+            src={"/images/integrate_image.png"}
           />
           <DialogContentText>
             We are working hard on these awesome integrations. Leave us a note

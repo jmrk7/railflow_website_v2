@@ -8,6 +8,7 @@ import createEmotionCache from "../src/createEmotionCache";
 import CookieConsent from "react-cookie-consent";
 
 import "../styles/app.css";
+import "../styles/fonts.scss";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
