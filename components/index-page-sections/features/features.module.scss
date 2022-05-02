@@ -1,0 +1,100 @@
+@import "../../../styles/globals.scss";
+
+.features {
+  display: flex;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      .features_buttonWrapper {
+        justify-content: flex-end;
+      }
+      .featuresLeft {
+        padding-left: 8.333%;
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 100%;
+
+      &:last-of-type {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: 769px) {
+      margin-top: 80px;
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 30px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 769px) {
+      width: 49%;
+    }
+  }
+
+  &Left {
+    padding-right: 8.333%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    &_title {
+      font-size: 2.75rem;
+    }
+
+    &_text {
+      margin: 12px 0 10px;
+      font-size: 1rem;
+      line-height: 22px;
+      font-weight: 400;
+      color: #c2c3c5;
+      font-family: Inter, sans-serif;
+      ul {
+        line-height: 2;
+        font-size: 18px;
+        margin-left: 24px;
+      }
+    }
+  }
+
+  &Right {
+    &_image {
+      width: 100%;
+      // TODO: remove after changing placeholder
+
+      max-width: 603px;
+      height: 333px;
+      object-fit: contain;
+    }
+  }
+  &_buttonWrapper {
+    display: flex;
+    margin-top: 15px;
+    flex-flow: row wrap;
+    a {
+      margin-bottom: 8px;
+    }
+  }
+}

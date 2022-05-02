@@ -1,0 +1,98 @@
+@import "../../../styles/globals.scss";
+
+.platforms {
+  padding: 48px 0;
+
+  &_title {
+    margin-bottom: 72px;
+    font-size: 2.7rem;
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+  }
+
+  &Grid {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    grid-template-rows: auto auto;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 577px) and (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 769px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &Platform {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      border-radius: 8px;
+      background-color: $color-4;
+
+      &_topContainer {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      &_image {
+        width: 56px;
+        height: 56px;
+        margin-right: 1rem;
+        object-fit: contain;
+      }
+
+      &_title {
+        display: inline;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+      }
+
+      &_description {
+        margin-bottom: 10px;
+        line-height: 22px;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #c2c3c5;
+        font-family: "Inter", sans-serif;
+      }
+
+      &Link {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        text-decoration: none;
+        text-transform: capitalize;
+        color: $color-1;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+
+        &_icon {
+          height: 8px;
+          margin-top: 2px;
+          transition: 0.2s transform;
+        }
+
+        &:hover &_icon {
+          transform: translateX(25%);
+        }
+      }
+    }
+  }
+  &_dialogImage {
+    max-width: 100%;
+  }
+  &_dialogCloseIcon {
+    position: absolute !important;
+    right: 8px;
+    top: 8px;
+  }
+}
