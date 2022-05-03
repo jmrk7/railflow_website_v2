@@ -1,0 +1,71 @@
+@import "../../../styles/globals.scss";
+
+.featureList {
+  display: flex;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 100%;
+
+      &:last-of-type {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 30px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 769px) {
+      width: 50%;
+    }
+  }
+
+  &Left {
+    padding-right: 8.333%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    &_title {
+      font-size: 2.75rem;
+    }
+
+    &_text {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 22px;
+      font-weight: 400;
+      color: #c2c3c5;
+      font-family: Inter, sans-serif;
+    }
+  }
+
+  // TODO: make responsive
+  &Right {
+    &_image {
+      width: 100%;
+    }
+  }
+}

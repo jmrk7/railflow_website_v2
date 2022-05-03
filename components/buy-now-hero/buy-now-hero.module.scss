@@ -1,0 +1,64 @@
+@import "../../styles/globals.scss";
+
+.buyNowHero {
+  padding: 0 15px 0 30px;
+  width: 40%;
+  background-color: $color-2;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px 25px;
+  }
+  &Logo {
+    display: block;
+    width: 250px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-bottom: 40px;
+    &_image {
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &_title {
+    margin-top: 20px;
+    margin-bottom: 32px;
+    line-height: 2.3rem;
+    font-weight: 400;
+  }
+
+  &_featureContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px 0;
+    list-style-type: none;
+  }
+
+  &Feature {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 2px;
+    font-size: 1rem;
+    line-height: 1.825rem;
+
+    &_icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 1rem;
+    }
+  }
+
+  &_desc {
+    margin-top: 20px;
+    margin-bottom: 32px;
+    line-height: 1.825rem;
+    font-size: 1.2rem;
+  }
+}
