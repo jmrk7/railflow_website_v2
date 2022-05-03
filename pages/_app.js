@@ -57,7 +57,7 @@ export default function MyApp(props) {
         <a
           rel="noopener noreferrer"
           target="_blank"
-          href="/privacy"
+          href="https://railflow.io/privacy"
           style={{ color: "white" }}
         >
           Privacy Policy

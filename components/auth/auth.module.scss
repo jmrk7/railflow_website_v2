@@ -1,0 +1,11 @@
+@import "../../styles/globals.scss";
+
+.signUpWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 100px auto 30px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+}
