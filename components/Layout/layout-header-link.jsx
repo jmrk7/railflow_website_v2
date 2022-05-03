@@ -60,7 +60,7 @@ const LayoutHeaderLink = (props) => {
             {label}
           </a>
         ) : (
-          <Link href={to}>
+          <Link href={to} passHref>
             <div className={cx("layoutHeaderLink_label")}>{label}</div>
           </Link>
         )
@@ -91,7 +91,7 @@ const LayoutHeaderLink = (props) => {
                   {dropdownLink.label}
                 </a>
               ) : (
-                <Link href={dropdownLink.to} key={dropdownLink.id}>
+                <Link href={dropdownLink.to} key={dropdownLink.id} passHref>
                   <div
                     className={cx("layoutHeaderLinkDropdown_link")}
                   >

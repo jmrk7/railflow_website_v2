@@ -13,7 +13,7 @@ const LayoutFooter = () => {
       <div className={cx("layoutFooterBody")}>
         <section className={cx("layoutFooterBody_section")}>
           <div className={cx("layoutFooterBodyBrand")}>
-            <Link href="/">
+            <Link href="/" passHref>
               <div className={cx("layoutFooterBodyBrandLogo_image")}>
                 <Image
                   src={"/images/logo.png"}

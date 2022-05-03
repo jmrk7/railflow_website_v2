@@ -44,7 +44,7 @@ const PricingPlans = () => {
       <LayoutSectionContainer>
         <h1 className={cx("pricing_title")}>Plans & Pricing</h1>
         <p className={cx("pricing_subtitle")}>
-          Simple, affordable and transparent pricing. Don't ever talk to a sales
+          Simple, affordable and transparent pricing. Don&apos;t ever talk to a sales
           guy{" "}
           <span
             className={cx("pricing_emoji")}

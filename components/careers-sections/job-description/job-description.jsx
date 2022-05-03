@@ -45,16 +45,16 @@ const JobDescription = ({ job }) => {
                 <strong>Main Responsibilities</strong>
               </p>
               <ul>
-                {job.responsibilities.map((v) => (
-                  <li>{v}</li>
+                {job.responsibilities.map((v, index) => (
+                  <li key={index}>{v}</li>
                 ))}
               </ul>
               <p>
                 <strong>Qualifications &amp; Experience</strong>
               </p>
               <ul>
-                {job.qualifications.map((v) => (
-                  <li>{v}</li>
+                {job.qualifications.map((v, index) => (
+                  <li key={index}>{v}</li>
                 ))}
               </ul>
 

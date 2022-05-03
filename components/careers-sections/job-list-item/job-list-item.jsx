@@ -10,7 +10,7 @@ const cx = classnames.bind(styles);
 
 const JobListItem = ({ job }) => {
   return (
-    <Link href={`/job/${job.id}`}>
+    <Link href={`/job/${job.id}`} passHref>
       <div id="job-list-item" className={cx("jobListItem")}>
         <LayoutSectionContainer>
           <div className={cx("jobListItem_sectionContainer")}>

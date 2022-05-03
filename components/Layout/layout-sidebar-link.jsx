@@ -56,7 +56,7 @@ const LayoutSidebarLink = (props) => {
             {label}
           </a>
         ) : (
-          <Link href={to}>
+          <Link href={to} passHref>
             <div className={cx("layoutSidebarLink_label")}>{label}</div>
           </Link>
         )
@@ -78,7 +78,7 @@ const LayoutSidebarLink = (props) => {
           })}
         >
           {dropdownLinks.map((dropdownLink) => (
-            <Link key={dropdownLink.id} href={dropdownLink.to}>
+            <Link key={dropdownLink.id} href={dropdownLink.to} passHref>
               <div className={cx("layoutSidebarLinkDropdown_link")}>
                 {dropdownLink.label}
               </div>

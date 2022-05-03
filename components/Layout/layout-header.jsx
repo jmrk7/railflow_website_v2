@@ -37,7 +37,7 @@ const LayoutHeader = (props) => {
       <LayoutSectionContainer>
         <div className={cx("layoutHeader_sectionContainer")}>
           <section className={cx("layoutHeader_section")}>
-            <Link href="/" className={cx("layoutHeaderLogo")}>
+            <Link href="/" className={cx("layoutHeaderLogo")} passHref>
               <div className={cx("layoutHeaderLogo_image")}>
                 <Image
                   src={"/images/logo.png"}
