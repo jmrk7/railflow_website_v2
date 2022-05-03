@@ -1,0 +1,59 @@
+@import "../../../styles/globals.scss";
+
+.jobDescription {
+  display: flex;
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+    height: 100%;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &_title {
+    font-size: 3rem;
+    line-height: 78px;
+  }
+  &_desc {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    line-height: 2.5rem;
+    font-weight: 400;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 22px;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: "Inter", sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 100px;
+  }
+
+  @media (min-width: 769px) {
+    padding-top: 140px;
+    padding-bottom: 120px;
+  }
+}
