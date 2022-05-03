@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 
-import { LayoutSectionContainer } from '../../layout';
+import { LayoutSectionContainer } from '../../Layout';
 import Button from '../../button';
 import CheckIcon from '../../../assets/icons/check_blue.svg';
 import CrossIcon from '../../../assets/icons/cross_grey.svg';

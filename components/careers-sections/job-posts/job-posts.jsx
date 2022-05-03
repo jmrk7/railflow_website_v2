@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import classnames from 'classnames/bind';
 
-import { LayoutSectionContainer } from '../../layout';
+import { LayoutSectionContainer } from '../../Layout';
 import * as styles from './job-posts.module.scss';
 import JobListItem from '../job-list-item';
 

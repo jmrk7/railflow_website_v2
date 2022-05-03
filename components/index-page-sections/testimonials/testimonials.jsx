@@ -2,8 +2,7 @@ import React from 'react';
 import ReactStars from 'react-stars';
 import classnames from 'classnames/bind';
 
-import { LayoutSectionContainer } from '../../layout';
-import avatarImage from '../../../assets/images/avatar_1.jpeg';
+import { LayoutSectionContainer } from '../../Layout';
 // import ArrowLeftIcon from '../../../assets/icons/arrow_left.svg';
 // import ArrowRightIcon from '../../../assets/icons/arrow_right.svg';
 import * as styles from './testimonials.module.scss';
@@ -18,7 +17,7 @@ const testimonials = [
     description:
       'I love SoftBit! The integration process was super simple. We use it every single day to keep track of all our daily downloads.',
     customer: {
-      avatar: avatarImage,
+      avatar: "/images/avatar_1.jpeg",
       name: 'Sarah Lin',
       role: 'Developer at FinApp',
     },
@@ -29,7 +28,7 @@ const testimonials = [
     description:
       "Softbit is the ultimate analytics tool for every company that's serious about maximizing their website's traffic and click-through-rate.",
     customer: {
-      avatar: avatarImage,
+      avatar: "/images/avatar_1.jpeg",
       name: 'Josh Stevens',
       role: 'Founder at CourseApp',
     },
@@ -40,7 +39,7 @@ const testimonials = [
     description:
       'You can tell that SoftBit is the best analytics tool after using it for a few minutes. I absolutely love the intuitive and clean dashboard.',
     customer: {
-      avatar: avatarImage,
+      avatar: "/images/avatar_1.jpeg",
       name: 'Andrew Young',
       role: 'Developer',
     },
@@ -51,7 +50,7 @@ const testimonials = [
   //   description:
   //     'I love SoftBit! The integration process was super simple. We use it every single day to keep track of all our daily downloads.',
   //   customer: {
-  //     avatar: avatarImage,
+  //     avatar: "/images/avatar_1.jpeg",
   //     name: 'April Reeves',
   //     role: 'Entrepreneur',
   //   },
@@ -62,7 +61,7 @@ const testimonials = [
   //   description:
   //     "Softbit is the ultimate analytics tool for every company that's serious about maximizing their website's traffic and click-through-rate.",
   //   customer: {
-  //     avatar: avatarImage,
+  //     avatar: "/images/avatar_1.jpeg",
   //     name: 'Jeremiah Pearson',
   //     role: 'UX Designer',
   //   },
@@ -73,7 +72,7 @@ const testimonials = [
   //   description:
   //     "Softbit is the ultimate analytics tool for every company that's serious about maximizing their website's traffic and click-through-rate.",
   //   customer: {
-  //     avatar: avatarImage,
+  //     avatar: "/images/avatar_1.jpeg",
   //     name: 'Jeremiah Pearson',
   //     role: 'UX Designer',
   //   },
