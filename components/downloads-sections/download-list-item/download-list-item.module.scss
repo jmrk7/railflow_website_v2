@@ -1,0 +1,73 @@
+@import "../../../styles/globals.scss";
+
+.downloadListItem {
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  background-color: $color-6;
+  border-radius: 5px;
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0 auto 3rem;
+  text-decoration: none;
+  color: $color-1;
+
+  &_sectionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    padding: 25px 15px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  img {
+    width: 60px;
+    object-fit: contain;
+    margin-right: 40px;
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &_title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+  }
+  &_desc {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  &_buttons {
+    display: flex;
+    flex-flow: row wrap;
+    align-self: flex-end;
+    justify-content: center;
+  }
+  &_link {
+    color: white;
+    margin-right: 14px;
+    display: flex;
+    align-items: center;
+  }
+  &_button {
+    text-decoration: none;
+    svg {
+      margin-right: 6px !important;      
+    }          
+  }
+}
