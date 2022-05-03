@@ -41,7 +41,7 @@ const SelectField = (props) => {
       })}
     >
       <label
-        htmlFor={selectElementId}
+        htmlFor="textField_select"
         className={cx('selectField_label')}
       >
         {label}
@@ -50,7 +50,7 @@ const SelectField = (props) => {
       <select
         value={value}
         onChange={handleChange}
-        id={selectElementId}
+        id="textField_select"
         className={cx('selectFieldSelect', {
           [`selectField__${lookType}Select`]: true,
         })}

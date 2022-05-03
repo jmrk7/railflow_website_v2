@@ -21,10 +21,6 @@ const TextField = (props) => {
   } = props;
 
   // INFO: for passing to label element's 'htmlFor' attribute
-  const inputElementId = useMemo(
-    () => generateUniqueIdentifier(),
-    [],
-  );
 
   const handleChange = useCallback(
     (event) => {
@@ -43,7 +39,7 @@ const TextField = (props) => {
       })}
     >
       <label
-        htmlFor={inputElementId}
+        htmlFor="textField_Id"
         className={cx('textField_label')}
       >
         {label}
@@ -55,7 +51,7 @@ const TextField = (props) => {
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        id={inputElementId}
+        id="textField_Id"
         {...inputProps}
         className={cx('textField_input', {
           [`textField__${lookType}_input`]: true,
