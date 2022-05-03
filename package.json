@@ -16,6 +16,7 @@
     "@mui/material": "^5.6.3",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "cors": "^2.8.5",
     "next": "12.1.5",
     "prop-types": "^15.8.1",
     "react": "18.1.0",
@@ -27,7 +28,8 @@
     "react-multi-email": "^0.5.3",
     "react-phone-input-2": "^2.15.0",
     "react-stars": "^2.2.5",
-    "sass": "^1.51.0"
+    "sass": "^1.51.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "8.14.0",
