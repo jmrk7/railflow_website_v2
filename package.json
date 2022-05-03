@@ -12,8 +12,11 @@
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.1",
+    "@logtail/node": "^0.1.10",
+    "@logtail/winston": "^0.1.10",
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.6.3",
+    "@newrelic/winston-enricher": "^2.1.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "cors": "^2.8.5",
@@ -29,7 +32,9 @@
     "react-phone-input-2": "^2.15.0",
     "react-stars": "^2.2.5",
     "sass": "^1.51.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3",
+    "winston-logzio": "^5.1.4"
   },
   "devDependencies": {
     "eslint": "8.14.0",
