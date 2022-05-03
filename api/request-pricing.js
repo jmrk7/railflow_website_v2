@@ -1,10 +1,10 @@
-import apiClient from './api-client';
+import apiClient from "./api-client";
 
 const requestPricing = async (params) => {
   console.log(`> pricing request received: `, apiClient, params);
   const response = await apiClient.request({
-    method: 'GET',
-    url: '/pricing',
+    method: "GET",
+    url: "/pricing",
     params,
   });
 
