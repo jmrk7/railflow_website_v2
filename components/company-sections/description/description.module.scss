@@ -1,0 +1,206 @@
+@import '../../../styles/globals.scss';
+
+.description {
+  display: flex;
+  font-family: 'Space Grotesk', sans-serif;
+  padding-top: 140px;
+  flex-direction: column;
+
+  @media (min-width: 769px) {
+    padding-top: 180px;
+  }
+
+  &_sectionContainer {
+    display: flex;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+  &_title {
+    font-size: 3rem;
+    line-height: 60px;
+    margin-bottom: 1rem;
+    &::after {
+      content: ' ';
+      background-color: $color-3 !important;
+      margin: 50px 0 16px;
+      height: 4px;
+      width: 120px;
+      display: block;
+    }
+    @media (min-width: 769px) {
+      font-size: 4.5rem;
+      line-height: 78px;
+    }
+  }
+
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: 'Inter', sans-serif;
+  }
+
+  &_about {
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 40px;
+
+    &Left {
+      width: 50%;
+      margin-bottom: 1rem;
+      padding: 0 16px;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+    &Right {
+      width: 50%;
+      line-height: 2.5rem;
+      letter-spacing: 0.01em;
+      font-size: 1.625rem;
+      padding: 40px;
+      border-color: #ddd;
+      border-left: 1px solid;
+      height: fit-content;
+      @media (max-width: 768px) {
+        width: 100%;
+        border: none;
+      }
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  &_metrics {
+    background-color: #03a9f4;
+    color: $color-4;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 0;
+    &Title {
+      line-height: 2.3125rem;
+      letter-spacing: 0.005em;
+      font-size: 1.4375rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      padding: 0 30px;
+    }
+    &Row {
+      display: flex;
+      flex-flow: row wrap;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  &_metric {
+    max-width: 33.33333%;
+    padding: 0 76px;
+    position: relative;
+    height: fit-content;
+    @media (max-width: 768px) {
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-bottom: 30px;
+    }
+    &Big {
+      font-size: 4.7rem;
+      line-height: 3.5rem;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+      color: $color-1;
+      @media (max-width: 768px) {
+        font-size: 3.4375rem;
+      }
+    }
+    &Small {
+      padding-top: 16px;
+      line-height: 2rem;
+      letter-spacing: 0.005em;
+      text-align: center;
+      color: $color-6;
+      font-size: 1.2rem;
+    }
+    &:nth-of-type(2)::before,
+    &:nth-of-type(3)::before {
+      content: '';
+      height: 100%;
+      border-left: 1px solid #ccc;
+      display: flex;
+      position: absolute;
+      left: 0;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+  &_career {
+    width: 100%;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    &Title {
+      font-size: 2rem;
+      line-height: 40px;
+      margin-bottom: 1rem;
+      font-weight: 400;
+      text-align: center;
+      &::after {
+        content: ' ';
+        background-color: $color-3 !important;
+        margin: 40px 0 16px;
+        height: 4px;
+        width: 120px;
+        display: block;
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      @media (min-width: 769px) {
+        font-size: 3rem;
+        line-height: 50px;
+        text-align: left;
+      }
+    }
+    &ButtonWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    &Button {
+      min-width: 360px;
+      padding: 10px 40px;
+      font-size: 1.625rem;
+      line-height: 2.25062rem;
+      border-radius: 4px;
+    }
+  }
+}
