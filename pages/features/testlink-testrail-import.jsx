@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from "../../components/layout"
+import Layout from "../../components/Layout"
 // import ComingSoon from '../components/coming-soon';
 import FeaturePage from "../../components/feature-sections"
 

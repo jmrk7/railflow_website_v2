@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 
-import {LayoutSectionContainer} from '../../layout';
+import {LayoutSectionContainer} from '../../Layout';
 import DownloadListItem from '../download-list-item';
 
 import * as styles from './download-posts.module.scss';
