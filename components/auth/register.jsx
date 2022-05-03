@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from '../layout';
+import Layout from "../Layout";
 import FormContainer from '../form-container';
 import SignUpForm from '../sign-up-form';
 import SignUpHero from '../sign-up-hero';

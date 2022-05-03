@@ -1,5 +1,5 @@
-const MeterProvider = require("@opentelemetry/sdk-metrics-base");
-const sdk = require("clear");
+import MeterProvider from "@opentelemetry/sdk-metrics-base"
+import sdk from "clear";
 
 import { getApiClient } from "./request";
 import logger from "../config/logger";

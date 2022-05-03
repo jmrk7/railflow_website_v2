@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames/bind";
 
-import { LayoutSectionContainer } from "../../layout";
+import { LayoutSectionContainer } from "../../Layout";
 import {
   Dialog,
   DialogContent,
