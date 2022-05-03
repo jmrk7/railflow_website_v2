@@ -31,7 +31,7 @@ const SignUpForm = () => {
     }));
   }, []);
 
-  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(true);
 
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);
