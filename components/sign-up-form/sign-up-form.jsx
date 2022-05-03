@@ -90,7 +90,7 @@ const SignUpForm = () => {
         }
         console.log(error.response);
         setIsResponseSuccessful(false);
-        error.response && setResponseMessage(error.response.data.data.message);
+        error.response && setResponseMessage(error.response.data.message);
       } finally {
         setIsRequestPending(false);
       }

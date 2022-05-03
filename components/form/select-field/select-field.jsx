@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import classnames from 'classnames/bind';
 
-import generateUniqueIdentifier from '../../../utils/generate-unique-identifer';
 import * as styles from './select-field.module.scss';
 
 const cx = classnames.bind(styles);
@@ -17,12 +16,6 @@ const SelectField = (props) => {
     label,
     className,
   } = props;
-
-  // INFO: for passing to label element's 'htmlFor' attribute
-  const selectElementId = useMemo(
-    () => generateUniqueIdentifier(),
-    [],
-  );
 
   const handleChange = useCallback(
     (event) => {

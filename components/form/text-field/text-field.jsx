@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import classnames from 'classnames/bind';
 
-import generateUniqueIdentifier from '../../../utils/generate-unique-identifer';
 import * as styles from './text-field.module.scss';
 
 const cx = classnames.bind(styles);
@@ -19,8 +18,6 @@ const TextField = (props) => {
     inputProps,
     className,
   } = props;
-
-  // INFO: for passing to label element's 'htmlFor' attribute
 
   const handleChange = useCallback(
     (event) => {
