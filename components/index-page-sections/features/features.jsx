@@ -169,43 +169,6 @@ const features = [
     ],
     image: "/images/home_features/net.webp",
   },
-  /*
-  {
-    id: 'test-cafe',
-    route: 'test-cafe',
-    title: 'Test Cafe Integration',
-    features: [
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      'Exercitationem neque iure explicabo deleniti ',
-      'Eos non alias consequuntur sint? Corrupti ',
-    ],
-    image: featureTestCafe,
-  },
-
-  {
-    id: 'katalon',
-    route: 'katalon',
-    title: 'Katalon Integration',
-    features: [
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      'Exercitationem neque iure explicabo deleniti ',
-      'Eos non alias consequuntur sint? Corrupti ',
-    ],
-    image: featureKatalon,
-  },
-
-  {
-    id: 'jira',
-    route: 'jira',
-    title: 'JIRA Defect Bot',
-    features: [
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit',
-      'Exercitationem neque iure explicabo deleniti ',
-      'Eos non alias consequuntur sint? Corrupti ',
-    ],
-    image: featureJIRA,
-  },
-  */
   {
     id: "mapping",
     route: "mapping",

@@ -27,9 +27,9 @@ const Button = (props) => {
   );
 
   return to ? (
-    <a href={to} className={cx("linkButton")}>
-      {buttonComponent}
-    </a>
+    <Link href={to}>
+      <div className={cx("linkButton")}>{buttonComponent}</div>
+    </Link>
   ) : (
     buttonComponent
   );
