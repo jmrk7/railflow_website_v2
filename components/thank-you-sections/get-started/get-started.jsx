@@ -21,9 +21,9 @@ const GetStarted = () => {
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/ThiCMd5kGbE?controls=0"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen={true}
+                frameBorder={0}
               />
               <h3 className={cx('getStarted_videoTitle')}>
                 Example Video Title 1
@@ -35,9 +35,9 @@ const GetStarted = () => {
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/ThiCMd5kGbE?controls=0"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen={true}
+                frameBorder={0}
               />
               <h3 className={cx('getStarted_videoTitle')}>
                 Example Video Title 2

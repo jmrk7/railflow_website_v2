@@ -25,7 +25,7 @@ const ThankYou = () => {
           </h1>
           <p className={cx("thankYou_text")}>
             We have emailed you Railflow trial license details. You can also see
-            them on this page. If you don't see the trial email, please check
+            them on this page. If you don&lsquo;t see the trial email, please check
             your spam folder.
           </p>
           <p className={cx("thankYou_text")}>

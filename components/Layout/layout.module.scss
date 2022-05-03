@@ -25,6 +25,7 @@
 
     &_image {
       height: 100%;
+      cursor: pointer;
     }
   }
 
@@ -69,6 +70,7 @@
       &_image {
         display: flex;
         align-items: center;
+        cursor: pointer;
       }
     }
 
@@ -352,6 +354,7 @@
           &_image {
             height: 100%;
             padding-left: 20%;
+            cursor: pointer;
           }
         }
 

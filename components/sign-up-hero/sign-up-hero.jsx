@@ -23,14 +23,11 @@ const SignUpHero = () => {
     <div className={cx("signUpHero")}>
       <Link href="/" passHref>
         <div className={cx("signUpHeroLogo")}>
-          <div className={cx("signUpHeroLogo_image")}>
-            <Image
-              src={"/images/logo.png"}
-              alt="logo"
-              width={250}
-              height={60.5}
-            />
-          </div>
+          <img
+            src={"/images/logo.png"}
+            alt="logo"
+            className={cx("signUpHeroLogo_image")}
+          />
         </div>
       </Link>
       <h3 className={cx("signUpHero_title")}>{signUpHeroContent.title}</h3>
