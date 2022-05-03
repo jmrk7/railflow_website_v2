@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
-import { LayoutSectionContainer } from "../../layout";
+import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
 
 import * as styles from "./pricing-plans.module.scss";

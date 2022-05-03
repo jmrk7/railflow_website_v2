@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 
 import Hero from "../components/index-page-sections/hero";
 import Features from "../components/index-page-sections/features";

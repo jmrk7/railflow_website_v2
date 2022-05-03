@@ -8,7 +8,7 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import { LayoutSectionContainer } from "../../layout";
+import { LayoutSectionContainer } from "../../Layout";
 import * as styles from "./pricing-faq.module.scss";
 
 const cx = classnames.bind(styles);
