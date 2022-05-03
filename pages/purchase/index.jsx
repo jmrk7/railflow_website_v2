@@ -3,7 +3,7 @@ import classnames from "classnames/bind";
 
 import FormContainer from "../../components/form-container";
 
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 import QuoteFrom from "../../components/quote-form";
 import QuoteHero from "../../components/quote-hero";
 // import ComingSoon from '../components/coming-soon';

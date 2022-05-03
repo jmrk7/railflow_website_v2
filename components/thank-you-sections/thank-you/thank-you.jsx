@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
-import { LayoutSectionContainer } from "../../layout";
+import { LayoutSectionContainer } from "../../Layout";
 import * as styles from "./thank-you.module.scss";
 
 const cx = classnames.bind(styles);

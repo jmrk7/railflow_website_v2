@@ -3,8 +3,6 @@ import React from "react"
 import Layout from "../../components/layout"
 // import ComingSoon from '../components/coming-soon';
 import FeaturePage from "../../components/feature-sections"
-import features1Image from "../../assets/images/features_1.png"
-import features2Image from "../../assets/images/features_2.png"
 
 const PostmanPage = () => {
   const feature = {
@@ -20,7 +18,7 @@ const PostmanPage = () => {
           Nam sem lacus, ornare non ante sed, ultricies fringilla massa.
           Ut congue, elit non tempus elementum, sem risus tincidunt diam, vitae sodales diam ipsum vitae purus.
         `,
-        image: features1Image,
+        image: "/images/features_1.png",
       },
       {
         id: "postman-feature-2",
@@ -31,7 +29,7 @@ const PostmanPage = () => {
           Nam sem lacus, ornare non ante sed, ultricies fringilla massa.
           Ut congue, elit non tempus elementum, sem risus tincidunt diam, vitae sodales diam ipsum vitae purus.
         `,
-        image: features2Image,
+        image: "/images/features_2.png",
       }
     ]
 
