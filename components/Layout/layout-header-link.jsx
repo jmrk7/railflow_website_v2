@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
+import Link from "next/link";
 
 import onEnterKeyDown from "../../utils/on-enter-key-down";
 
@@ -59,9 +60,9 @@ const LayoutHeaderLink = (props) => {
             {label}
           </a>
         ) : (
-          <a href={to} className={cx("layoutHeaderLink_label")}>
-            {label}
-          </a>
+          <Link href={to}>
+            <div className={cx("layoutHeaderLink_label")}>{label}</div>
+          </Link>
         )
       ) : (
         <span className={cx("layoutHeaderLink_label")}>{label}</span>
@@ -90,13 +91,13 @@ const LayoutHeaderLink = (props) => {
                   {dropdownLink.label}
                 </a>
               ) : (
-                <a
-                  key={dropdownLink.id}
-                  href={dropdownLink.to}
-                  className={cx("layoutHeaderLinkDropdown_link")}
-                >
-                  {dropdownLink.label}
-                </a>
+                <Link href={dropdownLink.to} key={dropdownLink.id}>
+                  <div
+                    className={cx("layoutHeaderLinkDropdown_link")}
+                  >
+                    {dropdownLink.label}
+                  </div>
+                </Link>
               );
             })}
           </div>

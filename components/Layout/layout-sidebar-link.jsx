@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
+import Link from "next/link";
 
 import onEnterKeyDown from "../../utils/on-enter-key-down";
 
@@ -55,9 +56,9 @@ const LayoutSidebarLink = (props) => {
             {label}
           </a>
         ) : (
-          <a href={to} className={cx("layoutSidebarLink_label")}>
-            {label}
-          </a>
+          <Link href={to}>
+            <div className={cx("layoutSidebarLink_label")}>{label}</div>
+          </Link>
         )
       ) : (
         <span className={cx("layoutSidebarLink_label")}>
@@ -77,13 +78,11 @@ const LayoutSidebarLink = (props) => {
           })}
         >
           {dropdownLinks.map((dropdownLink) => (
-            <a
-              key={dropdownLink.id}
-              href={dropdownLink.to}
-              className={cx("layoutSidebarLinkDropdown_link")}
-            >
-              {dropdownLink.label}
-            </a>
+            <Link key={dropdownLink.id} href={dropdownLink.to}>
+              <div className={cx("layoutSidebarLinkDropdown_link")}>
+                {dropdownLink.label}
+              </div>
+            </Link>
           ))}
         </div>
       )}

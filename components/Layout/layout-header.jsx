@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import classnames from "classnames/bind";
+import Router from "next/router";
 
 import LayoutSectionContainer from "./layout-section-container";
 import LayoutHeaderLink from "./layout-header-link";
@@ -55,7 +56,7 @@ const LayoutHeader = (props) => {
                   navigationLink.mainRoute &&
                   navigationLink.mainRoute !== location.pathname
                 )
-                  navigate(navigationLink.mainRoute);
+                  Router.push(navigationLink.mainRoute);
                 else scrollToSection(navigationLink.sectionElementId);
               };
               const isActive =

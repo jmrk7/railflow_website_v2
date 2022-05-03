@@ -3,10 +3,6 @@ import Link from "next/link";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
-// import logoImage from "../../assets/images/logo.png";
-// import LocationIcon from '../../assets/icons/location.svg';
-// import EmailIcon from '../../assets/icons/email.svg';
-// import PhoneIcon from '../../assets/icons/phone.svg';
 import * as styles from "./layout.module.scss";
 
 const cx = classnames.bind(styles);
