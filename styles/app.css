@@ -7,3 +7,7 @@
 html {
     box-sizing: content-box;
 }
+
+body {
+    letter-spacing: normal !important;
+}
