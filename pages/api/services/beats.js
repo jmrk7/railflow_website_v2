@@ -1,23 +1,21 @@
 const MeterProvider = require("@opentelemetry/sdk-metrics-base");
-const sdk = require("logzio-nodejs-metrics-sdk");
+const sdk = require("clear");
 
-const { getApiClient } = require("./request");
-const appConfig = require("../../configs/app");
-const logger = require("../config/logger");
-const configs = appConfig.getConfigs();
+import { getApiClient } from "./request";
+import logger from "../config/logger";
 
 exports.registerBeatsToCryptolens = async (args) => {
   try {
     const { metadata, feature, event, key, value } = args;
-    const apiClient = await getApiClient(configs.CRYPTOLENS_BASE_URL);
+    const apiClient = await getApiClient(process.env.CRYPTOLENS_BASE_URL);
     const response = await apiClient.request({
       method: "POST",
-      url: `/api/ai/RegisterEvent?token=${configs.CRYPTOLENS_API_KEY}`,
+      url: `/api/ai/RegisterEvent?token=${process.env.CRYPTOLENS_API_KEY}`,
       headers: {
         "Content-Type": "application/json",
       },
       data: {
-        ProductId: configs.PRODUCT_ID,
+        ProductId: process.env.PRODUCT_ID,
         Key: key,
         FeatureName: feature,
         EventName: event,
@@ -44,13 +42,13 @@ exports.registerBeatsToCryptolens = async (args) => {
 exports.registerBeatsToSalesPanel = async (args) => {
   try {
     const { email, category, label, metadata } = args;
-    const apiClient = await getApiClient(configs.SALESPANEL_BASE_URL);
+    const apiClient = await getApiClient(process.env.SALESPANEL_BASE_URL);
     const response = await apiClient.request({
       method: "POST",
       url: `/api/v1/custom-activity/create/`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${configs.SALESPANEL_API_KEY}`,
+        Authorization: `Token ${process.env.SALESPANEL_API_KEY}`,
       },
       data: {
         visitor_identifier: email,

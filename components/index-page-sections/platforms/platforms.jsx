@@ -106,7 +106,7 @@ const Platforms = () => {
                     className={cx("platformsGridPlatform_image")}
                   />
                 ) : (
-                  <Image className={cx("platformsGridPlatform_image")} />
+                  <Image className={cx("platformsGridPlatform_image")} alt="platform" />
                 )}
 
                 <h2 className={cx("platformsGridPlatform_title")}>
