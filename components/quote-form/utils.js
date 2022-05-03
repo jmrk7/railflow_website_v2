@@ -1,4 +1,4 @@
-import fieldLookTypes from '../../constants/field-look-types';
+import fieldLookTypes from '../../src/constants/field-look-types';
 import {
   validateRequiredField,
   validateEmailField,

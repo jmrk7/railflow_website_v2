@@ -1,0 +1,10 @@
+@import "../../styles/globals.scss";
+
+.purchaseWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 120px auto 5rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
