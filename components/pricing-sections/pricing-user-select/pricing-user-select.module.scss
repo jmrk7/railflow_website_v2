@@ -1,0 +1,58 @@
+@import '../../../styles/globals.scss';
+
+.pricingUserSelect {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: 769px) {
+    flex-direction: row;
+  }
+  &_title {
+    position: relative;
+    margin-right: 20px;
+    font-size: 1.125rem;
+    line-height: 18px;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    margin-right: 1.5rem;
+    width: 100%;
+  }
+  &_button {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    color: $lightgrey !important;
+    &Active {
+      color: $color-3 !important;
+    }
+  }
+  &_buttons {
+    display: flex;
+    flex-direction: row;
+  }
+  &_input {
+    margin-bottom: 0;
+    &Small {
+      max-width: 120px;
+    }
+  }
+  &_helpText {
+    cursor: pointer;
+    color: white;
+    text-decoration: underline;
+  }
+  &_helpIcon {
+    cursor: pointer;
+    color: $color-3;
+    margin-left: 5px;
+  }
+  &_dialogImage {
+    max-width: 100%;
+  }
+  &_dialogCloseIcon {
+    position: absolute !important;
+    right: 8px;
+    top: 8px;
+  }
+}

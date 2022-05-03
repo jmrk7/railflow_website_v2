@@ -1,0 +1,58 @@
+@import '../../../styles/globals.scss';
+
+.pricingFaq {
+  display: flex;
+  margin-bottom: 2.5rem;
+
+  &_sectionContainer {
+    display: flex;
+    flex-flow: row wrap;
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 100%;
+
+      &:last-of-type {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 0;
+    padding: 0 20px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    @media (min-width: 769px) {
+      width: 50%;
+    }
+  }
+
+  &_topTitle {
+    text-align: center;
+    font-size: 2.75rem;
+    margin-bottom: 4rem;
+  }
+  &_question {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  &_answer {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 22px;
+    font-weight: 400;
+    font-family: Inter, sans-serif;
+  }
+}

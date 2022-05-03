@@ -1,0 +1,54 @@
+@import '../../../styles/globals.scss';
+
+.selectField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &_label {
+    margin-bottom: 0.25rem;
+    line-height: 1.375rem;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+
+  &Select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    font-size: 1rem;
+    border: 3px solid transparent;
+    border-radius: 0.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: $color-1;
+    background-color: $color-6;
+    caret-color: $color-1;
+    transition: .5s all;
+    outline: none;
+
+    &::placeholder {
+      font-size: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus,
+    &:hover {
+      border: 3px solid $color-3;
+    }
+
+    &:focus {
+      background-color: $color-4;
+    }
+  }
+
+  &Message {
+    margin-top: 0.25rem;
+  }
+}

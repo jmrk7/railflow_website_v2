@@ -1,0 +1,161 @@
+@import '../../../styles/globals.scss';
+
+.phoneField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  &_label {
+    margin-bottom: 0.25rem;
+    line-height: 1.375rem;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+
+  &_container {
+    display: flex;
+    width: 100%;
+  }
+
+  &_container:hover &_button,
+  &_container:hover &_input {
+    border: 3px solid $color-3 !important;
+  }
+
+  &_input:focus ~ &_button {
+    border: 3px solid $color-3 !important;
+  }
+
+  &_container:hover &_button {
+    border-right: none !important;
+  }
+
+  &_input:focus ~ &_button,
+  &_input:focus ~ &_button > div {
+    border-right: none !important;
+    background-color: $color-4 !important;
+  }
+
+
+  &_dropdown {
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: $color-6 !important;
+
+    & > li {
+      display: flex;
+      align-items: center;
+      min-height: 2.5rem !important;
+      font-size: 1rem !important; 
+      font-family: 'Space Grotesk', sans-serif;
+      color: $color-1 !important;
+      background-color: $color-6 !important;
+    }
+    & > li div {
+      width: 100%;
+      border: 1px solid;
+    }
+  }
+
+  &_button {
+    padding: 0.625rem !important;
+    padding-right: 0 !important;
+    border: 3px solid transparent !important;
+    border-right: none !important;
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    background-color: $color-6 !important;
+    transition: .5s all;
+
+    & > div,
+    & > div:hover,
+    & > div:focus {
+      border: none !important;
+      border-top-left-radius: 0.25rem !important;
+      border-bottom-left-radius: 0.25rem !important;
+      background-color: $color-6 !important;
+    }
+  }
+
+  &_input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0.625rem 1rem !important;
+    padding-left: 3.2rem !important;
+    font-size: 1rem !important;
+    border: 3px solid transparent !important;
+    border-radius: 0.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: $color-1 !important;
+    background-color: $color-6 !important;
+    caret-color: $color-1;
+    transition: .5s all;
+    outline: none;
+
+    &::placeholder {
+      font-size: 1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus,
+    &:hover {
+      border: 3px solid $color-3 !important;
+    }
+
+    &:focus {
+      background-color: $color-4 !important;
+    }
+  }
+
+  &Message {
+    margin-top: 0.5rem;
+
+    &_text {
+      font-family: 'Inter', sans-serif;
+    }
+  }
+
+  &__error {
+    &_input,
+    &_input:focus,
+    &_input:hover,
+    &_button {
+      border: 3px solid rgb(221, 54, 54) !important;
+    }
+
+    &_container:hover &_button,
+    &_container:hover &_input {
+      border: 3px solid rgb(221, 54, 54) !important;
+    }
+
+    &_input:focus ~ &_button {
+      border: 3px solid rgb(221, 54, 54) !important;
+    }
+
+    &_container:hover &_button {
+      border-right: none !important;
+    }
+
+    &_input:focus ~ &_button,
+    &_input:focus ~ &_button > div {
+      border-right: none !important;
+      background-color: $color-4 !important;
+    }
+
+    &_button {
+      border-right: none !important;
+    }
+
+    &Message_text {
+      color: rgb(221, 54, 54);
+    }
+  }
+}
