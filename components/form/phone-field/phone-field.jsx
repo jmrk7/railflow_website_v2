@@ -1,8 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import classnames from 'classnames/bind';
 
-import generateUniqueIdentifier from '../../../utils/generate-unique-identifer';
 import 'react-phone-input-2/lib/style.css';
 import * as styles from './phone-field.module.scss';
 
@@ -20,11 +19,7 @@ const PhoneField = (props) => {
     className,
   } = props;
 
-  // INFO: for passing to label element's 'htmlFor' attribute
-  const inputElementId = useMemo(
-    () => generateUniqueIdentifier(),
-    [],
-  );
+  // INFO: for passing to label element's 'htmlFor' attribut
 
   const handleChange = useCallback(
     (inputValue) => {
@@ -42,7 +37,7 @@ const PhoneField = (props) => {
       })}
     >
       <label
-        htmlFor={inputElementId}
+        htmlFor="phoneFieldId"
         className={cx('phoneField_label')}
       >
         {label}
