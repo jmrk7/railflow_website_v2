@@ -2,9 +2,8 @@ import axios from 'axios';
 
 const createApiClient = () => {
   // const baseURL = 'https://api.railflow.io';
-  const baseURL = 'http://localhost:9000';
   const apiClient = axios.create({
-    baseURL: baseURL + '/api',
+    baseURL: '/api/routes',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
       'allowed-party-secret': 'shhhsecret',
