@@ -43,6 +43,7 @@
     "react-phone-input-2": "^2.15.0",
     "react-stars": "^2.2.5",
     "sass": "^1.51.0",
+    "sharp": "^0.30.4",
     "uuid": "^8.3.2",
     "winston": "^3.3.3",
     "winston-logzio": "^5.1.4"
