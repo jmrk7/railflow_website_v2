@@ -1,0 +1,54 @@
+@import '../../../styles/globals.scss';
+
+.duplicateEvaluation {
+  display: flex;
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  &_title {
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    a {
+      color: $color-1;
+    }
+  }
+
+  &_button {
+    margin-left: 0;
+  }
+
+  &_image {
+    text-align: center;
+    margin-top: 10px;
+
+    img {
+      max-width: 250px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 130px;
+  }
+
+  @media (min-width: 769px) {
+    padding-top: 180px;
+    padding-bottom: 120px;
+  }
+}

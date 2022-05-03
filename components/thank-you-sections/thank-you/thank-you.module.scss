@@ -1,0 +1,74 @@
+@import '../../../styles/globals.scss';
+
+.thankYou {
+  display: flex;
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  &_title {
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: 'Inter', sans-serif;
+    a {
+      color: $color-1;
+    }
+  }
+
+  &_linkitem {
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #c2c3c5;
+    margin: 12px 0;
+
+    img, svg {
+      width: 30px;
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    a {
+      color: $color-1;
+    }
+  }
+
+  &_image {
+    img {      
+      @media (min-width: 376px) {
+        max-width: 250px;
+      }
+
+      @media (max-width: 375px) {
+        width: 100%;
+      }
+    }
+  }
+
+  &_button {
+    margin-left: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 100px;
+  }
+
+  @media (min-width: 769px) {
+    padding-top: 180px;
+    padding-bottom: 120px;
+  }
+}
