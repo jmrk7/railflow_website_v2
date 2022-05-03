@@ -1,28 +1,23 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from "react";
 import Router from "next/router";
 
-import ReCAPTCHA from 'react-google-recaptcha';
-import classnames from 'classnames/bind';
+import ReCAPTCHA from "react-google-recaptcha";
+import classnames from "classnames/bind";
 
-import { TextField, PhoneField, CheckboxField } from '../form';
-import Button from '../button';
+import { TextField, PhoneField, CheckboxField } from "../form";
+import Button from "../button";
 
-import { requestSignUp } from '../../api';
-import { initialFieldData } from './constants';
-import {
-  validateField,
-  formatFieldValue,
-  getRequestData,
-} from './utils';
-import * as styles from './sign-up-form.module.scss';
+import { requestSignUp } from "../../api";
+import { initialFieldData } from "./constants";
+import { validateField, formatFieldValue, getRequestData } from "./utils";
+import * as styles from "./sign-up-form.module.scss";
 
 const cx = classnames.bind(styles);
 
 const SignUpForm = () => {
   const [fieldData, setFieldData] = useState(initialFieldData);
   const [isRequestPending, setIsRequestPending] = useState(false);
-  const [isResponseSuccessful, setIsResponseSuccessful] =
-    useState(null);
+  const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
   const [responseMessage, setResponseMessage] = useState(null);
 
   const handleChangeField = useCallback((name, value) => {
@@ -30,27 +25,20 @@ const SignUpForm = () => {
       ...currentFieldData,
       [name]: {
         ...currentFieldData[name],
-        value: formatFieldValue(
-          name,
-          value,
-          currentFieldData[name].value,
-        ),
+        value: formatFieldValue(name, value, currentFieldData[name].value),
         ...validateField(name, value),
       },
     }));
   }, []);
 
-  const [isRecaptchaVerified, setIsRecaptchaVerified] =
-    useState(false);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
 
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);
   }, []);
 
   const isFieldDataValid = useMemo(() => {
-    return Object.values(fieldData).every(
-      (fieldDatum) => !!fieldDatum.isValid,
-    );
+    return Object.values(fieldData).every((fieldDatum) => !!fieldDatum.isValid);
   }, [fieldData]);
 
   const handleSubmit = useCallback(
@@ -64,7 +52,7 @@ const SignUpForm = () => {
       if (!fieldData.termsAgreement.value) {
         // TODO: validate form
         alert(
-          'You should agree to our terms and conditions in order to able to submit the form.',
+          "You should agree to our terms and conditions in order to able to submit the form."
         );
         return;
       }
@@ -78,9 +66,18 @@ const SignUpForm = () => {
         setIsRequestPending(true);
         const signUpResponse = await requestSignUp(requestData);
         setIsResponseSuccessful(true);
-        localStorage.setItem('license_link', signUpResponse?.data?.data?.license_link);
-        localStorage.setItem('license_key', signUpResponse?.data?.data?.license_key);
-        if (signUpResponse.data.status === 201 || signUpResponse.data.status === 200) {                    
+        localStorage.setItem(
+          "license_link",
+          signUpResponse?.data?.data?.license_link
+        );
+        localStorage.setItem(
+          "license_key",
+          signUpResponse?.data?.data?.license_key
+        );
+        if (
+          signUpResponse.data.status === 201 ||
+          signUpResponse.data.status === 200
+        ) {
           Router.push(`/thank-you`);
         } else if (signUpResponse.data.status === 403) {
           Router.push(`/duplicate-evaluation`);
@@ -88,34 +85,31 @@ const SignUpForm = () => {
           setResponseMessage(signUpResponse.data.data.message);
         }
       } catch (error) {
-        if(error.response.status === 409){
+        if (error.response.status === 409) {
           Router.push(`/duplicate-evaluation`);
         }
-
+        console.log(error.response);
         setIsResponseSuccessful(false);
-        error.response &&
-          setResponseMessage(error.response.data.data.message);
+        error.response && setResponseMessage(error.response.data.data.message);
       } finally {
         setIsRequestPending(false);
       }
     },
-    [fieldData, isFieldDataValid, isRecaptchaVerified],
+    [fieldData, isFieldDataValid, isRecaptchaVerified]
   );
-
-  const showRecaptcha = process.env.RECAPTCHA_SITE_KEY;
 
   return (
     // TODO: replace with common form component
-    <form onSubmit={handleSubmit} className={cx('signUpForm')}>
-      <h2 className={cx('signUpForm_title')}>
+    <form onSubmit={handleSubmit} className={cx("signUpForm")}>
+      <h2 className={cx("signUpForm_title")}>
         Risk Free 14 Day Railflow Trial
       </h2>
 
       {!isRequestPending && isResponseSuccessful !== null && (
         <div
-          className={cx('signUpForm_messageContainer', {
+          className={cx("signUpForm_messageContainer", {
             [`signUpForm_messageContainer__${
-              isResponseSuccessful ? 'success' : 'failure'
+              isResponseSuccessful ? "success" : "failure"
             }`]: true,
           })}
         >
@@ -123,17 +117,17 @@ const SignUpForm = () => {
         </div>
       )}
       {isRequestPending && (
-        <div className={cx('signUpForm_loadingContainer')}>
-          <div className={cx('signUpForm_spinner')} />
+        <div className={cx("signUpForm_loadingContainer")}>
+          <div className={cx("signUpForm_spinner")} />
           <div>Processing, please wait...</div>
         </div>
       )}
 
       {!isRequestPending && isResponseSuccessful === null && (
         <>
-          <section className={cx('signUpForm_fieldContainer')}>
+          <section className={cx("signUpForm_fieldContainer")}>
             {/* TODO: place form fields by mapping through array */}
-            <div className={cx('signUpFormFieldGroup')}>
+            <div className={cx("signUpFormFieldGroup")}>
               <TextField
                 type="text"
                 name="firstName"
@@ -141,7 +135,7 @@ const SignUpForm = () => {
                 placeholder="First Name"
                 {...fieldData.firstName}
                 onChange={handleChangeField}
-                className={cx('signUpFormFieldGroup_item')}
+                className={cx("signUpFormFieldGroup_item")}
               />
               <TextField
                 type="text"
@@ -150,11 +144,11 @@ const SignUpForm = () => {
                 placeholder="Last Name"
                 {...fieldData.lastName}
                 onChange={handleChangeField}
-                className={cx('signUpFormFieldGroup_item')}
+                className={cx("signUpFormFieldGroup_item")}
               />
             </div>
 
-            <div className={cx('signUpFormFieldGroup')}>
+            <div className={cx("signUpFormFieldGroup")}>
               <TextField
                 type="email"
                 name="email"
@@ -186,46 +180,45 @@ const SignUpForm = () => {
               placeholder="Company Name"
               {...fieldData.company}
               onChange={handleChangeField}
-            />            
+            />
             <CheckboxField
               name="termsAgreement"
               {...fieldData.termsAgreement}
               onChange={handleChangeField}
             >
-              I agree to the{' '}
+              I agree to the{" "}
               <a
                 rel="noopener noreferrer"
                 target="_blank"
                 href="https://railflow.io/terms"
-                className={cx('signUpForm_termsLink')}
+                className={cx("signUpForm_termsLink")}
               >
                 Terms &amp; Conditions
-              </a>{' '}
-              and the{' '}
+              </a>{" "}
+              and the{" "}
               <a
                 rel="noopener noreferrer"
                 target="_blank"
                 href="https://railflow.io/privacy"
-                className={cx('signUpForm_termsLink')}
+                className={cx("signUpForm_termsLink")}
               >
                 Privacy Policy
               </a>
             </CheckboxField>
           </section>
-          {showRecaptcha && (
-            <section className={cx('signUpForm_recaptchaContainer')}>
-              <ReCAPTCHA
-                sitekey={process.env.RECAPTCHA_SITE_KEY}
-                onChange={handleVerifyRecaptcha}
-                theme="dark"
-              />
-            </section>
-          )}
 
-          <section className={cx('signUpForm_buttonContainer')}>
+          <section className={cx("signUpForm_recaptchaContainer")}>
+            <ReCAPTCHA
+              sitekey={process.env.RECAPTCHA_SITE_KEY}
+              onChange={handleVerifyRecaptcha}
+              theme="dark"
+            />
+          </section>
+
+          <section className={cx("signUpForm_buttonContainer")}>
             <Button
               type="submit"
-              className={cx('signUpForm_submit')}
+              className={cx("signUpForm_submit")}
               isDisabled={!isFieldDataValid || !isRecaptchaVerified}
             >
               Sign Up

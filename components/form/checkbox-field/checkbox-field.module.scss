@@ -32,11 +32,13 @@
       border-radius: 0.25rem;
       background-color: $color-6;
       transition: .3s background-color;
+      box-sizing: content-box !important;
       cursor: pointer;
     }
 
     &__checked::before {
       background-color: $color-3;
+      box-sizing: content-box !important;
     }
 
     &__checked::after {
@@ -51,6 +53,7 @@
       -webkit-transform: translate(150%, -10%) rotate(45deg);
       -ms-transform: translate(150%, -10%) rotate(45deg);
       transform: translate(150%, -10%) rotate(45deg);
+      box-sizing: unset !important;
     }
   }
 }

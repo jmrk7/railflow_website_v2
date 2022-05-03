@@ -13,7 +13,7 @@ export const validateRequiredField = value => {
 // eslint-disable-next-line
 const emailValidationRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 // eslint-disable-next-line
-const corporateEmailValidationRegex = /^([\w-\.]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!abc.com)(?!xyz.com)(?!pqr.com)(?!rediffmail.com)(?!live.com)(?!outlook.com)(?!me.com)(?!msn.com)(?!ymail.com)(?!mailinator.com)([\w-]+\.)+[\w-]{2,4})?$/
+const corporateEmailValidationRegex = /^([\w-\.]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!yahoo.co.in)(?!aol.com)(?!abc.com)(?!xyz.com)(?!pqr.com)(?!rediffmail.com)(?!live.com)(?!outloo.com)(?!me.com)(?!msn.com)(?!ymail.com)(?!mailinator.com)([\w-]+\.)+[\w-]{2,4})?$/
 
 export const validateEmailField = value => {
   if (value === "") {
