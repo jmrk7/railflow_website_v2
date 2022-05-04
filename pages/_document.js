@@ -11,8 +11,6 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href={"/favicon.ico"} />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {this.props.emotionStyleTags}
-          
-          ,
           <script
             key="salespanel"
             dangerouslySetInnerHTML={{
