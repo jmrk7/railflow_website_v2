@@ -1,5 +1,4 @@
 @import '../../styles/globals.scss';
-
 .quoteForm {
   position: relative;
   display: flex;
@@ -11,8 +10,10 @@
     width: 100%;
   }
   &_stepper {
-    background-color: #151720 !important;
+    width: 100%;
+    background-color: #151720 !important;    
   }
+  
   &_spinner {
     border: 4px solid #f3f3f3;
     border-radius: 50%;

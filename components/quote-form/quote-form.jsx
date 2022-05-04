@@ -17,6 +17,7 @@ import { TextField, PhoneField, SelectField } from "../form";
 import Button from "../button";
 import { initialFieldData, basePricingPlans } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
+import { styled } from "@mui/material/styles";
 import {
   Checkbox,
   FormControl,
@@ -37,6 +38,36 @@ import * as styles from "./quote-form.module.scss";
 import "react-multi-email/style.css";
 
 const cx = classnames.bind(styles);
+
+const MuiStepLabel = styled(StepLabel)(({ theme }) => ({
+  ".MuiStepLabel-label": {
+    color: "#758491",
+    "&.Mui-active": {
+      color: "white",
+    }
+  },
+  ".MuiStepIcon-root": {
+    width: 31,
+    height: 31,
+    color: "#758491", 
+    "&.Mui-active": {
+      color: "#3f51b5"
+    }   
+  },
+}));
+
+const MuiStepper = styled(Stepper)(({ theme }) => ({
+  "width": 542,
+  "height": 67,
+  "padding": 24,
+  "marginBottom": 48
+}));
+
+const MuiStep = styled(Step)(({theme}) => ({
+  ".MuiStepConnector-root":{
+    "top": "16px !important",
+  }
+}));
 
 const QuoteFrom = ({ priceIndex, licenseType }) => {
   const [fieldData, setFieldData] = useState(initialFieldData);
@@ -131,7 +162,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
   const [responseMessage, setResponseMessage] = useState(null);
 
-  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(true);
 
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);
@@ -330,6 +361,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     },
     [fieldData, contactResponse, years, userIndex]
   );
+
   const renderCustomerFields = () => {
     const showRecaptcha = process.env.RECAPTCHA_SITE_KEY;
 
@@ -764,28 +796,29 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
       </div>
     );
   };
+  
   return (
     // TODO: replace with common form component
     <div className={cx("quoteForm")}>
       <h2 className={cx("quoteForm_title")}>{"Railflow Quote & Purchase"}</h2>
 
-      <Stepper
+      <MuiStepper
         activeStep={activeStep}
         alternativeLabel
         className={cx("quoteForm_stepper")}
       >
         {stepLabels.map((label, idx) => (
-          <Step
+          <MuiStep
             className={cx("quoteForm_step")}
             key={label}
             completed={activeStep > idx || activeStep === 3}
           >
-            <StepLabel className={cx("quoteForm_stepperLabel")}>
+            <MuiStepLabel className={cx("quoteForm_stepperLabel")}>
               {label}
-            </StepLabel>
-          </Step>
+            </MuiStepLabel>
+          </MuiStep>
         ))}
-      </Stepper>
+      </MuiStepper>
       <div className={cx("quoteForm_container")}>
         {!isRequestPending && isResponseSuccessful !== null && (
           <div
