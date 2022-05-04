@@ -11,3 +11,7 @@ html {
 body {
     letter-spacing: normal !important;
 }
+
+.chatlio-online-dot {
+    box-sizing: content-box !important;
+}
