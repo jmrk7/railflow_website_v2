@@ -50,11 +50,14 @@ async function create(request, res, next) {
       ],
       account_id: account.id,
     };
-
+    
     // check if the contact is already there.
     let contact = await contactService.getContactIfAlreadyPresent(
       request.body.email
     );
+    console.log(contact);
+    console.log("******************");
+    
     if (!contact) {
       const response = await contactService.create(data);
       if (response && response.data && response.data.contact) {
@@ -131,17 +134,23 @@ async function create(request, res, next) {
       const cryptolensTokenObject = await licenseService.getCryptolensToken(
         reqData
       );
+      console.log("*********");
+      console.log(cryptolensTokenObject);
       const mailgunResponse = await sendOnboardingEmail(
         reqData,
         cryptolensTokenObject
       );
+      console.log("*********");
+      console.log(mailgunResponse);
       const mailgunEmailUrl =
         "https://app.mailgun.com/app/sending/domains/mail.railflow.io/logs/";
       const description = `License key: ${
         cryptolensTokenObject.key
       } \n\n Email sent at: ${dayjs()} \n\n Mailgun Id: ${mailgunEmailUrl}${
         mailgunResponse.emailData.id
-      }/history \n\n License URL: ${mailgunResponse.licenseUrl}`;
+      }/history \n\n License URL: ${mailgunResponse.licenseUrl}`;      
+      console.log("*********");
+      console.log(description);
       await noteService.create(reqData.contact_id, description);
       await taskService.create({ contact_id: reqData.contact_id });
       reqData.cf_license_key = cryptolensTokenObject.key;
