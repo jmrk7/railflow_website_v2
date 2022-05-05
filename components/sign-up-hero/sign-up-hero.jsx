@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import classnames from "classnames/bind";
 
+import Logo from "../../public/images/logo.png";
+
 import * as styles from "./sign-up-hero.module.scss";
 
 const cx = classnames.bind(styles);
@@ -22,13 +24,11 @@ const SignUpHero = () => {
   return (
     <div className={cx("signUpHero")}>
       <Link href="/" passHref>
-        <div className={cx("signUpHeroLogo")}>
-          <img
-            src={"/images/logo.png"}
-            alt="logo"
-            className={cx("signUpHeroLogo_image")}
-          />
-        </div>
+        <a className={cx("signUpHeroLogo")}>
+          <div className={cx("signUpHeroLogo_image")}>
+            <Image src={Logo} alt="logo" />
+          </div>
+        </a>
       </Link>
       <h3 className={cx("signUpHero_title")}>{signUpHeroContent.title}</h3>
 
