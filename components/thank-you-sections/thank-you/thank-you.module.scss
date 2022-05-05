@@ -35,26 +35,25 @@
     font-family: 'Inter', sans-serif;
     color: #c2c3c5;
     margin: 12px 0;
-
-    img, svg {
-      width: 30px;
-      height: 30px;
-      margin-right: 20px;
+    :nth-child(1){
+      width: 30px !important;
+      height: 30px !important;
+      margin-right: 20px !important;
     }
-
+  
     a {
       color: $color-1;
     }
   }
 
   &_image {
-    img {      
+    span {      
       @media (min-width: 376px) {
-        max-width: 250px;
+        max-width: 250px !important;
       }
 
       @media (max-width: 375px) {
-        width: 100%;
+        width: 100% !important;
       }
     }
   }

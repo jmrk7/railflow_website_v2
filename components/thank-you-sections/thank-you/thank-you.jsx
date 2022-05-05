@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
+import DownloadImage from '../../../public/images/download.png';
+import NotePadIcon from '../../../public/icons/notepad.svg';
+import DocsImage from '../../../public/images/manual.png';
+import DogImage from '../../../public/images/giphy-dog.webp';
+
 import { LayoutSectionContainer } from "../../Layout";
 import * as styles from "./thank-you.module.scss";
 
@@ -42,7 +47,7 @@ const ThankYou = () => {
             .
           </p>
           <div className={cx("thankYou_linkitem")}>
-            <img src={"/images/download.png"} alt="download" />
+            <Image src={DownloadImage} alt="download" />
             <span>
               Railflow 2 week trial license file:{" "}
               <a href={licenseLink} download>
@@ -51,11 +56,11 @@ const ThankYou = () => {
             </span>
           </div>
           <div className={cx("thankYou_linkitem")}>
-            <img src={"/icons/notepad.svg"} alt="notepad" />
+            <Image src={NotePadIcon} alt="notepad" />
             <span>Railflow 2 week trial license key: {licenseKey}</span>
           </div>
           <div className={cx("thankYou_linkitem")}>
-            <img src={"/images/manual.png"} alt="download" />
+            <Image src={DocsImage} alt="download" />
             <a
               rel="noopener noreferrer"
               href="https://docs.railflow.io/docs/intro"
@@ -73,7 +78,7 @@ const ThankYou = () => {
           </p>
           <p className={cx("thankYou_text")}>The Railflow Engineering Team</p>
           <div className={cx("thankYou_image")}>
-            <img src={"/images/giphy-dog.webp"} alt="Dog" />
+            <Image src={DogImage} alt="Dog" />
           </div>
         </div>
       </LayoutSectionContainer>
