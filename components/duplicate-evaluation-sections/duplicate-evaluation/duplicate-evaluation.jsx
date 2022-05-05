@@ -1,8 +1,11 @@
 import React from "react";
 import classnames from "classnames/bind";
+import Image from "next/image";
 
 import { LayoutSectionContainer } from "../../Layout";
 import * as styles from "./duplicate-evaluation.module.scss";
+
+import duplicateEvaluationImage from "../../../public/images/giphy-cat.webp";
 
 const cx = classnames.bind(styles);
 
@@ -30,7 +33,7 @@ const DuplicateEvaluation = () => {
             </div>
           </div>
           <div className={cx("duplicateEvaluation_image")}>
-            <img src={"/images/giphy-cat.webp"} alt="cat" />
+            <Image src={duplicateEvaluationImage} alt="cat" />
           </div>
         </div>
       </LayoutSectionContainer>
