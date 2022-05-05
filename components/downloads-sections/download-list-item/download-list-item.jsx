@@ -18,11 +18,10 @@ const DownloadListItem = ({ download }) => {
     <div className={cx("downloadListItem")}>
       <LayoutSectionContainer>
         <div className={cx("downloadListItem_sectionContainer")}>
-          <img
-            className={cx("downloadListItem_img")}
-            src={download.image}
-            alt={download.name}
-          />
+          <div className={cx("downloadListItem_img")}>
+            <Image src={download.image} alt={download.name} />
+          </div>
+
           <div className={cx("downloadListItem_section")}>
             <h1 className={cx("downloadListItem_title")}>{download.name}</h1>
             <ul className={cx("downloadListItem_desc")}>

@@ -1,32 +1,38 @@
-import React from 'react';
-import classnames from 'classnames/bind';
+import React from "react";
+import classnames from "classnames/bind";
 
-import {LayoutSectionContainer} from '../../Layout';
-import DownloadListItem from '../download-list-item';
+import { LayoutSectionContainer } from "../../Layout";
+import DownloadListItem from "../download-list-item";
 
-import * as styles from './download-posts.module.scss';
+import JenkinsImage from "../../../public/images/jenkins.png";
+import TeamCityImage from "../../../public/images/teamcity.png";
+import ReadyAPIImage from "../../../public/images/readyapi.png";
+import NPMImage from "../../../public/images/npm.png";
+import DockerImage from "../../../public/images/docker-2.png";
+
+import * as styles from "./download-posts.module.scss";
 
 const cx = classnames.bind(styles);
 
 export const downloads = [
   {
-    id: 'jenkins',
-    name: 'Jenkins plugin - 2.3',
+    id: "jenkins",
+    name: "Jenkins plugin - 2.3",
     features: [
       {
-        text: '[feature] Add support for Robot native reports',
+        text: "[feature] Add support for Robot native reports",
       },
       {
-        text: '[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)',
+        text: "[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)",
       },
       {
-        text: '[feature] Add support for SpecFlow NUnit reports',
+        text: "[feature] Add support for SpecFlow NUnit reports",
       },
       {
-        text: '[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)',
+        text: "[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)",
       },
       {
-        text: '[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)',
+        text: "[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)",
       },
       {
         text: '[feature] Add "Fully Qualified Test Name" parameter which allows exporting fully qualified test names into TestRail',
@@ -35,40 +41,39 @@ export const downloads = [
         text: '[feature] Add "Case Search Field" parameter which allows Railflow to search for existing tests cases by the value of some custom field',
       },
       {
-        text: '[feature] Railflow searches for the existing tests in TestRail in case-insensitive way',
+        text: "[feature] Railflow searches for the existing tests in TestRail in case-insensitive way",
       },
       {
         text: '[feature] Add "Upload Mode" parameter which controls whether Railflow should create new tests and update existing tests in TestRail',
       },
       {
-        text: '[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report',
+        text: "[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report",
       },
     ],
     downloadUrl:
-        'https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.3/railflow-jenkins-plugin.hpi',
-    image: "/images/jenkins.png",
-    releaseNotesUrl:
-        'https://docs.railflow.io/docs/release-notes/jenkins',
+      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.3/railflow-jenkins-plugin.hpi",
+    image: JenkinsImage,
+    releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/jenkins",
     hashes: true,
   },
   {
-    id: 'teamcity',
-    name: 'TeamCity Plugin - 2.3',
+    id: "teamcity",
+    name: "TeamCity Plugin - 2.3",
     features: [
       {
-        text: '[feature] Add support for Robot native reports',
+        text: "[feature] Add support for Robot native reports",
       },
       {
-        text: '[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)',
+        text: "[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)",
       },
       {
-        text: '[feature] Add support for SpecFlow NUnit reports',
+        text: "[feature] Add support for SpecFlow NUnit reports",
       },
       {
-        text: '[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)',
+        text: "[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)",
       },
       {
-        text: '[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)',
+        text: "[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)",
       },
       {
         text: '[feature] Add "Fully Qualified Test Name" parameter which allows exporting fully qualified test names into TestRail',
@@ -77,111 +82,73 @@ export const downloads = [
         text: '[feature] Add "Case Search Field" parameter which allows Railflow to search for existing tests cases by the value of some custom field',
       },
       {
-        text: '[feature] Railflow searches for the existing tests in TestRail in case-insensitive way',
+        text: "[feature] Railflow searches for the existing tests in TestRail in case-insensitive way",
       },
       {
         text: '[feature] Add "Upload Mode" parameter which controls whether Railflow should create new tests and update existing tests in TestRail',
       },
       {
-        text: '[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report',
+        text: "[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report",
       },
     ],
     downloadUrl:
-        'https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.3/railflow-teamcity-testrail-connector.zip',
-    image: "/images/teamcity.png",
-    releaseNotesUrl:
-        'https://docs.railflow.io/docs/release-notes/teamcity',
+      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.3/railflow-teamcity-testrail-connector.zip",
+    image: TeamCityImage,
+    releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/teamcity",
     hashes: true,
   },
   {
-    id: 'NPM',
-    name: 'Railflow NPM CLI - 2.1.5',
+    id: "NPM",
+    name: "Railflow NPM CLI - 2.1.9",
     features: [
       {
-        text: '[feature] Add support for Robot native reports',
-      },
-      {
-        text: 'Add support for custom Railflow Pytest reports (https://docs.railflow.io/docs/testing-frameworks/pytest)',
-      },
-      {
-        text: '[feature] Add support for SpecFlow NUnit reports',
-      },
-      {
-        text: '[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)(https://github.com/railflow/railflow-mstest-examples)',
-      },
-      {
-        text: '[feature] Add new `--fully-qualified-test-name` CLI which allows exporting fully qualified test names into TestRail',
-      },
-      {
-        text: '[feature] Add automatic retry for failed HTTP requests',
-      },
-      {
-        text: '[bug] Fix an issue with parsing xUnit report generated by xUnit console as they contain some invalid characters',
-      },
-      {
-        text: '[bug] `Railflow creates empty sections when search mode is `name` and all test cases are exists and not located in the section defined by `--path` switch',
-      },
+        text: "[feature] Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests",
+      },      
     ],
-    downloadUrl: 'https://www.npmjs.com/package/railflow',
-    image: "/images/npm.png",
-    releaseNotesUrl:
-      'https://docs.railflow.io/docs/release-notes/cli',
+    downloadUrl: "https://www.npmjs.com/package/railflow",
+    image: NPMImage,
+    releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
+
   {
-    id: 'Docker',
-    name: 'Railflow Docker Image - 2.1.4',
+    id: "Docker",
+    name: "Railflow Docker Image - 2.1.9",
     features: [
       {
-        text: '[feature] Add new `--upload-mode` CLI switch and do not update the existing test cases in TestRail by default (Railflow just adds a run results for them)',
-      },
-      {
-        text: '[feature] Make test case search case-insensitive',
-      },
-      {
-        text: '[feature] Add support for enhanced MSTest reports (https://github.com/railflow/railflow-mstest-examples)',
-      },
-      {
-        text: '[feature] Add new `--case-search-field` CLI switch',
-      },
-      {
-        text: '[bug] No error message is displayed for test step Actual field (only stack trace) for TRX reports',
-      },
-      {
-        text: '[bug] `npm install railflow` command failed on Node 17 and macOS',
+        text: "[feature] Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests",
       },
     ],
-    downloadUrl: 'https://hub.docker.com/r/railflow/railflow',
-    image: "/images/docker-2.png",
-    releaseNotesUrl: '',
+    downloadUrl: "https://hub.docker.com/r/railflow/railflow",
+    image: DockerImage,
+    releaseNotesUrl: "",
     hashes: false,
   },
+
   {
-    id: 'readyapi',
-    name: 'Readyapi plugin - Coming soon!',
+    id: "readyapi",
+    name: "Readyapi plugin - Coming soon!",
     features: [
       {
-        text: 'Coming Soon',
+        text: "Coming Soon",
       },
     ],
-    downloadUrl: '#download',
-    image: "/images/readyapi.png",
-    releaseNotesUrl: '',
+    downloadUrl: "#download",
+    image: ReadyAPIImage,
+    releaseNotesUrl: "",
     hashes: false,
   },
 ];
 
 const DownloadPosts = () => {
   return (
-    <section id="download-posts" className={cx('downloadPosts')}>
+    <section id="download-posts" className={cx("downloadPosts")}>
       <LayoutSectionContainer>
-        <div className={cx('downloadPosts_sectionContainer')}>
-          <div className={cx('downloadPosts_section')}>
-            <h1 className={cx('downloadPosts_title')}>
-              Railflow Downloads
-            </h1>
+        <div className={cx("downloadPosts_sectionContainer")}>
+          <div className={cx("downloadPosts_section")}>
+            <h1 className={cx("downloadPosts_title")}>Railflow Downloads</h1>
 
-            <div className={cx('downloadPosts_list')}>
+            <div className={cx("downloadPosts_list")}>
               {downloads.map((item) => (
                 <DownloadListItem key={item.id} download={item} />
               ))}
