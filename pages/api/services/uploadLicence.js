@@ -10,7 +10,6 @@ import querystring from "querystring";
 
 import logger from "../config/logger";
 
-const key = cryptolens.Key;
 const Helpers = cryptolens.Helpers;
 const uuidv4 = v4;
 
@@ -24,7 +23,7 @@ const s3 = new AWS.S3({
 async function uploadLicence(data) {
   try {
     const TOKEN = process.env.CRYPTOLENS_LICENSE_EXTENSION_KEY;
-    const RSA_PUB_KEY = process.env.CRYPTOLENS_RSA_PUB_KEY;
+    // const RSA_PUB_KEY = process.env.CRYPTOLENS_RSA_PUB_KEY;
 
     const PRODUCT_ID = 8245;
     const code = await machineId();
@@ -33,20 +32,28 @@ async function uploadLicence(data) {
 
     const fileFullPath = `${process.env.SPACE_NAME}.${process.env.SPACE_ENDPOINT}/${filename}`;
 
-    let licenseKey;
+    let licenseKey = {};
+
+    const cryptolensData = {
+      token: TOKEN,
+      productId: PRODUCT_ID,
+      Key: data.key,
+      machineCode: code,
+    };
 
     try {
-      licenseKey = await key.Activate(
-        TOKEN,
-        RSA_PUB_KEY,
-        PRODUCT_ID,
-        data.key,
-        code
+      const body = await axios.post(
+        "https://app.cryptolens.io/api/key/Activate",
+        querystring.stringify(cryptolensData)
       );
+      if (body.data.result == "1") {
+        throw new Error(body.message);
+      } else {
+        licenseKey.RawResponse = body.data;
+      }
     } catch (err) {
       logger.error("error when calling key activate: ", err);
     }
-
     const params = {
       Bucket: process.env.SPACE_NAME,
       Key: filename,
