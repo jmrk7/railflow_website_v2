@@ -88,9 +88,8 @@ const SignUpForm = () => {
         if (error.response.status === 409) {
           Router.push(`/duplicate-evaluation`);
         }
-        console.log(error.response);
         setIsResponseSuccessful(false);
-        error.response && setResponseMessage(error.response.data.message);
+        error.response && setResponseMessage(error.response.data.data.message);
       } finally {
         setIsRequestPending(false);
       }

@@ -55,8 +55,6 @@ async function create(request, res, next) {
     let contact = await contactService.getContactIfAlreadyPresent(
       request.body.email
     );
-    console.log(contact);
-    console.log("******************");
     
     if (!contact) {
       const response = await contactService.create(data);
