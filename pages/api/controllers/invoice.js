@@ -224,7 +224,9 @@ async function createInvoice(req, res, next) {
     logger.error(`controllers:invoice`, error);
     return res.status(500).send({
       status: 500,
-      message: "something went wrong",
+      data: {
+        message: "something went wrong",
+      },
     });
   }
 }

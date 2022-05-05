@@ -237,7 +237,9 @@ async function createQuote(req, res, next) {
     logger.error(`controllers:quote:`, error);
     return res.status(500).send({
       status: 500,
-      message: "something went wrong",
+      data: {
+        message: "something went wrong",
+      },
     });
   }
 }
