@@ -44,10 +44,12 @@
       }
 
       &_image {
-        width: 56px;
-        height: 56px;
+        img {
+          width: 56px !important;
+          height: 56px !important;
+          object-fit: contain;
+        }
         margin-right: 1rem;
-        object-fit: contain;
       }
 
       &_title {
@@ -76,13 +78,17 @@
         font-weight: 700;
 
         &_icon {
-          height: 8px;
-          margin-top: 2px;
-          transition: 0.2s transform;
+          span {
+            height: 8px !important;
+            margin-top: 2px;
+            transition: 0.2s transform;
+          }
         }
 
         &:hover &_icon {
-          transform: translateX(25%);
+          span {
+            transform: translateX(25%);
+          }
         }
       }
     }

@@ -1,8 +1,12 @@
 import React from "react";
 import classnames from "classnames/bind";
+import Link from "next/link";
+import Image from "next/image";
+
+import Logo from "../../public/images/logo.png";
+import Checkblue from "../../public/icons/check_blue.svg";
 
 import * as styles from "./quote-hero.module.scss";
-import Link from "next/link";
 
 const cx = classnames.bind(styles);
 
@@ -20,25 +24,21 @@ const quoteHeroContent = {
 const QuoteHero = () => {
   return (
     <div className={cx("quoteHero")}>
-      <Link href="/">
-        <div className={cx("quoteHeroLogo")}>
-          <img
-            src={"/images/logo.png"}
-            alt="logo"
-            className={cx("quoteHeroLogo_image")}
-          />
-        </div>
+      <Link href="/" passHref>
+        <a className={cx("quoteHeroLogo")}>
+          <div className={cx("quoteHeroLogo_image")}>
+            <Image src={Logo} alt="logo" />
+          </div>
+        </a>
       </Link>
       <h2 className={cx("quoteHero_title")}>{quoteHeroContent.title}</h2>
 
       <ul className={cx("quoteHero_featureContainer")}>
         {quoteHeroContent.features.map((content, idx) => (
           <li key={idx} className={cx("quoteHeroFeature")}>
-            <img
-              src={"/icons/check_blue.svg"}
-              alt="check icon"
-              className={cx("quoteHeroFeature_icon")}
-            />
+            <div className={cx("quoteHeroFeature_icon")}>
+              <Image src={Checkblue} alt="check icon" />
+            </div>
             {content}
           </li>
         ))}
