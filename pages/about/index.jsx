@@ -2,8 +2,9 @@ import React from "react";
 import { useRouter } from "next/router";
 
 const Index = (props) => {
-  const router = useRouter();
+  
   React.useEffect(() => {
+    const router = useRouter();
     if (router.pathname === "/about") {
       // INFO: redirect to sign up page
       router.push("/about/company");

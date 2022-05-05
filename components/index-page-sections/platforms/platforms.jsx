@@ -13,7 +13,6 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import ArrowRightIcon from "../../../public/icons/arrow_right.svg";
 import * as styles from "./platforms.module.scss";
 
 const cx = classnames.bind(styles);
