@@ -1,7 +1,7 @@
 "use strict";
 
 import ApiError from "../errors/api";
-import { machineId } from "node-machine-id"
+import { machineId } from "node-machine-id";
 import cryptolens from "cryptolens";
 import AWS from "aws-sdk";
 import { v4 } from "uuid";
@@ -22,7 +22,7 @@ const s3 = new AWS.S3({
 });
 
 async function uploadLicence(data) {
-  // try {
+  try {
     const TOKEN = process.env.CRYPTOLENS_LICENSE_EXTENSION_KEY;
     const RSA_PUB_KEY = process.env.CRYPTOLENS_RSA_PUB_KEY;
 
@@ -35,17 +35,16 @@ async function uploadLicence(data) {
 
     let licenseKey;
 
-    try{
-       licenseKey = await key.Activate(
+    try {
+      licenseKey = await key.Activate(
         TOKEN,
         RSA_PUB_KEY,
         PRODUCT_ID,
         data.key,
         code
-      )
-    }
-    catch(err){
-      logger.error("error when calling key activate", err);
+      );
+    } catch (err) {
+      logger.error("error when calling key activate: ", err);
     }
 
     const params = {
@@ -60,11 +59,10 @@ async function uploadLicence(data) {
       }
     });
     return { url: fileFullPath };
-  // }
-  // } catch (error) {
-  //   logger.error("Error When trying to upload file to Digital Ocean", error);
-  //   throw new ApiError(`Error while uploading license; ${error}`);
-  // }
+  } catch (error) {
+    logger.error("Error When trying to upload file to Digital Ocean", error);
+    throw new ApiError(`Error while uploading license; ${error}`);
+  }
 }
 
 module.exports = { uploadLicence };
