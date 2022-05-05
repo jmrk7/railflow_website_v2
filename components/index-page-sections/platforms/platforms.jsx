@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames/bind";
+import Image from "next/image";
 
 import { LayoutSectionContainer } from "../../Layout";
 import {
@@ -13,6 +14,19 @@ import {
 
 import CloseIcon from "@mui/icons-material/Close";
 
+import CircleCIImage from '../../../public/images/circleci.webp';
+import JenkinsImage from '../../../public/images/jenkins.webp';
+import JUnitImage from '../../../public/images/junit.webp';
+import PostmanImage from '../../../public/images/postman.webp';
+import TeamCityImage from '../../../public/images/teamcity.webp';
+import ReadyAPIImage from '../../../public/images/readyapi.webp';
+import SeleniumImage from '../../../public/images/selenium.webp';
+import TestNGImage from '../../../public/images/testng.webp';
+import KatalonImage from '../../../public/images/katalon.webp';
+
+import ArrowRightIcon from "../../../public/icons/arrow_right.svg";
+import DialogImage from "../../../public/images/integrate_image.png";
+
 import * as styles from "./platforms.module.scss";
 
 const cx = classnames.bind(styles);
@@ -20,65 +34,65 @@ const cx = classnames.bind(styles);
 // TODO: move to constant
 const platforms = [
   {
-    id: "jenkins",
-    title: "Jenkins",
-    image: "/images/jenkins.webp",
+    id: 'jenkins',
+    title: 'Jenkins',
+    image: JenkinsImage,
     description:
-      "Railflow native Jenkins plugin for easy setup, configuration, and integration of Jenkins jobs with TestRail",
+      'Railflow native Jenkins plugin for easy setup, configuration, and integration of Jenkins jobs with TestRail',
   },
   {
-    id: "teamcity",
-    title: "TeamCity",
-    image: "/images/teamcity.webp",
+    id: 'teamcity',
+    title: 'TeamCity',
+    image: TeamCityImage,
     description:
-      "Railflow native Teamcity plugin for easy setup, configuration, and integration of TeamCity jobs with TestRail",
+      'Railflow native Teamcity plugin for easy setup, configuration, and integration of TeamCity jobs with TestRail',
   },
   {
-    id: "circleci",
-    title: "CircleCI",
-    image: "/images/circleci.webp",
+    id: 'circleci',
+    title: 'CircleCI',
+    image: CircleCIImage,
     description:
-      "Railflow NPM package and Docker image makes CircleCI integration with TestRail a breeze. Get up and running in 5 mins",
+      'Railflow NPM package and Docker image makes CircleCI integration with TestRail a breeze. Get up and running in 5 mins',
   },
   {
-    id: "postman",
-    title: "Postman",
-    image: "/images/postman.webp",
+    id: 'postman',
+    title: 'Postman',
+    image: PostmanImage,
     description:
       "Railflow's Postman integration is different than all the other open source and unsupported solutions. Come see how our flexible approach can help your teams",
   },
   {
-    id: "readyapi",
-    title: "ReadyAPI",
-    image: "/images/readyapi.webp",
+    id: 'readyapi',
+    title: 'ReadyAPI',
+    image: ReadyAPIImage,
     description:
-      "Railflow uses ReadyAPIs incredible plugin architecture and exposes a highly integrated UI based TestRail configuration panel. Truely the best and only solution.",
+      'Railflow uses ReadyAPIs incredible plugin architecture and exposes a highly integrated UI based TestRail configuration panel. Truely the best and only solution.',
   },
   {
-    id: "katalon",
-    title: "Katalon",
-    image: "/images/katalon.webp",
+    id: 'katalon',
+    title: 'Katalon',
+    image: KatalonImage,
     description:
-      "Railflow uses Katalons plugin SDK to expose a highly integrated TestRail configuration panel with the same powerful features as in all other Railflow integrations. ",
+      'Railflow uses Katalons plugin SDK to expose a highly integrated TestRail configuration panel with the same powerful features as in all other Railflow integrations. ',
   },
   {
-    id: "selenium",
-    title: "Selenium",
-    image: "/images/selenium.webp",
+    id: 'selenium',
+    title: 'Selenium',
+    image: SeleniumImage,
     description:
-      "Create powerful Selenium tests that can automtically take screenshots upon failure and post the results and history to TestRail.",
+      'Create powerful Selenium tests that can automtically take screenshots upon failure and post the results and history to TestRail.',
   },
   {
-    id: "junit",
-    title: "JUnit",
-    image: "/images/junit.webp",
+    id: 'junit',
+    title: 'JUnit',
+    image: JUnitImage,
     description:
       "Use Railflow's JUNIT annotations SDK to map junit tests to existing tests in TestRail, define custom fields, map muliple tests to a single test, and much more",
   },
   {
-    id: "testng",
-    title: "TestNG",
-    image: "/images/testng.webp",
+    id: 'testng',
+    title: 'TestNG',
+    image: TestNGImage,
     description:
       "Use Railflow's TestNG annotations SDK to map TestNG tests to existing tests in TestRail, define custom fields, map muliple tests to a single test, and much more",
   },
@@ -95,18 +109,12 @@ const Platforms = () => {
 
       <LayoutSectionContainer>
         <div className={cx("platformsGrid")}>
-          {platforms.map(({ image: Image, ...platform }) => (
+          {platforms.map(({ image, ...platform }) => (
             <div key={platform.id} className={cx("platformsGridPlatform")}>
               <div className={cx("platformsGridPlatform_topContainer")}>
-                {typeof Image === "string" ? (
-                  <img
-                    src={Image}
-                    alt={platform.title}
-                    className={cx("platformsGridPlatform_image")}
-                  />
-                ) : (
-                  <Image className={cx("platformsGridPlatform_image")} alt="platform" />
-                )}
+                <div className={cx("platformsGridPlatform_image")}>
+                  <Image src={image} alt={platform.title} />
+                </div>
 
                 <h2 className={cx("platformsGridPlatform_title")}>
                   {platform.title}
@@ -123,11 +131,9 @@ const Platforms = () => {
                 className={cx("platformsGridPlatformLink")}
               >
                 Railfllow Docs
-                <img
-                  className={cx("platformsGridPlatformLink_icon")}
-                  src={"/icons/arrow_right.svg"}
-                  alt="Right Arrow Icon"
-                />
+                <div className={cx("platformsGridPlatformLink_icon")}>
+                  <Image src={ArrowRightIcon} alt="Right Arrow Icon" />
+                </div>
               </a>
             </div>
           ))}
@@ -145,11 +151,9 @@ const Platforms = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <img
-            alt="Coming very soon"
-            className={cx("platforms_dialogImage")}
-            src={"/images/integrate_image.png"}
-          />
+          <div className={cx("platforms_dialogImage")}>
+            <Image alt="Coming very soon" src={DialogImage} />
+          </div>
           <DialogContentText>
             We are working hard on these awesome integrations. Leave us a note
             in our chat bot to get notified.
