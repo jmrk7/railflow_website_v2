@@ -1,4 +1,4 @@
-@import '../../../styles/globals.scss';
+@import "../../../styles/globals.scss";
 
 .featureHero {
   display: flex;
@@ -24,48 +24,49 @@
     @media (max-width: 768px) {
       margin-bottom: 1.5rem;
     }
-  
   }
 
-    &_title {
-      font-size: 4.5rem;
-      line-height: 78px;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
-    }
+  &_title {
+    font-size: 4.5rem;
+    line-height: 78px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-    &_text {
-      margin-bottom: 10px;
-      font-size: 1rem;
-      line-height: 22px;
-      font-weight: 400;
-      color: #c2c3c5;
-      font-family: 'Inter', sans-serif;
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 22px;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: "Inter", sans-serif;
+  }
+
+  &_button {
+    margin-left: 0;
+  }
+
+  @media (max-width: 768px) {
+    &_title {
+      font-size: 4rem;
+      line-height: 78px;
     }
 
     &_button {
-      margin-left: 0;
+      margin-top: 2.5rem;
     }
-
-    @media (max-width: 768px) {
-      &_title {
-        font-size: 4rem;
-        line-height: 78px;
-      }
-  
-      &_button {
-        margin-top: 2.5rem;
-      }
-    }
-  
+  }
 
   // TODO: make responsive
-    &_image {
+  &_image {
+    span {
       width: 100%;
       max-height: 300px;
-      object-fit: cover;
+      img {
+        object-fit: cover;
+      }
     }
-  
+  }
 
   @media (max-width: 768px) {
     padding-top: 60px;
