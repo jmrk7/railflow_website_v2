@@ -253,8 +253,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         setIsResponseSuccessful(true);
         setActiveStep(1);
       } catch (error) {
-        console.log(error.response);
-
         if (error.response.status === 409) {
           sendGTMEvent();
           setContactResponse(error.response.data);
@@ -317,8 +315,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         setIsResponseSuccessful(true);
         setActiveStep(2);
       } catch (error) {
-        console.log(error);
-
         setIsResponseSuccessful(false);
         setResponseMessage(error.response.data.message);
       } finally {
@@ -350,8 +346,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         setIsResponseSuccessful(true);
         setActiveStep(3);
       } catch (error) {
-        console.log(error);
-
         setIsResponseSuccessful(false);
         error.response && setResponseMessage(error.response.data.message);
       } finally {

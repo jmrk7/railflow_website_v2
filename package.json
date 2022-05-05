@@ -24,7 +24,7 @@
     "classnames": "^2.3.1",
     "clear": "^0.1.0",
     "cors": "^2.8.5",
-    "cryptolens": "^1.0.4",
+    "cryptolens": "^1.0.2",
     "dayjs": "^1.11.1",
     "handlebars": "^4.7.7",
     "logzio-nodejs-metrics-sdk": "^0.2.1",

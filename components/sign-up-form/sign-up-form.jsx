@@ -89,7 +89,7 @@ const SignUpForm = () => {
           Router.push(`/duplicate-evaluation`);
         }
         setIsResponseSuccessful(false);
-        error.response && setResponseMessage(error.response.data.data.message);
+        error.response && setResponseMessage(error.response.data.message);
       } finally {
         setIsRequestPending(false);
       }
