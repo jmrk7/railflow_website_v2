@@ -113,6 +113,11 @@ async function getCryptolensFileUrl(cryptolensTokenObject) {
 async function sendOnboardingEmail(body, cryptolensTokenObject) {
   try {
     // collate all the data. pass it to general email service send.
+    const template = fs.readFileSync(
+      path.join(process.cwd(), "/src/email-templates/signup.hbs"),
+      "utf8"
+    );
+
     let text = getCryptolensTokenEmailContent(cryptolensTokenObject);
     const contactId = body.contact_id;
 
@@ -124,10 +129,7 @@ async function sendOnboardingEmail(body, cryptolensTokenObject) {
 
     logger.info(`Onboarding email text: ${text}`);
 
-    const template = fs.readFileSync(
-      path.join(__dirname, "../../../src/email-templates/signup.hbs"),
-      "utf8"
-    );
+    // const template = fs.readFileSync("../../../src/email-templates/signup.hbs","utf8");
     const compiled = Handlebars.compile(template);
     const templateData = {
       licenseKey: cryptolensTokenObject.key,

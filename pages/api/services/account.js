@@ -20,7 +20,7 @@ import logger from "../config/logger";
 async function update(account_id, data) {
   try {
     const apiClient = await getApiClient(process.env.FRESHSALES_BASE_URL);
-    console.log(apiClient);
+
     const response = await apiClient.request({
       method: "PUT",
       url: `/crm/sales/api/sales_accounts/${account_id}`,

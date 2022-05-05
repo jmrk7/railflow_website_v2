@@ -5,6 +5,8 @@ import { machineId } from "node-machine-id"
 import cryptolens from "cryptolens";
 import AWS from "aws-sdk";
 import { v4 } from "uuid";
+import axios from "axios";
+import querystring from "querystring";
 
 import logger from "../config/logger";
 
@@ -20,22 +22,31 @@ const s3 = new AWS.S3({
 });
 
 async function uploadLicence(data) {
-  try {
+  // try {
     const TOKEN = process.env.CRYPTOLENS_LICENSE_EXTENSION_KEY;
     const RSA_PUB_KEY = process.env.CRYPTOLENS_RSA_PUB_KEY;
 
     const PRODUCT_ID = 8245;
     const code = await machineId();
-    const licenseKey = await key.Activate(
-      TOKEN,
-      RSA_PUB_KEY,
-      PRODUCT_ID,
-      data.key,
-      code
-    );
+
     const filename = `licences/${uuidv4()}/railflow_license.skm`;
 
     const fileFullPath = `${process.env.SPACE_NAME}.${process.env.SPACE_ENDPOINT}/${filename}`;
+
+    let licenseKey;
+
+    try{
+       licenseKey = await key.Activate(
+        TOKEN,
+        RSA_PUB_KEY,
+        PRODUCT_ID,
+        data.key,
+        code
+      )
+    }
+    catch(err){
+      logger.error("error when calling key activate", err);
+    }
 
     const params = {
       Bucket: process.env.SPACE_NAME,
@@ -45,14 +56,15 @@ async function uploadLicence(data) {
     };
     await s3.putObject(params, function (err, data) {
       if (err) {
-        logger.error("error when uploading file to digital ocean", error);
+        logger.error("error when uploading file to digital ocean", err);
       }
     });
     return { url: fileFullPath };
-  } catch (error) {
-    logger.error("Error When trying to upload file to Digital Ocean", error);
-    throw new ApiError(`Error while uploading license; ${error}`);
-  }
+  // }
+  // } catch (error) {
+  //   logger.error("Error When trying to upload file to Digital Ocean", error);
+  //   throw new ApiError(`Error while uploading license; ${error}`);
+  // }
 }
 
 module.exports = { uploadLicence };

@@ -58,7 +58,6 @@ async function createContact(request, res, next) {
     );
     if (alreadyPresent !== null) {
       logger.info(`contact with ${data.email} email already present`);
-      console.log(alreadyPresent);
       return res.status(200).send({
         status: 200,
         data: {
@@ -140,8 +139,8 @@ async function createContact(request, res, next) {
     return res.status(500).send({
       status: 500,
       data: {
-        message: "something went wrong"
-      }
+        message: "something went wrong",
+      },
     });
   }
 }
@@ -343,9 +342,10 @@ async function sendOnboardingEmail(body, cryptolensTokenObject) {
     logger.info(`Onboarding email text: ${text}`);
 
     const template = fs.readFileSync(
-      path.join(__dirname, "../../../src/email-templates/signup.hbs"),
+      path.join(process.cwd(), "/src/email-templates/signup.hbs"),
       "utf8"
     );
+
     const compiled = Handlebars.compile(template);
     const templateData = {
       licenseKey: cryptolensTokenObject.key,
