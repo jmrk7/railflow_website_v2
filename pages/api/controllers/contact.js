@@ -10,7 +10,6 @@ import fs from "fs";
 import Handlebars from "handlebars";
 import dayjs from "dayjs";
 import path from "path";
-
 import ApiError from "../errors/api";
 import UnprocessableRequestError from "../errors/unprocessablerequest";
 import contactService from "../services/contact";
@@ -140,7 +139,9 @@ async function createContact(request, res, next) {
     }
     return res.status(500).send({
       status: 500,
-      message: "something went wrong",
+      data: {
+        message: "something went wrong"
+      }
     });
   }
 }
@@ -342,7 +343,7 @@ async function sendOnboardingEmail(body, cryptolensTokenObject) {
     logger.info(`Onboarding email text: ${text}`);
 
     const template = fs.readFileSync(
-      path.join(__dirname, "../../email-templates/signup.hbs"),
+      path.join(__dirname, "../../../src/email-templates/signup.hbs"),
       "utf8"
     );
     const compiled = Handlebars.compile(template);
