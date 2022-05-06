@@ -95,7 +95,7 @@ async function createContact(request, res, next) {
           logger.info(
             `contact created. sending slack notification: ${response.data.contact.id}`
           );
-          await slackService.sendMessage(notificationData);
+          if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);
         }
         return res.status(201).send({
           status: 201,
