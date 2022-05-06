@@ -65,7 +65,7 @@ async function create(request, res, next) {
             contactId: response.data.contact.id,
             company: request.body.company,
           };
-          await slackService.sendMessage(notificationData);
+          if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);
         }
       } else {
         return res.status(500).send({
