@@ -130,6 +130,7 @@ async function createQuote(req, res, next) {
       });
     }
     data.account = account;
+    console.log(data);
     let network = null;
     if (account.custom_field.cf_hiveage_hash != null) {
       network = await accountService.getHiveageNetwork(
