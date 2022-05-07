@@ -4,7 +4,6 @@ import React, { useState, useCallback, useMemo, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import classnames from "classnames/bind";
 import { useRouter } from "next/router";
-// import { ReactMultiEmail, isEmail } from 'react-multi-email';
 
 import {
   requestSignUp,
@@ -35,7 +34,7 @@ import { ProfileOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import PricingUserSelect from "../pricing-sections/pricing-user-select";
 
 import * as styles from "./quote-form.module.scss";
-import "react-multi-email/style.css";
+
 
 const cx = classnames.bind(styles);
 
@@ -510,33 +509,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
               setUserIndex={setUserIndex}
             />
           </div>
-          {/* <label className={cx('quoteForm_label')}>
-            Email Quote PDF to:
-          </label>
-          <ReactMultiEmail
-            className={cx('quoteForm_reactMultiEmail')}
-            placeholder=""
-            emails={emailsTo}
-            onChange={(_emailsTo) => {
-              setEmailsTo(_emailsTo);
-            }}
-            validateEmail={(email) => {
-              return isEmail(email); // return boolean
-            }}
-            getLabel={(email, index, removeEmail) => {
-              return (
-                <div data-tag key={index}>
-                  {email}
-                  <span
-                    data-tag-handle
-                    onClick={() => removeEmail(index)}
-                  >
-                    ×
-                  </span>
-                </div>
-              );
-            }}
-          /> */}
         </section>
         <section className={cx("quoteForm_buttonContainer")}>
           <Button
