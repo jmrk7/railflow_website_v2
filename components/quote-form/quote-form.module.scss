@@ -6,6 +6,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  &_select {
+    &_title {
+      color: white;
+    }
+  }
   &_container {
     width: 100%;
   }
