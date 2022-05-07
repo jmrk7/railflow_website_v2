@@ -41,6 +41,10 @@ const nextConfig = {
     SALESPANEL_API_KEY: "4cab75dab8852f0fe87cbc4e6821fe352e660650",
     SALESPANEL_BASE_URL: "https://salespanel.io",
     LOG_RESPONSE: true,
+    STRIPE_SECRET_KEY:
+      "sk_test_51JSOmHDhvP6DurKSDkjAvTFevDpMxKU2lEUe1IeM3NFACU4d60Ri0dOv7SwaPOEpfqsxeBUOUZmo5veR06ImbCoo00glQVFsmB",
+    STRIPE_PUBLIC_KEY:
+      "pk_test_51JSOmHDhvP6DurKSsGw6QBpRN9zmuFKeJ3RzvnvGMy2GoVnKlVUBj49jQjhb8xFL6pMugawFeZYkYDAWMGk3bJlA00bI135spV",
   },
 };
 

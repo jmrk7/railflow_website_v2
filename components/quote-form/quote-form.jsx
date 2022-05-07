@@ -43,6 +43,9 @@ const MuiStepLabel = styled(StepLabel)(({ theme }) => ({
     color: "#758491",
     "&.Mui-active": {
       color: "white",
+    },
+    "&.Mui-completed": {
+      color: "white",
     }
   },
   ".MuiStepIcon-root": {
@@ -555,6 +558,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
               value={selectedPlan.title}
               defaultValue={selectedPlan.title}
               onChange={handleLicenseTypeChange}
+              className={cx("quoteForm_select_title")}
             >
               {selectablePlans.map((plan) => (
                 <MenuItem key={plan.id} value={plan.title}>
