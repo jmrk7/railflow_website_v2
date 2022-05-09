@@ -3,6 +3,8 @@ import pricing from "../../config/pricing.json";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
+import { searchCustomer, searchQuotes } from "../../services/stripe/stripe";
+
 async function createQuote(req, res, next) {
   const {
     firstName,
@@ -34,7 +36,11 @@ async function createQuote(req, res, next) {
     description,
   };
 
-  const customer = await Stripe.customers.create(stripeAccountData);
+  var customer = await searchCustomer(email);
+
+  customer.length === 0
+    ? (customer = await Stripe.customers.create(stripeAccountData))
+    : (customer = customer[0]);
 
   if (isNaN(req.body.num_users) || num_users < 0 || num_users > 49) {
     return res.status(400).send({
@@ -72,6 +78,16 @@ async function createQuote(req, res, next) {
     });
   }
 
+  var quotesList = await searchQuotes(customer.id);
+
+  if (quotesList.length > 0) {
+    return res
+      .status(500)
+      .send(
+        "You can't create an another quote because you have a quote that hasn't been accepted"
+      );
+  }
+
   const pricingType = pricing[req.body.license_type.toLowerCase()];
 
   let price;
@@ -95,7 +111,9 @@ async function createQuote(req, res, next) {
     customer: customer.id,
     line_items: [{ price: priceObject.id }],
   });
-  res.send(quote);
+
+  const result = await Stripe.quotes.finalizeQuote(quote.id);
+  res.send(result);
 }
 
 module.exports = {

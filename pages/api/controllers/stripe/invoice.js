@@ -3,6 +3,8 @@ import pricing from "../../config/pricing.json";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
+import { searchCustomer, searchInvoices } from "../../services/stripe/stripe";
+
 async function createInvoice(req, res, next) {
   const {
     firstName,
@@ -34,7 +36,11 @@ async function createInvoice(req, res, next) {
     description,
   };
 
-  const customer = await Stripe.customers.create(stripeAccountData);
+  var customer = await searchCustomer(email);
+
+  customer.length === 0
+    ? (customer = await Stripe.customers.create(stripeAccountData))
+    : (customer = customer[0]);
 
   if (isNaN(req.body.num_users) || num_users < 0 || num_users > 49) {
     return res.status(400).send({
@@ -72,6 +78,20 @@ async function createInvoice(req, res, next) {
     });
   }
 
+  let InvoiceItems = await searchInvoices(customer.id);
+
+  let remainingValue = 0;
+
+  InvoiceItems.map((item) => (remainingValue += item["amount_remaining"]));
+
+  if (remainingValue > 0) {
+    return res
+      .status(500)
+      .send(
+        "You have an outstanding invoice, so you can't create another invoice"
+      );
+  }
+
   const pricingType = pricing[req.body.license_type.toLowerCase()];
 
   let price;
@@ -91,12 +111,12 @@ async function createInvoice(req, res, next) {
     product: "prod_railflow",
   });
 
-  const invoiceItem = await Stripe.invoiceItems.create({
+  await Stripe.invoiceItems.create({
     customer: customer.id,
     price: priceObject.id,
     description: `Railflow Enterprise Quote: ${license_years} year License: ${
-        num_users * 20
-      }-${(num_users + 1) * 20} Users`,
+      num_users * 20
+    }-${(num_users + 1) * 20} Users`,
   });
 
   const invoice = await Stripe.invoices.create({
@@ -105,10 +125,10 @@ async function createInvoice(req, res, next) {
     days_until_due: 30,
   });
 
-  const result = await Stripe.invoices.finalizeInvoice(invoice.id);
+  await Stripe.invoices.finalizeInvoice(invoice.id);
 
   const send = await Stripe.invoices.sendInvoice(invoice.id);
-  console.log(result);
+
   res.send(send);
 }
 
