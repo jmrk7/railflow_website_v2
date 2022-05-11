@@ -36,8 +36,14 @@ async function searchQuotes(customerId) {
   return quotesList.data;
 }
 
+async function createUser(stripeAccountData) {
+  const result = await Stripe.customers.create(stripeAccountData);
+  return result;
+}
+
 module.exports = {
   searchCustomer,
   searchInvoices,
   searchQuotes,
+  createUser,
 };
