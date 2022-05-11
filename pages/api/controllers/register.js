@@ -17,6 +17,7 @@ import slackService from "../services/slack";
 import { checkToken } from "../services/token";
 import { hanldeCreateError } from "../services/register";
 import { sendOnboardingEmail } from "./contact";
+import { sendDataToMixpanel } from "../services/mixpanel";
 import logger from "../config/logger";
 
 async function create(request, res, next) {
@@ -152,6 +153,18 @@ async function create(request, res, next) {
       reqData.cf_license_key_url = mailgunResponse.licenseUrl;
       const patchedContact = await contactService.update(reqData);
 
+      const eventData = {
+        Name: patchedContact.first_name + patchedContact.last_name,
+        Email: data.email,
+        Address: patchedContact.address,
+        ZipCode: patchedContact.zipcode,
+        City: patchedContact.city,
+        State: patchedContact.state,
+        Country: patchedContact.country,
+      }
+
+      sendDataToMixpanel("Sign Up", eventData);
+      
       return res.status(201).send({
         status: 201,
         data: {

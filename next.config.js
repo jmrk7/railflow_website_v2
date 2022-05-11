@@ -45,6 +45,7 @@ const nextConfig = {
       "sk_test_51JSOmHDhvP6DurKSDkjAvTFevDpMxKU2lEUe1IeM3NFACU4d60Ri0dOv7SwaPOEpfqsxeBUOUZmo5veR06ImbCoo00glQVFsmB",
     STRIPE_PUBLIC_KEY:
       "pk_test_51JSOmHDhvP6DurKSsGw6QBpRN9zmuFKeJ3RzvnvGMy2GoVnKlVUBj49jQjhb8xFL6pMugawFeZYkYDAWMGk3bJlA00bI135spV",
+    MIXPANEL_KEY: "c8cc83541c7a08f7ad68ff3a162f5511",
   },
 };
 
