@@ -3,7 +3,7 @@ import pricing from "../../config/pricing.json";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
-import { searchCustomer, searchQuotes } from "../../services/stripe/stripe";
+import { searchCustomer, createUser } from "../../services/stripe/stripe";
 
 async function createQuote(req, res, next) {
   const {
@@ -23,7 +23,7 @@ async function createQuote(req, res, next) {
   } = req.body;
 
   const stripeAccountData = {
-    name: firstName + lastName,
+    name: firstName + " " + lastName,
     email,
     phone,
     address: {
@@ -39,7 +39,7 @@ async function createQuote(req, res, next) {
   var customer = await searchCustomer(email);
 
   customer.length === 0
-    ? (customer = await Stripe.customers.create(stripeAccountData))
+    ? (customer = await createUser(stripeAccountData))
     : (customer = customer[0]);
 
   if (isNaN(req.body.num_users) || num_users < 0 || num_users > 49) {
@@ -76,16 +76,6 @@ async function createQuote(req, res, next) {
         message: "Missing required parameter: license_type",
       },
     });
-  }
-
-  var quotesList = await searchQuotes(customer.id);
-
-  if (quotesList.length > 0) {
-    return res
-      .status(500)
-      .send(
-        "You can't create an another quote because you have a quote that hasn't been accepted"
-      );
   }
 
   const pricingType = pricing[req.body.license_type.toLowerCase()];

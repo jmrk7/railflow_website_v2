@@ -3,7 +3,7 @@ import pricing from "../../config/pricing.json";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
-import { searchCustomer, searchInvoices } from "../../services/stripe/stripe";
+import { searchCustomer, createUser } from "../../services/stripe/stripe";
 
 async function createInvoice(req, res, next) {
   const {
@@ -23,7 +23,7 @@ async function createInvoice(req, res, next) {
   } = req.body;
 
   const stripeAccountData = {
-    name: firstName + lastName,
+    name: firstName + " " + lastName,
     email,
     phone,
     address: {
@@ -39,7 +39,7 @@ async function createInvoice(req, res, next) {
   var customer = await searchCustomer(email);
 
   customer.length === 0
-    ? (customer = await Stripe.customers.create(stripeAccountData))
+    ? (customer = await createUser(stripeAccountData))
     : (customer = customer[0]);
 
   if (isNaN(req.body.num_users) || num_users < 0 || num_users > 49) {
@@ -76,20 +76,6 @@ async function createInvoice(req, res, next) {
         message: "Missing required parameter: license_type",
       },
     });
-  }
-
-  let InvoiceItems = await searchInvoices(customer.id);
-
-  let remainingValue = 0;
-
-  InvoiceItems.map((item) => (remainingValue += item["amount_remaining"]));
-
-  if (remainingValue > 0) {
-    return res
-      .status(500)
-      .send(
-        "You have an outstanding invoice, so you can't create another invoice"
-      );
   }
 
   const pricingType = pricing[req.body.license_type.toLowerCase()];
