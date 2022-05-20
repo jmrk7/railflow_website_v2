@@ -35,7 +35,7 @@ export default async function handler(req, res, next) {
     
     const configs = db.data;
 
-    configs[license][item] = newValue;
+    configs[license][item] = Number(newValue);
 
     db.data = configs;
 
