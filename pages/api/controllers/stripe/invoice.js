@@ -38,7 +38,7 @@ async function createInvoice(req, res, next) {
   await Stripe.invoiceItems.create({
     customer: req.body.stripe_id,
     price: priceObject.id,
-    description: `Railflow Enterprise Quote: ${
+    description: `Railflow Enterprise Invoice: ${
       req.body.license_years
     } year License: ${req.body.num_users * 20}-${
       (req.body.num_users + 1) * 20
