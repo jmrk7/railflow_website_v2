@@ -49,6 +49,11 @@ async function createQuote(request, res, next) {
     const quote = await Stripe.quotes.create({
       customer: request.body.stripe_id,
       line_items: [{ price: priceObject.id }],
+      description: `Railflow Enterprise Quote: ${
+        request.body.license_years
+      } year License: ${request.body.num_users * 20}-${
+        (request.body.num_users + 1) * 20
+      } Users`,
     });
 
     const result = await Stripe.quotes.finalizeQuote(quote.id);
@@ -74,6 +79,7 @@ async function createQuote(request, res, next) {
     };
     res.send(sendData);
   } catch (err) {
+    console.log(err);
     res.status(500).send(err);
   }
 }

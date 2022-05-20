@@ -116,7 +116,7 @@ async function create(request, res, next) {
       if (license == "disable") {
 
         const stripeAccountData = {
-          name: contact.firstName + " " + contact.lastName,
+          name: data.firstName + " " + data.lastName,
           email: contact.email,
           phone: contact.mobile_number,
           metadata: {
