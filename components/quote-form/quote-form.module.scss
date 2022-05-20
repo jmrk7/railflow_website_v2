@@ -1,4 +1,5 @@
 @import '../../styles/globals.scss';
+
 .quoteForm {
   position: relative;
   display: flex;
@@ -167,6 +168,9 @@
       &_discountOptions {
         margin: 10px 0;
         padding-left: 20px;
+        svg {
+          color: white;
+        }
       }
       &_basePrice {
         color: $green;

@@ -41,9 +41,15 @@ async function createUser(stripeAccountData) {
   return result;
 }
 
+async function updateCustomer(id, Data) {
+  const result = await Stripe.customers.update(id, Data);
+  return result;
+}
+
 module.exports = {
   searchCustomer,
   searchInvoices,
   searchQuotes,
+  updateCustomer,
   createUser,
 };

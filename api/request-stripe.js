@@ -1,10 +1,16 @@
 import apiClient from "./api-client";
 
-const requestHiveage = async (data) => {
+const requestStripe = async (data) => {
   console.log(`> hiveage request received: ${apiClient}`);
+
+  let url;
+  data.pay_method === "Quote"
+    ? (url = "/stripe/quote")
+    : (url = "/stripe/invoice")
+
   const response = await apiClient.request({
     method: "POST",
-    url: "/hiveage",
+    url: url,
     data,
   });
 
@@ -13,4 +19,4 @@ const requestHiveage = async (data) => {
   return response;
 };
 
-export default requestHiveage;
+export default requestStripe;
