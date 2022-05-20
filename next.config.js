@@ -1,6 +1,11 @@
+const path = require("path");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack(config, options) {
+    config.resolve.modules.push(path.resolve("./"));
+    return config;
+  },
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
     ALLOWED_PARTY_SECRET: "ALL",
