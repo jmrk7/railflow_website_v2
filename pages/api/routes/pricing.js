@@ -2,6 +2,10 @@
 
 import { getPricing } from "../controllers/pricing";
 import Cors from "cors";
+import { Low, JSONFile } from "lowdb";
+
+const adapter = new JSONFile("pages/api/config/pricing.json");
+const db = new Low(adapter);
 
 const cors = Cors({
   origin: process.env.ALLOWED_DOMAINS,
@@ -24,5 +28,21 @@ function runMiddleware(req, res, fn) {
 export default async function handler(req, res, next) {
   await runMiddleware(req, res, cors);
 
-  return getPricing(req, res, next);
+  if (req.method === "PATCH") {
+    await db.read();
+
+    const { license, item, newValue } = req.body;
+    
+    const configs = db.data;
+
+    configs[license][item] = newValue;
+
+    db.data = configs;
+
+    await db.write();
+
+    res.send(db.data);
+  }
+
+  else return getPricing(req, res, next);
 }
