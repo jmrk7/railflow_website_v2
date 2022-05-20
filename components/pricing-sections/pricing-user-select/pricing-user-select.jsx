@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
@@ -23,6 +23,10 @@ const cx = classnames.bind(styles);
 const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
   const [isDialogOpen, setDialogOpen] = React.useState(false);
 
+  useEffect(() => {
+    setUserIndex(0);
+  }, []);
+  
   const handleUserSelectClick = (type) => {
     if (type === "plus") {
       if (userIndex === userTiers.length - 1) return;

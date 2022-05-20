@@ -1,109 +1,81 @@
 import stripe from "stripe";
+import path from "path";
+import absoluteUrl from "next-absolute-url";
 import pricing from "../../config/pricing.json";
+import contactService from "../../services/contact";
+import { createWriteStream } from "fs";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
-import { searchCustomer, createUser } from "../../services/stripe/stripe";
+async function createQuote(request, res, next) {
+  try {
+    let contact = await contactService.getContactIfAlreadyPresent(
+      request.body.email
+    );
 
-async function createQuote(req, res, next) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    city,
-    state,
-    country,
-    postal_code,
-    addressName,
-    description,
-    num_users,
-    license_type,
-    license_years,
-  } = req.body;
+    const reqData = {
+      contact_id: contact.id,
+      contact_first_name: contact.first_name,
+      contact_last_name: contact.last_name,
+      contact_cf_company: contact.custom_field.cf_company,
+      contact_email: contact.email,
+    };
 
-  const stripeAccountData = {
-    name: firstName + " " + lastName,
-    email,
-    phone,
-    address: {
-      city,
-      state,
-      country,
-      postal_code,
-      line1: addressName,
-    },
-    description,
-  };
+    const pricingType = pricing[request.body.license_type.toLowerCase()];
 
-  var customer = await searchCustomer(email);
+    let price;
+    request.body.license_years != 0
+      ? (price =
+          (pricingType["base"] +
+            pricingType["increment"] * request.body.num_users) *
+          (1 - pricingType[`discount_${request.body.license_years}_year`]) *
+          request.body.license_years)
+      : (price =
+          (pricingType["base"] +
+            pricingType["increment"] * request.body.num_users) *
+          4 *
+          (1 - pricingType["discount_perpetual"]));
 
-  customer.length === 0
-    ? (customer = await createUser(stripeAccountData))
-    : (customer = customer[0]);
-
-  if (isNaN(req.body.num_users) || num_users < 0 || num_users > 49) {
-    return res.status(400).send({
-      status: 400,
-      data: {
-        message: "Invalid num_users: valid value is: 0-49",
-      },
+    const priceObject = await Stripe.prices.create({
+      unit_amount: price * 100,
+      currency: "usd",
+      product: "prod_railflow",
     });
-  }
 
-  if (typeof req.body.license_years == "undefined") {
-    return res.status(400).send({
-      status: 400,
-      data: {
-        message: "Missing required parameter: license_years",
-      },
+    const paymentLink = await Stripe.paymentLinks.create({
+      line_items: [{ price: priceObject.id, quantity: 1 }],
     });
-  }
 
-  if (isNaN(req.body.license_years) || license_years < 0 || license_years > 3) {
-    return res.status(400).send({
-      status: 400,
-      data: {
-        message: "Invalid License_years: valid values are 0-3",
-      },
+    const quote = await Stripe.quotes.create({
+      customer: request.body.stripe_id,
+      line_items: [{ price: priceObject.id }],
     });
-  }
 
-  if (!license_type === "Enterprise" || !license_type === "Professional") {
-    return res.status(400).send({
-      status: 400,
-      data: {
-        message: "Missing required parameter: license_type",
-      },
+    const result = await Stripe.quotes.finalizeQuote(quote.id);
+    const pdf = await Stripe.quotes.pdf(quote.id);
+
+    await new Promise((resolve) => {
+      pdf.pipe(
+        createWriteStream(
+          path.join(process.cwd(), `/public/pdf/${quote.id}.pdf`)
+        )
+      );
+      pdf.on("end", () => resolve());
     });
+
+    reqData.cf_stripe_customer_id = request.body.stripe_id;
+    reqData.cf_stripe_quote_link =
+      absoluteUrl(request).origin + `/pdf/${quote.id}.pdf`;
+    await contactService.updateByStripeQuote(reqData);
+
+    const sendData = {
+      link: reqData.cf_stripe_quote_link,
+      payment_link: paymentLink.url,
+    };
+    res.send(sendData);
+  } catch (err) {
+    res.status(500).send(err);
   }
-
-  const pricingType = pricing[req.body.license_type.toLowerCase()];
-
-  let price;
-  license_years != 0
-    ? (price =
-        (pricingType["base"] + pricingType["increment"] * num_users) *
-        (1 - pricingType[`discount_${license_years}_year`]) *
-        license_years)
-    : (price =
-        (pricingType["base"] + pricingType["increment"] * num_users) *
-        4 *
-        (1 - pricingType["discount_perpetual"]));
-
-  const priceObject = await Stripe.prices.create({
-    unit_amount: price * 100,
-    currency: "usd",
-    product: "prod_railflow",
-  });
-
-  const quote = await Stripe.quotes.create({
-    customer: customer.id,
-    line_items: [{ price: priceObject.id }],
-  });
-
-  const result = await Stripe.quotes.finalizeQuote(quote.id);
-  res.send(result);
 }
 
 module.exports = {

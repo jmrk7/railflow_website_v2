@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import {
   requestSignUp,
   requestAccount,
-  requestHiveage,
+  requestStripe,
   requestPricing,
 } from "../../api";
 
@@ -35,7 +35,6 @@ import PricingUserSelect from "../pricing-sections/pricing-user-select";
 
 import * as styles from "./quote-form.module.scss";
 
-
 const cx = classnames.bind(styles);
 
 const MuiStepLabel = styled(StepLabel)(({ theme }) => ({
@@ -46,29 +45,29 @@ const MuiStepLabel = styled(StepLabel)(({ theme }) => ({
     },
     "&.Mui-completed": {
       color: "white",
-    }
+    },
   },
   ".MuiStepIcon-root": {
     width: 31,
     height: 31,
-    color: "#758491", 
+    color: "#758491",
     "&.Mui-active": {
-      color: "#3f51b5"
-    }   
+      color: "#3f51b5",
+    },
   },
 }));
 
 const MuiStepper = styled(Stepper)(({ theme }) => ({
-  "width": 542,
-  "height": 67,
-  "padding": 24,
-  "marginBottom": 48
+  width: 542,
+  height: 67,
+  padding: 24,
+  marginBottom: 48,
 }));
 
-const MuiStep = styled(Step)(({theme}) => ({
-  ".MuiStepConnector-root":{
-    "top": "16px !important",
-  }
+const MuiStep = styled(Step)(({ theme }) => ({
+  ".MuiStepConnector-root": {
+    top: "16px !important",
+  },
 }));
 
 const QuoteFrom = ({ priceIndex, licenseType }) => {
@@ -82,8 +81,8 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
   const stepLabels = [
     "About You",
     "Company Info",
-    "Quote Summary",
-    "Quote, Purchase",
+    "Quote/Invoice Summary",
+    "Quote, Invoice",
   ];
 
   const router = useRouter();
@@ -113,6 +112,8 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     discount_amt: 0,
     final_price: 0,
   });
+
+  const [selectedPay, setSelectedPay] = useState("Quote");
 
   useEffect(() => {
     const updatePricingSettings = async () => {
@@ -301,10 +302,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         state: requestData.companyState,
         zipcode: requestData.companyZipCode,
         country: requestData.companyCountry,
-        hiveage_contact_email: requestData.email,
-        hiveage_fname: requestData.firstName,
-        hivage_lname: requestData.lastName,
-        //  hiveage_notification_emails: emailsTo,
+        stripe_id: contactResponse.data.stripe_account,
       };
       try {
         setIsRequestPending(true);
@@ -334,15 +332,19 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
       const requestBody = {
         account_id: contactResponse.data.account_id,
         contact_id: contactResponse.data.contact_id,
+        stripe_id: contactResponse.data.stripe_account,
         num_users: userIndex,
         license_type: selectedPlan.id,
         license_years: years,
+        pay_method: selectedPay,
+        email: contactResponse.data.email,
       };
+
       try {
         setIsRequestPending(true);
 
-        const hiveageResult = await requestHiveage(requestBody);
-
+        const hiveageResult = await requestStripe(requestBody);
+        console.log(hiveageResult);
         sendGTMEvent();
         setHiveageResponse(hiveageResult.data);
         setIsResponseSuccessful(true);
@@ -355,7 +357,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         setIsResponseSuccessful(null);
       }
     },
-    [fieldData, contactResponse, years, userIndex]
+    [fieldData, contactResponse, years, userIndex, selectedPay]
   );
 
   const renderCustomerFields = () => {
@@ -539,6 +541,10 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     setSelectedPlan(newSelectedPlan);
   };
 
+  const handlePaymentChange = (event) => {
+    setSelectedPay(event.target.value);
+  };
+
   const renderSummaryPage = () => {
     const renderYearsText = () => (
       <span>
@@ -548,6 +554,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
 
     const isPerpetual = years === "0";
     const selectablePlans = pricingPlans.filter((plan) => plan.showBuyNow);
+    const selectablePaymethod = ["Invoice", "Quote"];
 
     return (
       <div className={cx("quoteForm_summary")}>
@@ -687,6 +694,24 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
             {selectedPlan.payment.currency}
           </span>
         </div>
+        <div className={cx("quoteForm_summaryRow")}>
+          <span className={cx("quoteForm_summaryRow_title")}>Payment Type</span>
+          <FormControl style={{ minWidth: 180 }}>
+            <Select
+              id="selectedPay"
+              value={selectedPay}
+              defaultValue={selectedPay}
+              onChange={handlePaymentChange}
+              className={cx("quoteForm_select_title")}
+            >
+              {selectablePaymethod.map((plan, idx) => (
+                <MenuItem key={idx} value={plan}>
+                  {plan}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
         <section className={cx("quoteForm_buttonContainer")}>
           <Button
             onClick={() => setActiveStep(1)}
@@ -707,6 +732,11 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     );
   };
 
+  const handleBuyNow = (event) => {
+    event.preventDefault();
+    console.log("SDF");
+  };
+
   const renderDownloadStep = () => {
     return (
       <div>
@@ -715,16 +745,16 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
           process a breeze, we have generated a{" "}
           <a
             className={cx("quoteForm_link")}
-            href={hiveageResponse?.quoteLink}
+            href={hiveageResponse?.link}
             rel="noopener noreferrer"
             target="_blank"
           >
-            secure quote
+            secure {selectedPay === "Quote" ? "quote" : "invoice"}
           </a>{" "}
           and a{" "}
           <a
             className={cx("quoteForm_link")}
-            href={hiveageResponse?.invoiceLink}
+            href={hiveageResponse?.payment_link}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -734,7 +764,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         </p>
         <div className={cx("quoteForm_submitButtons")}>
           <a
-            href={hiveageResponse?.quoteLink}
+            href={hiveageResponse?.link}
             rel="noopener noreferrer"
             target="_blank"
             className={cx("quoteForm_submitLink")}
@@ -745,19 +775,16 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
               inverse
             >
               <ProfileOutlined />
-              View quote
+              {selectedPay === "Quote" ? "View Quote" : "View Invoice"}
             </Button>
           </a>
           <a
-            href={hiveageResponse?.invoiceLink}
+            href={hiveageResponse?.payment_link}
             rel="noopener noreferrer"
             target="_blank"
             className={cx("quoteForm_submitLink")}
           >
-            <Button
-              className={cx("quoteForm_submit", "quoteForm_viewQuote")}
-              onClick={() => sendGTMEvent("invoice")}
-            >
+            <Button className={cx("quoteForm_submit", "quoteForm_viewQuote")}>
               <ShoppingCartOutlined />
               Buy now
             </Button>
@@ -766,7 +793,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
       </div>
     );
   };
-  
+
   return (
     // TODO: replace with common form component
     <div className={cx("quoteForm")}>

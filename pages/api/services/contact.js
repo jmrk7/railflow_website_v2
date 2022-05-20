@@ -9,7 +9,6 @@
 import * as account from "./account";
 import { getApiClient } from "./request";
 
-
 const ApiError = require("../errors/api");
 const logger = require("../config/logger");
 
@@ -92,6 +91,88 @@ async function update(data) {
             cf_license_key: data.cf_license_key,
             cf_license_key_url: data.cf_license_key_url,
             cf_license_status: "sent",
+          },
+        },
+      },
+    });
+
+    if (!response.data || !response.data.contact)
+      throw new ApiError(
+        `Error while updating the contact: ${data.contact_id}`
+      );
+    logger.info(
+      `contact status updated successfully for id: ${data.contact_id}`
+    );
+    return response.data.contact;
+  } catch (error) {
+    throw new ApiError(`Error while updating the contact: ${error}`);
+  }
+}
+
+/**
+ * Service: Update a contact by contact_id in the body
+ * @param {*} data Contact data
+ * @returns Promise
+ */
+async function updateByStripeInvoice(data) {
+  try {
+    const apiClient = await getApiClient(process.env.FRESHSALES_BASE_URL);
+    const response = await apiClient.request({
+      method: "PUT",
+      url: `/crm/sales/api/contacts/${data.contact_id}`,
+      headers: {
+        // TODO: use environment variable
+        Authorization: `Token token=${process.env.FRESHSALES_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      data: {
+        contact: {
+          id: data.contact_id,
+          contact_status_id: process.env.CONTACT_STATUS_ID,
+          custom_field: {
+            cf_stripe_customer_id: data.cf_stripe_customer_id,
+            cf_stripe_invoice_link: data.cf_stripe_invoice_link,
+          },
+        },
+      },
+    });
+
+    if (!response.data || !response.data.contact)
+      throw new ApiError(
+        `Error while updating the contact: ${data.contact_id}`
+      );
+    logger.info(
+      `contact status updated successfully for id: ${data.contact_id}`
+    );
+    return response.data.contact;
+  } catch (error) {
+    throw new ApiError(`Error while updating the contact: ${error}`);
+  }
+}
+
+/**
+ * Service: Update a contact by contact_id in the body
+ * @param {*} data Contact data
+ * @returns Promise
+ */
+async function updateByStripeQuote(data) {
+  try {
+    const apiClient = await getApiClient(process.env.FRESHSALES_BASE_URL);
+    const response = await apiClient.request({
+      method: "PUT",
+      url: `/crm/sales/api/contacts/${data.contact_id}`,
+      headers: {
+        // TODO: use environment variable
+        Authorization: `Token token=${process.env.FRESHSALES_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      data: {
+        contact: {
+          id: data.contact_id,
+          contact_status_id: process.env.CONTACT_STATUS_ID,
+          custom_field: {
+            cf_stripe_customer_id: data.cf_stripe_customer_id,
+            cf_stripe_quote_link: data.cf_stripe_quote_link,
           },
         },
       },
@@ -283,6 +364,8 @@ async function searchByKey(key) {
 module.exports = {
   create,
   update,
+  updateByStripeQuote,
+  updateByStripeInvoice,
   search,
   getContactIfAlreadyPresent,
   getContactById,
