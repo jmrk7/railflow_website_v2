@@ -25,7 +25,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
 
   useEffect(() => {
     setUserIndex(0);
-  }, []);
+  },[]);
   
   const handleUserSelectClick = (type) => {
     if (type === "plus") {
