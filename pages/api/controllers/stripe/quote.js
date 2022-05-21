@@ -59,6 +59,9 @@ async function createQuote(request, res, next) {
     const result = await Stripe.quotes.finalizeQuote(quote.id);
     const pdf = await Stripe.quotes.pdf(quote.id);
 
+    console.log("Start Writing File")
+    console.log(path.join(process.cwd(), `/public/pdf/${quote.id}.pdf`));
+    
     await new Promise((resolve) => {
       pdf.pipe(
         createWriteStream(
@@ -67,6 +70,7 @@ async function createQuote(request, res, next) {
       );
       pdf.on("end", () => resolve());
     });
+    console.log("End File");
 
     reqData.cf_stripe_customer_id = request.body.stripe_id;
     reqData.cf_stripe_quote_link =
