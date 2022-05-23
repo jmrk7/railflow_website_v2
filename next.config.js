@@ -19,6 +19,7 @@ const nextConfig = {
       "https://railflow.myfreshworks.com",
       "https://api.mailgun.net/",
     ],
+    PRICING_URL: "https://railflow-pricing-api.onrender.com/",
     CRYPTOLENS_BASE_URL: "https://app.cryptolens.io",
     CRYPTOLENS_API_KEY:
       "WyI1NTkwNTYzIiwidE1WQ1NjaUlwR05adHhZK1BaaEZlamVpUEZ5RElJQ3ZBZGlPVzFkUCJd",

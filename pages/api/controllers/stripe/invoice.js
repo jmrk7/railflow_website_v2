@@ -1,5 +1,5 @@
 import stripe from "stripe";
-import pricing from "../../config/pricing.json";
+import axios from "axios";
 import contactService from "../../services/contact";
 import accountService from "../../services/account";
 
@@ -16,21 +16,12 @@ async function createInvoice(req, res, next) {
     contact_email: contact.email,
   };
 
-  const pricingType = pricing[req.body.license_type.toLowerCase()];
-
-  let price;
-  req.body.license_years != 0
-    ? (price =
-        (pricingType["base"] + pricingType["increment"] * req.body.num_users) *
-        (1 - pricingType[`discount_${req.body.license_years}_year`]) *
-        req.body.license_years)
-    : (price =
-        (pricingType["base"] + pricingType["increment"] * req.body.num_users) *
-        4 *
-        (1 - pricingType["discount_perpetual"]));
+  const priceResult = await axios.get(
+    `${process.env.PRICING_URL}pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
+  );
 
   const priceObject = await Stripe.prices.create({
-    unit_amount: price * 100,
+    unit_amount: priceResult.data.pricing.final_price * 100,
     currency: "usd",
     product: "prod_railflow",
   });

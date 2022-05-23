@@ -1,7 +1,7 @@
 import stripe from "stripe";
 import path from "path";
 import absoluteUrl from "next-absolute-url";
-import pricing from "../../config/pricing.json";
+import axios from "axios";
 import contactService from "../../services/contact";
 import { createWriteStream } from "fs";
 
@@ -21,23 +21,12 @@ async function createQuote(request, res, next) {
       contact_email: contact.email,
     };
 
-    const pricingType = pricing[request.body.license_type.toLowerCase()];
-
-    let price;
-    request.body.license_years != 0
-      ? (price =
-          (pricingType["base"] +
-            pricingType["increment"] * request.body.num_users) *
-          (1 - pricingType[`discount_${request.body.license_years}_year`]) *
-          request.body.license_years)
-      : (price =
-          (pricingType["base"] +
-            pricingType["increment"] * request.body.num_users) *
-          4 *
-          (1 - pricingType["discount_perpetual"]));
-
+    const priceResult = await axios.get(
+      `${process.env.PRICING_URL}pricing?license_years=${request.body.license_years}&license_type=${request.body.license_type}&num_users=${request.body.num_users}`
+    );
+    
     const priceObject = await Stripe.prices.create({
-      unit_amount: price * 100,
+      unit_amount: Number(priceResult.data.pricing.final_price) * 100,
       currency: "usd",
       product: "prod_railflow",
     });
@@ -59,9 +48,9 @@ async function createQuote(request, res, next) {
     const result = await Stripe.quotes.finalizeQuote(quote.id);
     const pdf = await Stripe.quotes.pdf(quote.id);
 
-    console.log("Start Writing File")
+    console.log("Start Writing File");
     console.log(path.join(process.cwd(), `/public/pdf/${quote.id}.pdf`));
-    
+
     await new Promise((resolve) => {
       pdf.pipe(
         createWriteStream(
