@@ -151,7 +151,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
       setPricingResponse(response.data.pricing);
     }
     fetchData();
-  }, [userIndex, years, selectedPlan.id]);
+  }, [userIndex, years, selectedPlan.id, activeStep]);
 
   const handleYearChannge = (event) => {
     if (event.target.value === years) {

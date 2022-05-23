@@ -24,8 +24,8 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
   const [isDialogOpen, setDialogOpen] = React.useState(false);
 
   useEffect(() => {
-    setUserIndex(0);
-  },[]);
+    setUserIndex(userIndex);
+  });
   
   const handleUserSelectClick = (type) => {
     if (type === "plus") {
