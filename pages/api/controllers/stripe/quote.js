@@ -35,7 +35,7 @@ async function createQuote(request, res, next) {
     const priceObject = await Stripe.prices.create({
       unit_amount: Number(priceResult.data.pricing.final_price) * 100,
       currency: "usd",
-      product: "prod_railflow",
+      product: "prod_LkYOTh3gWcc2ma",
     });
 
     const paymentLink = await Stripe.paymentLinks.create({
