@@ -1,9 +1,16 @@
 import stripe from "stripe";
 import path from "path";
-import absoluteUrl from "next-absolute-url";
 import axios from "axios";
+import AWS from "aws-sdk";
 import contactService from "../../services/contact";
-import { createWriteStream } from "fs";
+import { createWriteStream, readFileSync } from "fs";
+
+const spacesEndpoint = new AWS.Endpoint(process.env.SPACE_ENDPOINT + "/quotes");
+const s3 = new AWS.S3({
+  endpoint: spacesEndpoint,
+  accessKeyId: process.env.SPACES_KEY,
+  secretAccessKey: process.env.SPACES_SECRET,
+});
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -48,22 +55,33 @@ async function createQuote(request, res, next) {
     const result = await Stripe.quotes.finalizeQuote(quote.id);
     const pdf = await Stripe.quotes.pdf(quote.id);
 
-    console.log("Start Writing File");
-    console.log(path.join(process.cwd(), `/public/pdf/${quote.id}.pdf`));
-
     await new Promise((resolve) => {
       pdf.pipe(
         createWriteStream(
-          path.join(process.cwd(), `/public/pdf/${quote.id}.pdf`)
+          path.join(process.cwd(), `/public/pdf/temp.pdf`)
         )
       );
       pdf.on("end", () => resolve());
     });
-    console.log("End File");
+
+    const quotePdf = readFileSync(path.join(process.cwd(), `/public/pdf/temp.pdf`));
+
+    s3.putObject(
+      {
+        Bucket: "railflow",
+        Key: `${quote.id}.pdf`,
+        Body: quotePdf,
+        ACL: "public-read",
+      },
+      (err, data) => {
+        if (err) return res.status(500).send(err);
+        console.log("your file has been uploaded successfully");
+      }
+    );
 
     reqData.cf_stripe_customer_id = request.body.stripe_id;
-    reqData.cf_stripe_quote_link =
-      absoluteUrl(request).origin + `/pdf/${quote.id}.pdf`;
+    reqData.cf_stripe_quote_link = `https://railflow.sfo3.digitaloceanspaces.com/quotes/${quote.id}.pdf`;
+
     await contactService.updateByStripeQuote(reqData);
 
     const sendData = {
