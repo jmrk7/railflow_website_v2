@@ -1,7 +1,6 @@
 import stripe from "stripe";
 import axios from "axios";
 import contactService from "../../services/contact";
-import accountService from "../../services/account";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -23,7 +22,7 @@ async function createInvoice(req, res, next) {
   const priceObject = await Stripe.prices.create({
     unit_amount: priceResult.data.pricing.final_price * 100,
     currency: "usd",
-    product: "prod_railflow",
+    product: "prod_LkYOTh3gWcc2ma",
   });
 
   await Stripe.invoiceItems.create({
@@ -42,10 +41,6 @@ async function createInvoice(req, res, next) {
     days_until_due: 30,
   });
 
-  const paymentLink = await Stripe.paymentLinks.create({
-    line_items: [{ price: priceObject.id, quantity: 1 }],
-  });
-
   await Stripe.invoices.finalizeInvoice(invoice.id);
 
   const send = await Stripe.invoices.sendInvoice(invoice.id);
@@ -56,7 +51,7 @@ async function createInvoice(req, res, next) {
 
   const sendData = {
     link: invoice.invoice_pdf,
-    payment_link: paymentLink.url,
+    payment_link: invoice.hosted_invoice_url,
   };
 
   res.send(sendData);
