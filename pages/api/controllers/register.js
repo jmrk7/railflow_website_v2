@@ -80,6 +80,24 @@ async function create(request, res, next) {
         });
       }
     }
+
+    const stripeAccountData = {
+      name: data.firstName + " " + data.lastName,
+      email: contact.email,
+      phone: contact.mobile_number,
+      metadata: {
+        "CRM account_id": contact.custom_field.cf_account_id,
+        "CRM contact_id": contact.id,
+      },
+      description: contact.jobTitle,
+    }
+
+    var customer = await searchCustomer(contact.email);
+
+    customer.length === 0
+    ? (customer = await createUser(stripeAccountData))
+    : (customer = customer[0]);
+
     // contact exists but license status is sent and key url exists
     if (
       contact &&
@@ -102,6 +120,8 @@ async function create(request, res, next) {
           country: contact.country,
           license_key: contact.custom_field.cf_license_key,
           company_name: contact.custom_field.cf_company,
+          stripe_account: customer.id,
+          email: contact.email,
         },
       });
     } else {
@@ -114,23 +134,6 @@ async function create(request, res, next) {
       };
 
       if (license == "disable") {
-
-        const stripeAccountData = {
-          name: data.firstName + " " + data.lastName,
-          email: contact.email,
-          phone: contact.mobile_number,
-          metadata: {
-            "CRM account_id": contact.custom_field.cf_account_id,
-            "CRM contact_id": contact.id,
-          },
-          description: contact.jobTitle,
-        }
-
-        var customer = await searchCustomer(contact.email);
-
-        customer.length === 0
-        ? (customer = await createUser(stripeAccountData))
-        : (customer = customer[0]);
 
         return res.status(201).send({
           status: 201,

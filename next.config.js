@@ -11,6 +11,8 @@ const nextConfig = {
     ALLOWED_PARTY_SECRET: "ALL",
     FRESHSALES_API_KEY: "fPjGQStTY1ffGqtyAj9RVw",
     FRESHSALES_BASE_URL: "https://railflow.myfreshworks.com",
+    PIPEDRIVE_API_KEY: "86ee7b82f93c86542f262415ee6b29222c8d06cf",
+    PIPEDRIVE_BASE_URL: "https://railflow.pipedrive.com",
     ALLOWED_DOMAINS: [
       "http://localhost",
       "http://localhost:3000",
