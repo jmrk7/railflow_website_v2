@@ -46,12 +46,12 @@ async function createInvoice(req, res, next) {
   const send = await Stripe.invoices.sendInvoice(invoice.id);
 
   reqData.cf_stripe_customer_id = req.body.stripe_id;
-  reqData.cf_stripe_invoice_link = invoice.invoice_pdf;
+  reqData.cf_stripe_invoice_link = send.invoice_pdf;
   await contactService.updateByStripeInvoice(reqData);
 
   const sendData = {
-    link: invoice.invoice_pdf,
-    payment_link: invoice.hosted_invoice_url,
+    link: send.invoice_pdf,
+    payment_link: send.hosted_invoice_url,
   };
 
   res.send(sendData);
