@@ -45,9 +45,9 @@ async function createQuote(request, res, next) {
     const quote = await Stripe.quotes.create({
       customer: request.body.stripe_id,
       line_items: [{ price: priceObject.id }],
-      description: `Railflow Enterprise Quote: ${
+      description: `Railflow ${request.body.license_type} quote for TestRail: ${
         request.body.license_years
-      } year License: ${request.body.num_users * 20}-${
+      } year License for ${request.body.num_users * 20}-${
         (request.body.num_users + 1) * 20
       } Users`,
     });

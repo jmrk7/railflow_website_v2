@@ -93,7 +93,7 @@ async function create(request, res, next) {
     }
 
     var customer = await searchCustomer(contact.email);
-
+;
     customer.length === 0
     ? (customer = await createUser(stripeAccountData))
     : (customer = customer[0]);

@@ -22,7 +22,7 @@ async function searchCustomer(email) {
 async function searchInvoices(customerId) {
   const invoice = await Stripe.invoices.search({
     query: `customer:"${customerId}"`,
-  });
+  }, { maxNetworkRetries: 2 });
 
   return invoice.data;
 }
@@ -37,7 +37,7 @@ async function searchQuotes(customerId) {
 }
 
 async function createUser(stripeAccountData) {
-  const result = await Stripe.customers.create(stripeAccountData);
+  const result = await Stripe.customers.create(stripeAccountData, { maxNetworkRetries: 2 });
   return result;
 }
 

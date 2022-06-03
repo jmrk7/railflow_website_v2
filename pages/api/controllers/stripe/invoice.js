@@ -28,9 +28,9 @@ async function createInvoice(req, res, next) {
   await Stripe.invoiceItems.create({
     customer: req.body.stripe_id,
     price: priceObject.id,
-    description: `Railflow Enterprise Invoice: ${
+    description: `Railflow ${req.body.license_type} invoice for TestRail: ${
       req.body.license_years
-    } year License: ${req.body.num_users * 20}-${
+    } year License for ${req.body.num_users * 20}-${
       (req.body.num_users + 1) * 20
     } Users`,
   });
@@ -39,6 +39,7 @@ async function createInvoice(req, res, next) {
     customer: req.body.stripe_id,
     collection_method: "send_invoice",
     days_until_due: 30,
+    
   });
 
   await Stripe.invoices.finalizeInvoice(invoice.id);
