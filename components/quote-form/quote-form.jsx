@@ -554,7 +554,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
 
     const isPerpetual = years === "0";
     const selectablePlans = pricingPlans.filter((plan) => plan.showBuyNow);
-    const selectablePaymethod = ["Invoice", "Quote"];
+    const selectablePaymethod = [ "Quote","Invoice" ];
 
     return (
       <div className={cx("quoteForm_summary")}>
@@ -734,7 +734,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
 
   const handleBuyNow = (event) => {
     event.preventDefault();
-    console.log("SDF");
   };
 
   const renderDownloadStep = () => {
