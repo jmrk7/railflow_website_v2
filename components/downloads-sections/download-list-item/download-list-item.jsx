@@ -34,26 +34,7 @@ const DownloadListItem = ({ download }) => {
                 <li key={`download-feature-list-item-${index}`}>
                   {feature.text}
                 </li>
-              ))}
-              { download.downloadItem && (
-                <div style={{marginTop: "24px"}}>
-                  {download.downloadItem.map((value, index) => (
-                    <li key={`download-download-item-${index}`} style={{marginTop: "16px", marginBottom: "8px"}}>
-                      <a 
-                        href={value.href}
-                        rel="noreferrer noopener"
-                        target="_blank"
-                      >
-                        <Button className={cx('downloadListItem_button')}>
-                          {/* <DownloadOutlined /> */}
-                          <img src={value.img} alt={value.alt} style={{width: "16px", height: "16px", marginRight: "16px"}} />
-                          {value.text}
-                        </Button>
-                      </a>
-                    </li>
-                  ))}
-                </div>
-              )}
+              ))}              
             </ul>
             <div className={cx('downloadListItem_buttons')}>
               {download.releaseNotesUrl && (
@@ -88,6 +69,7 @@ const DownloadListItem = ({ download }) => {
               )}
               {download.downloadUrl && (
                 <a
+                  className={cx('downloadListItem_link')}
                   href={download.downloadUrl}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -97,7 +79,23 @@ const DownloadListItem = ({ download }) => {
                     Download
                   </Button>
                 </a>
-              )}              
+              )} 
+              { download.downloadItem && (
+                download.downloadItem.map((value, index) => (                
+                  <a 
+                    href={value.href}
+                    rel="noreferrer noopener"
+                    target="_blank"
+                    className={cx('downloadListItem_link')}
+                  >
+                    <Button className={cx('downloadListItem_button')}>
+                      {/* <DownloadOutlined /> */}
+                      <img src={value.img} alt={value.alt} style={{width: "24px", height: "24 px", marginRight: "8px"}} />
+                      {value.text}
+                    </Button>
+                  </a>
+                ))
+              )}             
             </div>
           </div>
         </div>
