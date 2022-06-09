@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useRef } from "react";
-import Link from "next/link";
 import classnames from "classnames/bind";
 import Router from "next/router";
 
@@ -36,21 +35,22 @@ const LayoutHeader = (props) => {
     Router.push('https://join.slack.com/t/railflow/shared_invite/zt-1ahbv867n-nS0_ULIOATOvkSGuC33ZNQ');
   }
 
+  const goHome = () => {
+    Router.push("/")
+  }
+
   return (
     <header ref={headerRef} className={cx("layoutHeader")}>
       <LayoutSectionContainer>
         <div className={cx("layoutHeader_sectionContainer")}>
           <section className={cx("layoutHeader_section")}>
-            <Link href="/" className={cx("layoutHeaderLogo")} passHref>
-              <div className={cx("layoutHeaderLogo_image")}>
-                <Image
-                  src={"/images/logo.png"}
-                  alt="logo"
-                  width={174}
-                  height={42}
-                />
-              </div>
-            </Link>
+            <a onClick={goHome} className={cx("layoutHeaderLogo")} style={{cursor: "pointer"}}>
+              <img
+                src={"/images/logo.png"}
+                alt="logo"
+                className={cx('layoutHeaderLogo_image')}
+              />
+            </a>
           </section>
 
           <section className={cx("layoutHeader_section", "layoutHeader_left")}>
