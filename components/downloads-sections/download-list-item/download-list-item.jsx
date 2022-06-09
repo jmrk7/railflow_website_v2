@@ -68,7 +68,7 @@ const DownloadListItem = ({ download }) => {
                 </a>
               )}
               <a
-                // href={download.downloadUrl}
+                href={download.downloadUrl}
                 rel="noopener noreferrer"
                 target="_blank"
               >
