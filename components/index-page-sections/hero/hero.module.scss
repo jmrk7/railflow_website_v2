@@ -1,4 +1,4 @@
-@import "../../../styles/globals.scss";
+@import '../../../styles/globals.scss';
 
 .hero {
   display: flex;
@@ -40,7 +40,7 @@
     flex-direction: column;
 
     &_title {
-      font-size: 3.4rem;
+      font-size: 3.5rem;
       line-height: 4.5rem;
     }
 
@@ -50,7 +50,7 @@
       line-height: 22px;
       font-weight: 400;
       color: #c2c3c5;
-      font-family: "Inter", sans-serif;
+      font-family: 'Inter', sans-serif;
       ul {
         margin-left: 24px;
         line-height: 2;
