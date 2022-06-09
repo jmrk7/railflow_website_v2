@@ -32,6 +32,10 @@ const LayoutHeader = (props) => {
     setActiveHeaderLinkId(null);
   }, []);
 
+  const joinSlack = () => {
+    Router.push('https://join.slack.com/t/railflow/shared_invite/zt-1ahbv867n-nS0_ULIOATOvkSGuC33ZNQ');
+  }
+
   return (
     <header ref={headerRef} className={cx("layoutHeader")}>
       <LayoutSectionContainer>
@@ -50,6 +54,20 @@ const LayoutHeader = (props) => {
           </section>
 
           <section className={cx("layoutHeader_section", "layoutHeader_left")}>
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center" ,marginRight:"16px"}}>
+              <p style={{marginRight: "8px", fontSize: "1.1rem"}}>Join us on</p>
+              <div style={{cursor: "pointer"}} onClick={joinSlack}>
+                <Image
+                  src={"/icons/slack-logo.svg"}
+                  alt="Slack"
+                  height={30}
+                  width={30}
+                />
+              </div>              
+              <div style={{marginLeft: "8px", color: "white"}} >
+                <p onClick={joinSlack} style={{textDecoration: "underline", cursor: "pointer", fontSize: "1.1rem"}}>Slack</p>
+              </div>
+            </div>
             {navigationLinks.map((navigationLink) => {
               const onClick = () => {
                 if (
