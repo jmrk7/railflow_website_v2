@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import classnames from "classnames/bind";
-import Image from "next/image";
 
 import * as styles from "./layout.module.scss";
 
@@ -14,12 +13,11 @@ const LayoutFooter = () => {
         <section className={cx("layoutFooterBody_section")}>
           <div className={cx("layoutFooterBodyBrand")}>
             <Link href="/" passHref>
-              <div className={cx("layoutFooterBodyBrandLogo_image")}>
-                <Image
+              <div className={cx("layoutFooterBodyBrandLogo")}>
+                <img
                   src={"/images/logo.png"}
                   alt="logo"
-                  width={132}
-                  height={32}
+                  className={cx('layoutFooterBodyBrandLogo_image')}
                 />
               </div>
             </Link>

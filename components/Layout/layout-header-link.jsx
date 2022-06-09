@@ -70,9 +70,8 @@ const LayoutHeaderLink = (props) => {
 
       {hasDropdown && (
         <>
-          <div className={cx("layoutHeaderLink_icon")}>
-            <Image src={"/icons/sort.svg"} alt="sort" width={10} height={8} />
-          </div>
+          <img src={"/icons/sort.svg"} alt="sort" width={10} height={8} className={cx("layoutHeaderLink_icon")}/>
+
           <div
             ref={dropdownRef}
             className={cx("layoutHeaderLinkDropdown", {
