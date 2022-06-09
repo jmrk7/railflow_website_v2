@@ -119,6 +119,7 @@ async function create(request, res, next) {
           zipcode: contact.zipcode,
           country: contact.country,
           license_key: contact.custom_field.cf_license_key,
+          license_url: contact.custom_field.cf_license_key_url,
           company_name: contact.custom_field.cf_company,
           stripe_account: customer.id,
           email: contact.email,

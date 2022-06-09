@@ -3,8 +3,8 @@ import classnames from "classnames/bind";
 import Image from "next/image";
 
 import DownloadImage from '../../../public/images/download.png';
-import NotePadIcon from '../../../public/icons/notepad.svg';
-import DocsImage from '../../../public/images/manual.png';
+import NotePadIcon from '../../../public/images/keys.png';
+import DocsImage from '../../../public/images/doc.png';
 import DogImage from '../../../public/images/giphy-dog.webp';
 
 import { LayoutSectionContainer } from "../../Layout";
@@ -18,7 +18,7 @@ const ThankYou = () => {
 
   useEffect(() => {
     setLicenseKey(localStorage.getItem("license_key"));
-    setLicenseLink(localStorage.getItem("license_link"));
+    setLicenseLink("https://"+localStorage.getItem("license_link"));
   }, []);
 
   return (
