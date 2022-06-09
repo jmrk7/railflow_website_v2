@@ -45,7 +45,8 @@ const DownloadListItem = ({ download }) => {
                         target="_blank"
                       >
                         <Button className={cx('downloadListItem_button')}>
-                          <DownloadOutlined />
+                          {/* <DownloadOutlined /> */}
+                          <img src={value.img} alt={value.alt} style={{width: "16px", height: "16px", marginRight: "16px"}} />
                           {value.text}
                         </Button>
                       </a>

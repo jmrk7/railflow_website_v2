@@ -132,14 +132,20 @@ export const downloads = [
     downloadItem: [
       {
         text: 'Railflow plugin installer for Windows (64-bit)',
+        img: "/images/windows.png",
+        alt: "windows",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
       },
       {
         text: 'Railflow plugin installer for MacOS',
+        img: "/images/apple.png",
+        alt: "MacOS",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/Railflow_macos_2.1.dmg"
       },
       {
         text: 'Railflow plugin JAR file',
+        img: "/images/linux.png",
+        alt: "Linux",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
       }
     ],
