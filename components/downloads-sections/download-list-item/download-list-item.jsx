@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
+import axios from "axios"
 
 import * as styles from "./download-list-item.module.scss";
 
@@ -12,6 +13,10 @@ const cx = classnames.bind(styles);
 const DownloadListItem = ({ download }) => {
   if (!download?.id) {
     return null;
+  }
+
+  const handleDownload = () => {
+    axios.post("/api/routes/mixpanel", download)
   }
 
   return (
@@ -63,11 +68,11 @@ const DownloadListItem = ({ download }) => {
                 </a>
               )}
               <a
-                href={download.downloadUrl}
+                // href={download.downloadUrl}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Button className={cx("downloadListItem_button")}>
+                <Button className={cx("downloadListItem_button")} onClick={handleDownload}>
                   <svg
                     viewBox="64 64 896 896"
                     focusable="false"

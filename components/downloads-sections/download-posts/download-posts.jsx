@@ -16,7 +16,7 @@ const cx = classnames.bind(styles);
 
 export const downloads = [
   {
-    id: "jenkins",
+    id: "Jenkins",
     name: "Jenkins plugin - 2.3",
     features: [
       {
@@ -57,7 +57,7 @@ export const downloads = [
     hashes: true,
   },
   {
-    id: "teamcity",
+    id: "Teamcity",
     name: "TeamCity Plugin - 2.3",
     features: [
       {
@@ -110,7 +110,6 @@ export const downloads = [
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
-
   {
     id: "Docker",
     name: "Railflow Docker Image - 2.1.9",
@@ -124,9 +123,8 @@ export const downloads = [
     releaseNotesUrl: "",
     hashes: false,
   },
-
   {
-    id: "readyapi",
+    id: "Readyapi",
     name: "Readyapi plugin - Coming soon!",
     features: [
       {
