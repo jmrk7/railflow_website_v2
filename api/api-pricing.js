@@ -3,7 +3,7 @@ import axios from 'axios';
 const createApiClient = () => {
   // const baseURL = 'https://api.railflow.io';
   const apiClient = axios.create({
-    baseURL: process.env.PRICING_URL,
+    baseURL: "/api/routes/",
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
       'allowed-party-secret': 'shhhsecret',
