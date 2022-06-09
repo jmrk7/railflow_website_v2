@@ -4,12 +4,6 @@ import classnames from "classnames/bind";
 import { LayoutSectionContainer } from "../../Layout";
 import DownloadListItem from "../download-list-item";
 
-import JenkinsImage from "../../../public/images/jenkins.png";
-import TeamCityImage from "../../../public/images/teamcity.png";
-import ReadyAPIImage from "../../../public/images/readyapi.png";
-import NPMImage from "../../../public/images/npm.png";
-import DockerImage from "../../../public/images/docker-2.png";
-
 import * as styles from "./download-posts.module.scss";
 
 const cx = classnames.bind(styles);
@@ -52,7 +46,7 @@ export const downloads = [
     ],
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.3/railflow-jenkins-plugin.hpi",
-    image: JenkinsImage,
+    image: "/images/jenkins.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/jenkins",
     hashes: true,
   },
@@ -93,60 +87,79 @@ export const downloads = [
     ],
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.3/railflow-teamcity-testrail-connector.zip",
-    image: TeamCityImage,
+    image: "/images/teamcity.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/teamcity",
     hashes: true,
   },
   {
     id: "NPM",
-    name: "Railflow NPM CLI - 2.1.9",
+    name: "Railflow NPM CLI - 2.1.10",
     features: [
       {
-        text: "[feature] Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests",
+        text: "[feature] Set test case title into the field defined by -csf parameter on test case creation",
       },      
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
-    image: NPMImage,
+    image: "/images/npm.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
   {
     id: "Docker",
-    name: "Railflow Docker Image - 2.1.9",
+    name: "Railflow Docker Image - 2.1.10",
     features: [
       {
-        text: "[feature] Add new `--untested-status` CLI switch for providing a name of the status to use in TestRail for untested/skipped tests",
+        text: "[feature] Set test case title into the field defined by -csf parameter on test case creation",
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
-    image: DockerImage,
-    releaseNotesUrl: "",
+    image: "/images/docker-2.png",
+    releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
   {
     id: "Readyapi",
-    name: "Readyapi plugin - Coming soon!",
+    name: "ReadyApi plugin - 2.1",
     features: [
       {
-        text: "Coming Soon",
+        text: "[feature] Add license activation screen into the installer",
+      },
+      {
+        text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it'
       },
     ],
-    downloadUrl: "#download",
-    image: ReadyAPIImage,
-    releaseNotesUrl: "",
+    downloadUrl: "",
+    downloadItem: [
+      {
+        text: 'Railflow plugin installer for Windows (64-bit)',
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
+      },
+      {
+        text: 'Railflow plugin installer for MacOS',
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/Railflow_macos_2.1.dmg"
+      },
+      {
+        text: 'Railflow plugin JAR file',
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
+      }
+    ],
+    image: "/images/readyapi.png",
+    releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/readyapi",
     hashes: false,
   },
 ];
 
 const DownloadPosts = () => {
   return (
-    <section id="download-posts" className={cx("downloadPosts")}>
+    <section id="download-posts" className={cx('downloadPosts')}>
       <LayoutSectionContainer>
-        <div className={cx("downloadPosts_sectionContainer")}>
-          <div className={cx("downloadPosts_section")}>
-            <h1 className={cx("downloadPosts_title")}>Railflow Downloads</h1>
+        <div className={cx('downloadPosts_sectionContainer')}>
+          <div className={cx('downloadPosts_section')}>
+            <h1 className={cx('downloadPosts_title')}>
+              Railflow Downloads
+            </h1>
 
-            <div className={cx("downloadPosts_list")}>
+            <div className={cx('downloadPosts_list')}>
               {downloads.map((item) => (
                 <DownloadListItem key={item.id} download={item} />
               ))}

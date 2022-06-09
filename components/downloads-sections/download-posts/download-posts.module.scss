@@ -42,11 +42,13 @@
     font-family: "Inter", sans-serif;
   }
 
+
   @media (max-width: 768px) {
     &_title {
       font-size: 3rem;
       line-height: 78px;
     }
+
   }
 
   &_list {
