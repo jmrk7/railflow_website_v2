@@ -64,9 +64,7 @@ const LayoutSidebarLink = (props) => {
         <span className={cx("layoutSidebarLink_label")}>
           {label}
           {hasDropdown && (
-            <div className={cx("layoutHeaderLink_icon")}>
-              <Image src={"/icons/sort.svg"} alt="sort" width={10} height={8} />
-            </div>
+            <img src={"/icons/sort.svg"} alt="sort" className={cx("layoutHeaderLink_icon")} height={8.414} />
           )}
         </span>
       )}
