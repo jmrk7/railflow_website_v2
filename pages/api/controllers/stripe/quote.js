@@ -4,13 +4,14 @@ import axios from "axios";
 import AWS from "aws-sdk";
 import contactService from "../../services/contact";
 import { createWriteStream, readFileSync } from "fs";
+import { sendDataToMixpanel } from "../../services/mixpanel";
 
 const spacesEndpoint = new AWS.Endpoint(process.env.SPACE_ENDPOINT + "/quotes");
 const s3 = new AWS.S3({
   endpoint: spacesEndpoint,
   accessKeyId: process.env.SPACES_KEY,
   secretAccessKey: process.env.SPACES_SECRET,
-});
+}); 
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -35,7 +36,7 @@ async function createQuote(request, res, next) {
     const priceObject = await Stripe.prices.create({
       unit_amount: Number(priceResult.data.pricing.final_price) * 100,
       currency: "usd",
-      product: "prod_LkYOTh3gWcc2ma",
+      product: process.env.STRIPE_TEST_PRODUCT,
     });
 
     const paymentLink = await Stripe.paymentLinks.create({
@@ -81,6 +82,16 @@ async function createQuote(request, res, next) {
 
     reqData.cf_stripe_customer_id = request.body.stripe_id;
     reqData.cf_stripe_quote_link = `https://railflow.sfo3.digitaloceanspaces.com/quotes/${quote.id}.pdf`;
+    
+    const eventData = {
+      Name: contact.first_name + " " + contact.last_name,
+      Email: contact.email,
+      Company: contact.custom_field.cf_company,
+      Stripe_Customer_id: contact.id,
+      Quote_Pdf_link: reqData.cf_stripe_quote_link,
+    }
+
+    await sendDataToMixpanel("Quote Event", eventData);
 
     await contactService.updateByStripeQuote(reqData);
 
@@ -89,6 +100,7 @@ async function createQuote(request, res, next) {
       payment_link: paymentLink.url,
     };
     res.send(sendData);
+    
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
