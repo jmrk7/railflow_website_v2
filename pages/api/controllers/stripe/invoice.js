@@ -2,6 +2,7 @@ import stripe from "stripe";
 import axios from "axios";
 import contactService from "../../services/contact";
 import { sendDataToMixpanel } from "../../services/mixpanel";
+import absoluteUrl from "next-absolute-url";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -17,8 +18,9 @@ async function createInvoice(req, res, next) {
       contact_email: contact.email,
     };
 
+    const apiBaseUrl = absoluteUrl(req).origin;
     const priceResult = await axios.get(
-      `${process.env.PRICING_URL}pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
+      `${apiBaseUrl}/api/routes/pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
     );
 
     const priceObject = await Stripe.prices.create({

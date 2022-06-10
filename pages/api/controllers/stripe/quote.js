@@ -5,6 +5,7 @@ import AWS from "aws-sdk";
 import contactService from "../../services/contact";
 import { createWriteStream, readFileSync } from "fs";
 import { sendDataToMixpanel } from "../../services/mixpanel";
+import absoluteUrl from "next-absolute-url";
 
 const spacesEndpoint = new AWS.Endpoint(process.env.SPACE_ENDPOINT + "/quotes");
 const s3 = new AWS.S3({
@@ -29,8 +30,9 @@ async function createQuote(request, res, next) {
       contact_email: contact.email,
     };
 
+    const apiBaseUrl = absoluteUrl(request).origin;
     const priceResult = await axios.get(
-      `${process.env.PRICING_URL}pricing?license_years=${request.body.license_years}&license_type=${request.body.license_type}&num_users=${request.body.num_users}`
+      `${apiBaseUrl}/api/routes/pricing?license_years=${request.body.license_years}&license_type=${request.body.license_type}&num_users=${request.body.num_users}`
     );
     
     const priceObject = await Stripe.prices.create({

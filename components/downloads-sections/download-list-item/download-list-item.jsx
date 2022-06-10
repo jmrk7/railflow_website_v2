@@ -92,15 +92,14 @@ const DownloadListItem = ({ download }) => {
               { download.downloadItem && (
                 download.downloadItem.map((value, index) => (                
                   <a 
-                    // href={value.href}
                     rel="noreferrer noopener"
                     target="_blank"
                     className={cx('downloadListItem_link')}
                     onClick={() => sendDatatoMixpanel(value.id)}
                     key={index}
+                    style={{marginRight: "1rem"}}
                   >
                     <Button className={cx('downloadListItem_button')}>
-                      {/* <DownloadOutlined /> */}
                       <img src={value.img} alt={value.alt} style={{width: "24px", height: "24 px", marginRight: "8px"}} />
                       {value.text}
                     </Button>

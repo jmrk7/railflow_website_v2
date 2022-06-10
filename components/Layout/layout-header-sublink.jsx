@@ -79,7 +79,7 @@ const LayoutHeaderSubLink = ({ dropdownLink }) => {
         alt="sort"
         style={{
           marginLeft: "8px",
-          transform: isOpened ? "rotate(270deg)" : "rotate(90deg",
+          transform: isOpened ? "rotate(90deg)" : "rotate(270deg)",
           transition: "0.25s transform",
         }}
       />
