@@ -21,13 +21,12 @@ function runMiddleware(req, res, fn) {
     });
   });
 }
-
+ 
 export default async function handler(req, res, next) {
   await runMiddleware(req, res, cors);
 
   if (req.method === "POST") {
     const dataObject = {
-      "id": req.body.id,
       "Plugin Name": req.body.name
     }
     sendDataToMixpanel(`Download Event`, dataObject)
