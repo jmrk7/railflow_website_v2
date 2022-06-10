@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../../components/Layout';
+import Layout from '/components/Layout';
 
-import DownloadPosts from "../../components/downloads-sections/download-posts";
+import DownloadPosts from "/components/downloads-sections/download-posts";
 
 const DownloadsPage = () => {
   return (
