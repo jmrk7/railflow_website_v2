@@ -12,11 +12,6 @@ const navigationLinks = [
     label: 'Resources',
     dropdownLinks: [
       {
-        id: 'resources_downloads',
-        label: 'Downloads',
-        to: '/resources/downloads',
-      },
-      {
         id: 'resources_downloads_testrail',
         label: 'TestRail Downloads',
         to: '/resources/testrail/downloads'
