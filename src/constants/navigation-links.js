@@ -17,12 +17,21 @@ const navigationLinks = [
         to: '/resources/downloads',
       },
       {
+        id: 'resources_downloads_testrail',
+        label: 'TestRail Downloads',
+        to: '/resources/testrail/downloads'
+      },
+      {
+        id: 'resources_downloads_zephyr',
+        label: 'Zephyr Downloads',
+        to: 'resources/zephyr/downloads'
+      },
+      {
         id: 'resources_documentation',
         label: 'Documentation',
         to: 'https://docs.railflow.io',
         isExternal: true,
       },
-
       {
         id: 'resources_support',
         label: 'Customer Support',
