@@ -127,6 +127,9 @@ export const downloads = [
       {
         text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it'
       },
+      {
+        text: ''
+      },
     ],
     downloadUrl: "",
     downloadItem: [

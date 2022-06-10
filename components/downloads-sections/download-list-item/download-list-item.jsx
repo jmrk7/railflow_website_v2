@@ -39,9 +39,11 @@ const DownloadListItem = ({ download }) => {
             </h1>
             <ul className={cx('downloadListItem_desc')}>
               {download.features.map((feature, index) => (
-                <li key={`download-feature-list-item-${index}`}>
-                  {feature.text}
-                </li>
+                  feature["text"] 
+                  ? <li key={`download-feature-list-item-${index}`}>
+                    {feature.text}
+                    </li>
+                  : <div style={{marginTop: "1.5rem"}}></div>
               ))}              
             </ul>
             <div className={cx('downloadListItem_buttons')}>
@@ -90,7 +92,7 @@ const DownloadListItem = ({ download }) => {
                 </a>
               )} 
               { download.downloadItem && (
-                download.downloadItem.map((value, index) => (                
+                download.downloadItem.map((value, index) => (              
                   <a 
                     rel="noreferrer noopener"
                     target="_blank"
@@ -98,9 +100,10 @@ const DownloadListItem = ({ download }) => {
                     onClick={() => sendDatatoMixpanel(value.id)}
                     key={index}
                     style={{marginRight: "1rem"}}
+                    href={value.href}
                   >
                     <Button className={cx('downloadListItem_button')}>
-                      <img src={value.img} alt={value.alt} style={{width: "24px", height: "24 px", marginRight: "8px"}} />
+                      <img src={value.img} alt={value.alt} style={{width: "24px", height: "24px", marginRight: "16px"}} />
                       {value.text}
                     </Button>
                   </a>
