@@ -43,7 +43,7 @@ const LayoutHeaderLink = (props) => {
       role="link"
       tabIndex={id}
       onMouseEnter={handleMouseEnter}
-      // onMouseLeave={onMouseLeave}
+      onMouseLeave={onMouseLeave}
       onKeyDown={onEnterKeyDown}
       className={cx("layoutHeaderLink", {
         layoutHeaderLink__inactive: isActive === false,
