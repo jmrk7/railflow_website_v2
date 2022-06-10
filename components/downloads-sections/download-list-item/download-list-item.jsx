@@ -8,12 +8,20 @@ import { DownloadOutlined } from '@ant-design/icons';
 import axios from "axios"
 
 import * as styles from "./download-list-item.module.scss";
-
+ 
 const cx = classnames.bind(styles);
 
 const DownloadListItem = ({ download }) => {
   if (!download?.id) {
     return null;
+  }
+
+  const sendDatatoMixpanel = (value) => {
+    var pluginName = {};
+    download.id === "Readyapi"
+      ? pluginName.name = value
+      : pluginName.name = download.id
+    axios.post("/api/routes/mixpanel", pluginName);
   }
 
   return (
@@ -70,9 +78,10 @@ const DownloadListItem = ({ download }) => {
               {download.downloadUrl && (
                 <a
                   className={cx('downloadListItem_link')}
-                  href={download.downloadUrl}
+                  // href={download.downloadUrl}
                   rel="noopener noreferrer"
                   target="_blank"
+                  onClick={sendDatatoMixpanel}
                 >
                   <Button className={cx('downloadListItem_button')}>
                     <DownloadOutlined />
@@ -83,10 +92,12 @@ const DownloadListItem = ({ download }) => {
               { download.downloadItem && (
                 download.downloadItem.map((value, index) => (                
                   <a 
-                    href={value.href}
+                    // href={value.href}
                     rel="noreferrer noopener"
                     target="_blank"
                     className={cx('downloadListItem_link')}
+                    onClick={() => sendDatatoMixpanel(value.id)}
+                    key={index}
                   >
                     <Button className={cx('downloadListItem_button')}>
                       {/* <DownloadOutlined /> */}

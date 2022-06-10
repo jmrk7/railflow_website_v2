@@ -134,17 +134,20 @@ export const downloads = [
         text: 'Windows Installer',
         img: "/images/windows.png",
         alt: "windows",
+        id: "Readyapi-Windows",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
       },
       {
         text: 'Mac OS Installer',
         img: "/images/apple_white.png",
+        id: "Readyapi-Mac",
         alt: "MacOS",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/Railflow_macos_2.1.dmg"
       },
       {
         text: 'Linux Installer',
         img: "/images/linux.png",
+        id: "Readyapi-Linux",
         alt: "Linux",
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
       }
