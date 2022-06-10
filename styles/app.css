@@ -1,17 +1,45 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
 }
 
 html {
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 body {
-    letter-spacing: normal !important;
+  letter-spacing: normal !important;
 }
 
 .chatlio-online-dot {
-    box-sizing: content-box !important;
+  box-sizing: content-box !important;
+}
+.MuiSvgIcon-root {
+  color: white;
+}
+.MuiOutlinedInput-notchedOutline {
+  border-color: white;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-width: 1px;
+  border-bottom-right-radius: 0px;
+}
+.MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+.MuiSelect-select {
+  padding-bottom: 8px;
+}
+.MuiSelect-root:hover {
+  border-color: white !important;
+}
+.MuiPaper-root {
+  background-color: #424242;
+  color: white !important;
+}
+.MuiButtonBase-root.MuiMenuItem-root:hover {
+  background-color: (255, 255, 255, 0.08) !important;
 }
