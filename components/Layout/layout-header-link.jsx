@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import classnames from "classnames/bind";
-import Image from "next/image";
 import Link from "next/link";
 
 import onEnterKeyDown from "../../utils/on-enter-key-down";
+import SubLink from "./layout-header-sublink";
 
 import * as styles from "./layout.module.scss";
 
@@ -35,7 +35,7 @@ const LayoutHeaderLink = (props) => {
       onMouseEnter(id, event);
     },
     [id, onMouseEnter]
-  );
+  );  
 
   return (
     <div
@@ -43,7 +43,7 @@ const LayoutHeaderLink = (props) => {
       role="link"
       tabIndex={id}
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={onMouseLeave}
+      // onMouseLeave={onMouseLeave}
       onKeyDown={onEnterKeyDown}
       className={cx("layoutHeaderLink", {
         layoutHeaderLink__inactive: isActive === false,
@@ -89,16 +89,17 @@ const LayoutHeaderLink = (props) => {
                 >
                   {dropdownLink.label}
                 </a>
-              ) : (
-                <Link href={dropdownLink.to} key={dropdownLink.id} passHref>
-                  <div
-                    className={cx("layoutHeaderLinkDropdown_link")}
-                  >
-                    {dropdownLink.label}
-                  </div>
-                </Link>
-              );
-            })}
+              ) : dropdownLink.hasSubmenu 
+                  ? (<SubLink dropdownLink={dropdownLink} key={dropdownLink.id}></SubLink>)
+                  : (<Link href={dropdownLink.to} key={dropdownLink.id} passHref>
+                      <div
+                        className={cx("layoutHeaderLinkDropdown_link")}
+                      >
+                        {dropdownLink.label}
+                      </div>
+                    </Link>
+                  )
+             })}  
           </div>
         </>
       )}

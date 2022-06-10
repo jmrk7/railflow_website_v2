@@ -13,19 +13,41 @@ const navigationLinks = [
     dropdownLinks: [
       {
         id: 'resources_downloads_testrail',
-        label: 'TestRail Downloads',
-        to: '/resources/testrail/downloads'
+        label: 'Railflow For TestRail',
+        hasSubmenu: true,
+        to: "/",
+        items: [
+          {
+            id: 'resources_downloads_testrail_download',
+            label: 'Downloads',            
+            to: '/resources/testrail/downloads'
+          },
+          {
+            id: 'resources_downloads_testrail_doc',
+            label: 'Documentation',            
+            to: 'https://docs.railflow.io',            
+            isExternal: true,
+          }
+        ],
       },
       {
         id: 'resources_downloads_zephyr',
-        label: 'Zephyr Downloads',
-        to: 'resources/zephyr/downloads'
-      },
-      {
-        id: 'resources_documentation',
-        label: 'Documentation',
-        to: 'https://docs.railflow.io',
-        isExternal: true,
+        label: 'Railflow For Zephyr',
+        hasSubmenu: true,
+        to: "/",
+        items: [
+          {
+            id: 'resources_downloads_testrail_download',
+            label: 'Downloads',            
+            to: 'resources/zephyr/downloads'
+          },
+          {
+            id: 'resources_downloads_testrail_doc',
+            label: 'Documentation',            
+            to: 'https://docs.railflow.io',
+            isExternal: true,
+          }
+        ],
       },
       {
         id: 'resources_support',
