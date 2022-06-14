@@ -9,6 +9,8 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <link rel="shortcut icon" href={"/favicon.ico"} />
+          <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/space-grotesk" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {this.props.emotionStyleTags}
           <script
