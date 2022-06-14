@@ -84,6 +84,7 @@ const DownloadListItem = ({ download }) => {
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={sendDatatoMixpanel}
+                  style={{marginRight: "0px"}}
                 >
                   <Button className={cx('downloadListItem_button')}>
                     <DownloadOutlined />
@@ -99,7 +100,7 @@ const DownloadListItem = ({ download }) => {
                     className={cx('downloadListItem_link')}
                     onClick={() => sendDatatoMixpanel(value.id)}
                     key={index}
-                    style={{marginRight: "1rem"}}
+                    style={{marginLeft: "0.5rem", marginRight: "0px"}}
                     href={value.href}
                   >
                     <Button className={cx('downloadListItem_button')}>

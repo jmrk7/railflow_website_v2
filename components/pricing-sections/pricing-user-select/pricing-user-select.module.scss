@@ -32,7 +32,7 @@
     flex-direction: row;
   }
   &_input {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
     &Small {
       max-width: 120px;
     }

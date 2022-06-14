@@ -10,6 +10,7 @@ html {
 
 body {
   letter-spacing: normal !important;
+  line-height: unset !important;
 }
 
 .chatlio-online-dot {
