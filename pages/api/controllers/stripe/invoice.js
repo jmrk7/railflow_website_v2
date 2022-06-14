@@ -28,6 +28,10 @@ async function createInvoice(req, res, next) {
       currency: "usd",
       product: process.env.STRIPE_TEST_PRODUCT,
     });
+    
+    const paymentLink = await Stripe.paymentLinks.create({
+      line_items: [{ price: priceObject.id, quantity: 1 }],
+    });
 
     await Stripe.invoiceItems.create({
       customer: req.body.stripe_id,
@@ -66,7 +70,7 @@ async function createInvoice(req, res, next) {
 
     const sendData = {
       link: send.invoice_pdf,
-      payment_link: send.hosted_invoice_url,
+      payment_link: paymentLink.url,
     };
 
     res.send(sendData);
