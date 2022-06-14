@@ -32,7 +32,7 @@ const LayoutHeader = (props) => {
   }, []);
 
   const joinSlack = () => {
-    Router.push('https://join.slack.com/t/railflow/shared_invite/zt-1ahbv867n-nS0_ULIOATOvkSGuC33ZNQ');
+    Router.push('https://join.slack.com/t/railflowcontractors/shared_invite/zt-1ahcxgneq-1FXV77YHol31SyDP1tp45w');
   }
 
   const goHome = () => {
