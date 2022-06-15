@@ -2,10 +2,12 @@ import stripe from "stripe";
 import path from "path";
 import axios from "axios";
 import AWS from "aws-sdk";
+import absoluteUrl from "next-absolute-url";
+
 import contactService from "../../services/contact";
 import { createWriteStream, readFileSync } from "fs";
 import { sendDataToMixpanel } from "../../services/mixpanel";
-import absoluteUrl from "next-absolute-url";
+import slackService from "../../services/slack";
 
 const spacesEndpoint = new AWS.Endpoint(process.env.SPACE_ENDPOINT + "/quotes");
 const s3 = new AWS.S3({
@@ -100,7 +102,11 @@ async function createQuote(request, res, next) {
     const sendData = {
       link: reqData.cf_stripe_quote_link,
       payment_link: paymentLink.url,
+      type: "Quote"
     };
+
+    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
+
     res.send(sendData);
     
   } catch (err) {
