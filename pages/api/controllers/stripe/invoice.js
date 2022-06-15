@@ -1,8 +1,10 @@
 import stripe from "stripe";
 import axios from "axios";
+import absoluteUrl from "next-absolute-url";
+
 import contactService from "../../services/contact";
 import { sendDataToMixpanel } from "../../services/mixpanel";
-import absoluteUrl from "next-absolute-url";
+import slackService from "../../services/slack";
 
 const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -71,8 +73,10 @@ async function createInvoice(req, res, next) {
     const sendData = {
       link: send.invoice_pdf,
       payment_link: paymentLink.url,
+      type: "Invoice"
     };
 
+    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
     res.send(sendData);
     
   } catch (err) {
