@@ -50,7 +50,7 @@ async function createInvoice(req, res, next) {
       payment_link: paymentLink.url
     };
 
-    // if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
+    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
     res.send(sendData);
     
   } catch (err) {

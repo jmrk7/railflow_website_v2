@@ -105,7 +105,7 @@ async function createQuote(request, res, next) {
       type: "Quote"
     };
 
-    // if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
+    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
 
     res.send(sendData);
     
