@@ -500,6 +500,36 @@ export const initialFieldData = {
 
 export const basePricingPlans = [
   {
+    id: 'custom',
+    title: 'free',
+    payment: {
+      price: { amount: '100', currency: 'USD' },
+    },
+    features: [
+      {
+        id: 'enterprise_1',
+        label: 'TestRail Consulting',
+        isAvailable: true,
+      },
+      {
+        id: 'enterprise_2',
+        label: 'TestRail API Live Support',
+        isAvailable: true,
+      },
+      {
+        id: 'enterprise_3',
+        label: 'Migration to TestRail',
+        isAvailable: true,
+      },
+      {
+        id: 'enterprise_4',
+        label: 'Test Framework Development',
+        isAvailable: true,
+      },
+    ],
+    isCustom: true,
+  },
+  {
     id: 'professional',
     title: 'Professional',
     payment: {
@@ -544,6 +574,7 @@ export const basePricingPlans = [
       },
     ],
     showBuyNow: true,
+    isPopular: true,
   },
   {
     id: 'enterprise',
@@ -589,38 +620,7 @@ export const basePricingPlans = [
         isAvailable: true,
       },
     ],
-    isPopular: true,
     showBuyNow: true,
   },
-
-  {
-    id: 'custom',
-    title: 'TestRail Consulting',
-    payment: {
-      price: { amount: '100', currency: 'USD' },
-    },
-    features: [
-      {
-        id: 'enterprise_1',
-        label: 'TestRail Consulting',
-        isAvailable: true,
-      },
-      {
-        id: 'enterprise_2',
-        label: 'TestRail API Live Support',
-        isAvailable: true,
-      },
-      {
-        id: 'enterprise_3',
-        label: 'Migration to TestRail',
-        isAvailable: true,
-      },
-      {
-        id: 'enterprise_4',
-        label: 'Test Framework Development',
-        isAvailable: true,
-      },
-    ],
-    isCustom: true,
-  },
+  
 ];

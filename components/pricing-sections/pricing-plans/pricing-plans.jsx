@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
-
+import QuoteButton from "/components/button/QuoteButton.jsx";
 import * as styles from "./pricing-plans.module.scss";
 import PricingUserSelect from "../pricing-user-select";
 import { basePricingPlans } from "../../quote-form/constants";
@@ -42,10 +42,13 @@ const PricingPlans = () => {
   return (
     <section id="pricing" className={cx("pricing")}>
       <LayoutSectionContainer>
-        <h1 className={cx("pricing_title")}>Plans & Pricing</h1>
+        <div style={{position: "relative"}}>
+          <h1 className={cx("pricing_title")}>Plans & Pricing</h1>
+          <QuoteButton to={`/purchase?price-index=${userIndex}&type=quote`}>Get Quote</QuoteButton>
+        </div>
         <p className={cx("pricing_subtitle")}>
-          Simple, affordable and transparent pricing. Don&apos;t ever talk to a sales
-          guy{" "}
+          Simple, affordable and transparent pricing. Don&apos;t ever talk to a
+          sales guy{" "}
           <span
             className={cx("pricing_emoji")}
             role="img"
@@ -64,6 +67,7 @@ const PricingPlans = () => {
             />
           </div>
         </div>
+
         <div className={cx("pricing_planContainer")}>
           {pricingPlans.map((plan) => (
             <div
@@ -135,9 +139,9 @@ const PricingPlans = () => {
 
               {plan.isCustom && (
                 <div className={cx("pricingPlanQuoteButton")}>
-                  <a href="https://railflow.io/contact">
+                  <a href="/register">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      Contact Support
+                      Register
                     </Button>
                   </a>
                 </div>
@@ -145,11 +149,11 @@ const PricingPlans = () => {
               {!plan.isCustom && (
                 <div className={cx("pricingPlanQuoteButton")}>
                   <Button
-                    to={`/purchase?price-index=${userIndex}&license-type=${plan.id}`}
+                    to={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
                     className={cx("pricingPlanButton")}
                     inverse={!plan.isPopular}
                   >
-                    Instant Quote
+                    Buy Now
                   </Button>
                 </div>
               )}

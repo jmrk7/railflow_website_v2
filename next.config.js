@@ -56,7 +56,7 @@ const nextConfig = {
       "pk_test_51JSOmHDhvP6DurKSsGw6QBpRN9zmuFKeJ3RzvnvGMy2GoVnKlVUBj49jQjhb8xFL6pMugawFeZYkYDAWMGk3bJlA00bI135spV",
     MIXPANEL_KEY: "97d58733e64400bf0e1a0b23ce3c488b",
     STRIPE_LIVE_PRODUCT: "prod_LkYOTh3gWcc2ma",
-    STRIPE_TEST_PRODUCT: "prod_railflow"
+    STRIPE_TEST_PRODUCT: "prod_LsWxQNfMecr3gh"
   },
 };
 
