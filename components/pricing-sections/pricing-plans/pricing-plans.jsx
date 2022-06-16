@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
-
+import Link from "next/link";
 import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
 import QuoteButton from "/components/button/QuoteButton.jsx";
@@ -42,9 +42,11 @@ const PricingPlans = () => {
   return (
     <section id="pricing" className={cx("pricing")}>
       <LayoutSectionContainer>
-        <div style={{position: "relative"}}>
+        <div style={{ position: "relative" }}>
           <h1 className={cx("pricing_title")}>Plans & Pricing</h1>
-          <QuoteButton to={`/purchase?price-index=${userIndex}&type=quote`}>Get Quote</QuoteButton>
+          <QuoteButton to={`/purchase?price-index=${userIndex}&type=quote`}>
+            Get Quote
+          </QuoteButton>
         </div>
         <p className={cx("pricing_subtitle")}>
           Simple, affordable and transparent pricing. Don&apos;t ever talk to a
@@ -139,11 +141,11 @@ const PricingPlans = () => {
 
               {plan.isCustom && (
                 <div className={cx("pricingPlanQuoteButton")}>
-                  <a href="/register">
+                  <Link href="/register">
                     <Button className={cx("pricingPlanButton")} inverse>
                       Register
                     </Button>
-                  </a>
+                  </Link>
                 </div>
               )}
               {!plan.isCustom && (
