@@ -11,15 +11,15 @@ import * as styles from "./purchase.module.scss";
 
 const cx = classnames.bind(styles);
 const GetQuotePage = (props) => {
+  const priceIndex = props["price-index"];
+  const licenseType = props["license-type"] || "professional";
+
   return (
     <Layout isHeaderPresent={false} isFooterPresent={false}>
       <div className={cx("purchaseWrapper")}>
         <QuoteHero />
         <FormContainer>
-          <QuoteFrom
-            priceIndex={props["price-index"]}
-            licenseType={props["license-type"]}
-          />
+          <QuoteFrom priceIndex={priceIndex} licenseType={licenseType} />
         </FormContainer>
       </div>
     </Layout>
