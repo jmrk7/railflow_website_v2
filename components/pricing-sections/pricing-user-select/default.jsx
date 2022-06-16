@@ -153,7 +153,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
         defaultValue={userIndex}
         getAriaValueText={valueLabelFormat}
         valueLabelFormat={valueLabelFormat}
-        step={2}
+        step={1}
         valueLabelDisplay="auto"
         onChange={handleChange}
         marks={marks}
