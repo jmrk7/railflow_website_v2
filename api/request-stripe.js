@@ -4,7 +4,7 @@ const requestStripe = async (data) => {
   console.log(`> hiveage request received: ${apiClient}`);
 
   let url;
-  data.pay_method === "Quote"
+  data.pay_method === "quote"
     ? (url = "/stripe/quote")
     : (url = "/stripe/invoice")
 

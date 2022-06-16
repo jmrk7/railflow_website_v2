@@ -70,7 +70,7 @@ const MuiStep = styled(Step)(({ theme }) => ({
   },
 }));
 
-const QuoteFrom = ({ priceIndex, licenseType }) => {
+const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
   const [fieldData, setFieldData] = useState(initialFieldData);
   const [contactResponse, setContactResponse] = useState({});
   const [_accountResponse, setAccountResponse] = useState({});
@@ -81,8 +81,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
   const stepLabels = [
     "About You",
     "Company Info",
-    "Quote/Invoice Summary",
-    "Quote, Invoice",
+    "Summary",
   ];
 
   const router = useRouter();
@@ -96,7 +95,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
       : setUserIndex(Number(priceIndex));
   }, []);
 
-  const [userIndex, setUserIndex] = useState();
+  const [userIndex, setUserIndex] = useState(priceIndex);
 
   const [years, setYears] = React.useState("1");
 
@@ -112,8 +111,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     discount_amt: 0,
     final_price: 0,
   });
-
-  const [selectedPay, setSelectedPay] = useState("Quote");
 
   useEffect(() => {
     const updatePricingSettings = async () => {
@@ -336,7 +333,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         num_users: userIndex,
         license_type: selectedPlan.id,
         license_years: years,
-        pay_method: selectedPay,
+        pay_method: buytype,
         email: contactResponse.data.email,
       };
 
@@ -344,20 +341,27 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
         setIsRequestPending(true);
 
         const hiveageResult = await requestStripe(requestBody);
-        console.log(hiveageResult);
-        sendGTMEvent();
-        setHiveageResponse(hiveageResult.data);
-        setIsResponseSuccessful(true);
-        setActiveStep(3);
+
+        if (buytype === "buy") {
+          router.push(hiveageResult.data.payment_link);
+        } else {
+          sendGTMEvent();
+          setHiveageResponse(hiveageResult.data);
+          setIsResponseSuccessful(true);
+          setActiveStep(3);
+          
+          setIsRequestPending(false);
+          setIsResponseSuccessful(null);
+        }
       } catch (error) {
         setIsResponseSuccessful(false);
         error.response && setResponseMessage(error.response.data.message);
-      } finally {
+        
         setIsRequestPending(false);
         setIsResponseSuccessful(null);
       }
     },
-    [fieldData, contactResponse, years, userIndex, selectedPay]
+    [fieldData, contactResponse, years, userIndex]
   );
 
   const renderCustomerFields = () => {
@@ -541,10 +545,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
     setSelectedPlan(newSelectedPlan);
   };
 
-  const handlePaymentChange = (event) => {
-    setSelectedPay(event.target.value);
-  };
-
   const renderSummaryPage = () => {
     const renderYearsText = () => (
       <span>
@@ -554,7 +554,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
 
     const isPerpetual = years === "0";
     const selectablePlans = pricingPlans.filter((plan) => plan.showBuyNow);
-    const selectablePaymethod = [ "Quote","Invoice" ];
 
     return (
       <div className={cx("quoteForm_summary")}>
@@ -694,24 +693,6 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
             {selectedPlan.payment.currency}
           </span>
         </div>
-        <div className={cx("quoteForm_summaryRow")}>
-          <span className={cx("quoteForm_summaryRow_title")}>Payment Type</span>
-          <FormControl style={{ minWidth: 180 }}>
-            <Select
-              id="selectedPay"
-              value={selectedPay}
-              defaultValue={selectedPay}
-              onChange={handlePaymentChange}
-              className={cx("quoteForm_select_title")}
-            >
-              {selectablePaymethod.map((plan, idx) => (
-                <MenuItem key={idx} value={plan}>
-                  {plan}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
         <section className={cx("quoteForm_buttonContainer")}>
           <Button
             onClick={() => setActiveStep(1)}
@@ -748,7 +729,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            secure {selectedPay === "Quote" ? "quote" : "invoice"}
+            secure quote
           </a>{" "}
           and a{" "}
           <a
@@ -774,7 +755,7 @@ const QuoteFrom = ({ priceIndex, licenseType }) => {
               inverse
             >
               <ProfileOutlined />
-              {selectedPay === "Quote" ? "View Quote" : "View Invoice"}
+              View Quote
             </Button>
           </a>
           <a

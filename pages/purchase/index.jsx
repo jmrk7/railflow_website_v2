@@ -13,13 +13,14 @@ const cx = classnames.bind(styles);
 const GetQuotePage = (props) => {
   const priceIndex = props["price-index"];
   const licenseType = props["license-type"] || "professional";
+  const buytype = props["type"] || "buy";
 
   return (
     <Layout isHeaderPresent={false} isFooterPresent={false}>
       <div className={cx("purchaseWrapper")}>
         <QuoteHero />
         <FormContainer>
-          <QuoteFrom priceIndex={priceIndex} licenseType={licenseType} />
+          <QuoteFrom priceIndex={priceIndex} licenseType={licenseType} buytype={buytype} />
         </FormContainer>
       </div>
     </Layout>

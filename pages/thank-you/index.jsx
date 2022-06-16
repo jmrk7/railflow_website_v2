@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Layout from '../components/Layout';
-import { ThankYou } from '../components/thank-you-sections';
+import Layout from '/components/Layout';
+import { ThankYou } from '/components/thank-you-sections';
 
 const ThankYouPage = () => {
   return (
