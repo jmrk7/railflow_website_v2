@@ -58,6 +58,11 @@ const nextConfig = {
     STRIPE_LIVE_PRODUCT: "prod_LkYOTh3gWcc2ma",
     STRIPE_TEST_PRODUCT: "prod_LsWxQNfMecr3gh"
   },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
