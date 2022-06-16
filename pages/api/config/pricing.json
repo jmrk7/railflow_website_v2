@@ -1,7 +1,7 @@
 {
   "professional": {
     "base": 1500,
-    "increment": 200,
+    "increment": 100,
     "discount_3_year": 0.2,
     "discount_2_year": 0.1,
     "discount_1_year": 0,
@@ -10,7 +10,7 @@
   },
   "enterprise": {
     "base": 1700,
-    "increment": 250,
+    "increment": 125,
     "discount_3_year": 0.2,
     "discount_2_year": 0.1,
     "discount_1_year": 0,
