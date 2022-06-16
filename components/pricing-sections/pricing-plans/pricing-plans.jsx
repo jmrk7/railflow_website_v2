@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
-import QuoteButton from "/components/button/QuoteButton.jsx";
+import QuoteButton from "../../../components/button/quotebutton.jsx";
 import * as styles from "./pricing-plans.module.scss";
 import PricingUserSelect from "../pricing-user-select/default.jsx";
 import { basePricingPlans } from "../../quote-form/constants";
