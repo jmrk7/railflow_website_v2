@@ -35,48 +35,22 @@ async function createInvoice(req, res, next) {
       line_items: [{ price: priceObject.id, quantity: 1 }],
     });
 
-    await Stripe.invoiceItems.create({
-      customer: req.body.stripe_id,
-      price: priceObject.id,
-      description: `Railflow ${req.body.license_type} invoice for TestRail: ${
-        req.body.license_years
-      } year License for ${req.body.num_users * 20}-${
-        (req.body.num_users + 1) * 20
-      } Users`,
-    });
-
-    const invoice = await Stripe.invoices.create({
-      customer: req.body.stripe_id,
-      collection_method: "send_invoice",
-      days_until_due: 30,    
-    });
-
-    await Stripe.invoices.finalizeInvoice(invoice.id);
-
-    const send = await Stripe.invoices.sendInvoice(invoice.id);
-
-    reqData.cf_stripe_customer_id = req.body.stripe_id;
-    reqData.cf_stripe_invoice_link = send.invoice_pdf;
-    await contactService.updateByStripeInvoice(reqData);
-
     const eventData = {
       Name: contact.first_name + " " + contact.last_name,
       Email: contact.email,
       Company: contact.custom_field.cf_company,
       Stripe_Customer_id: contact.id,
-      Invoice_Pdf_link: send.invoice_pdf,
-      Invoice_payment_link: send.hosted_invoice_url,
+      Payment_Link: paymentLink.url,
     }
 
-    await sendDataToMixpanel("Invoice Event", eventData);
+    await sendDataToMixpanel("Buy Event", eventData);
 
     const sendData = {
-      link: send.invoice_pdf,
-      payment_link: paymentLink.url,
-      type: "Invoice"
+      price: priceResult.data.pricing.final_price,
+      payment_link: paymentLink.url
     };
 
-    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
+    // if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
     res.send(sendData);
     
   } catch (err) {

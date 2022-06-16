@@ -20,7 +20,7 @@ async function sendMessage(data) {
           text: `Railflow Signup: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
         },
       });
-    } else {
+    } else if(data.type === "quote") {
       logger.info(`sending slack notification ===>`, data);
 
       await apiClient.request({
@@ -29,7 +29,16 @@ async function sendMessage(data) {
           text: `Railflow ${data.type}: ${data.link} :partying_face:`,
         },
       });
-    }   
+    } else {
+      logger.info(`sending slack notification ===>`, data);
+
+      await apiClient.request({
+        method: "POST",
+        data: {
+          text: `Occured Buy Railflow Product with $${data.price} event  :partying_face:`,
+        },
+      });
+    }
 
     return Promise.resolve();
   } catch (error) {

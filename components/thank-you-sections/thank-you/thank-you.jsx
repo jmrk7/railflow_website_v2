@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames/bind";
 import Image from "next/image";
 
-import DownloadImage from '../../../public/images/download.png';
-import NotePadIcon from '../../../public/images/keys.png';
-import DocsImage from '../../../public/images/doc.png';
-import DogImage from '../../../public/images/giphy-dog.webp';
+import DownloadImage from "../../../public/images/download.png";
+import NotePadIcon from "../../../public/images/keys.png";
+import DocsImage from "../../../public/images/doc.png";
+import DogImage from "../../../public/images/giphy-dog.webp";
 
 import { LayoutSectionContainer } from "../../Layout";
 import * as styles from "./thank-you.module.scss";
@@ -18,7 +18,8 @@ const ThankYou = () => {
 
   useEffect(() => {
     setLicenseKey(localStorage.getItem("license_key"));
-    setLicenseLink("https://"+localStorage.getItem("license_link"));
+    let link = localStorage.getItem("license_link");
+    link ? setLicenseLink("https://" + link) : setLicenseLink(undefined);
   }, []);
 
   return (
@@ -30,8 +31,8 @@ const ThankYou = () => {
           </h1>
           <p className={cx("thankYou_text")}>
             We have emailed you Railflow trial license details. You can also see
-            them on this page. If you don&lsquo;t see the trial email, please check
-            your spam folder.
+            them on this page. If you don&lsquo;t see the trial email, please
+            check your spam folder.
           </p>
           <p className={cx("thankYou_text")}>
             To contact the our customer support team, simply reply to our email,
@@ -51,7 +52,7 @@ const ThankYou = () => {
             <span>
               Railflow 2 week trial license file:{" "}
               <a href={licenseLink} download>
-                Railflow License File
+                {licenseLink ? "Railflow License File" : ""}
               </a>
             </span>
           </div>
