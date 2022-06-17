@@ -141,19 +141,23 @@ const PricingPlans = () => {
 
               {plan.isCustom && (
                 <div className={cx("pricingPlanQuoteButton")}>
-                  <Link href="/register">
+                  <Link href="/free-cli">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      Register
+                      Free CLI
                     </Button>
                   </Link>
                 </div>
               )}
               {!plan.isCustom && (
                 <div className={cx("pricingPlanQuoteButton")}>
+                  <Link href="/register">
+                    <Button className={cx("pricingPlanButton")} inverse>
+                      Free Trial
+                    </Button>
+                  </Link>
                   <Button
                     to={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
                     className={cx("pricingPlanButton")}
-                    inverse={!plan.isPopular}
                   >
                     Buy Now
                   </Button>

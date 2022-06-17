@@ -574,7 +574,6 @@ export const basePricingPlans = [
       },
     ],
     showBuyNow: true,
-    isPopular: true,
   },
   {
     id: 'enterprise',
@@ -621,6 +620,6 @@ export const basePricingPlans = [
       },
     ],
     showBuyNow: true,
-  },
-  
+    isPopular: true,
+  },  
 ];
