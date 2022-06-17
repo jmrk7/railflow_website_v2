@@ -343,6 +343,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
         const hiveageResult = await requestStripe(requestBody);
 
         if (buytype === "buy") {
+          router.push("/");
           setIsRequestPending(false);
           setIsResponseSuccessful(null);
           window.open(hiveageResult.data.payment_link);
