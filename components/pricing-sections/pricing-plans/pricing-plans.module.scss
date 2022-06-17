@@ -50,6 +50,9 @@
     padding: 24px 0;
     border-radius: 1rem;
     background-color: #151720;
+    &Button {
+      width: 100%;
+    }
 
     @media (max-width: 768px) {
       margin-bottom: 24px;
@@ -59,6 +62,7 @@
       flex-flow: column;
       justify-content: space-between;
       height: 90px;
+      width: 80%;
     }
 
     &__popular {

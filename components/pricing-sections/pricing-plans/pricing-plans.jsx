@@ -49,7 +49,7 @@ const PricingPlans = () => {
           </QuoteButton>
         </div>
         <p className={cx("pricing_subtitle")}>
-          Simple, affordable and transparent pricing. 
+          Simple, affordable and transparent pricing.
           <span
             className={cx("pricing_emoji")}
             role="img"
@@ -142,7 +142,7 @@ const PricingPlans = () => {
                 <div className={cx("pricingPlanQuoteButton")}>
                   <Link href="/free-cli">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      &nbsp;&nbsp;&nbsp;Free CLI&nbsp;&nbsp;&nbsp;
+                      Free CLI
                     </Button>
                   </Link>
                 </div>
@@ -151,15 +151,14 @@ const PricingPlans = () => {
                 <div className={cx("pricingPlanQuoteButton")}>
                   <Link href="/register">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      &nbsp;&nbsp;&nbsp;Free Trial&nbsp;&nbsp;&nbsp;
+                      Free Trial
                     </Button>
                   </Link>
-                  <Button
-                    to={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
-                    className={cx("pricingPlanButton")}
+                  <Link
+                    href={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
                   >
-                    &nbsp;&nbsp;&nbsp;Buy Now&nbsp;&nbsp;&nbsp;
-                  </Button>
+                    <Button className={cx("pricingPlanButton")}>Buy Now</Button>
+                  </Link>
                 </div>
               )}
             </div>
