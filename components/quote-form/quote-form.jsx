@@ -81,7 +81,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
   const stepLabels = [
     "About You",
     "Company Info",
-    "Summary",
+    "Select License Type",
   ];
 
   const router = useRouter();
@@ -343,7 +343,9 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
         const hiveageResult = await requestStripe(requestBody);
 
         if (buytype === "buy") {
-          router.push(hiveageResult.data.payment_link);
+          setIsRequestPending(false);
+          setIsResponseSuccessful(null);
+          window.open(hiveageResult.data.payment_link);
         } else {
           sendGTMEvent();
           setHiveageResponse(hiveageResult.data);
@@ -509,13 +511,6 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
               {...fieldData.companyCountry}
               onChange={handleChangeField}
               className={cx("quoteFormFieldGroup_item")}
-            />
-          </div>
-          <div className={cx("quoteForm_license")}>
-            <PricingUserSelect
-              userIndex={userIndex}
-              userTiers={userTiers}
-              setUserIndex={setUserIndex}
             />
           </div>
         </section>
@@ -706,7 +701,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
             className={cx("quoteForm_submit")}
             onClick={handleSummarySubmit}
           >
-            Submit
+            Secure Payment
           </Button>
         </section>
       </div>
@@ -777,7 +772,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
   return (
     // TODO: replace with common form component
     <div className={cx("quoteForm")}>
-      <h2 className={cx("quoteForm_title")}>{"Railflow Quote & Purchase"}</h2>
+      <h2 className={cx("quoteForm_title")}>{"Railflow - Buy Now"}</h2>
 
       <MuiStepper
         activeStep={activeStep}
