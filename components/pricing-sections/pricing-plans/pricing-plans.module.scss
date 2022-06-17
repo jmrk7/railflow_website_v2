@@ -50,6 +50,8 @@
     padding: 24px 0;
     border-radius: 1rem;
     background-color: #151720;
+    border: 2px solid $color-1;
+    justify-content: space-between;
     &Button {
       width: 100%;
     }

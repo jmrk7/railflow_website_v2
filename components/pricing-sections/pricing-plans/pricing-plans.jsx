@@ -77,90 +77,98 @@ const PricingPlans = () => {
                 pricingPlan__popular: !!plan.isPopular,
               })}
             >
-              <h2 className={cx("pricingPlan_title")}>{plan.title}</h2>
+              <div>
+                <h2 className={cx("pricingPlan_title")}>{plan.title}</h2>
 
-              <div className={cx("pricingPlanPayment")}>
-                {plan.isCustom ? (
-                  <div className={cx("pricingPlanPayment_price")}>
-                    Contact us for detailed discussion
-                  </div>
-                ) : (
-                  <div>
+                <div className={cx("pricingPlanPayment")}>
+                  {plan.isCustom ? (
                     <div className={cx("pricingPlanPayment_price")}>
-                      <sup className={cx("pricingPlanPayment_currency")}></sup>
-                      <span className={cx("pricingPlanPayment_amount")}>
-                        {plan.payment.basePrice ? (
-                          "$" +
-                          (
-                            plan.payment.basePrice +
-                            plan.payment.per20Users * userIndex
-                          ).toLocaleString() +
-                          "/ Year"
-                        ) : (
-                          <div className={"spinner"}></div>
-                        )}
-                      </span>
+                      Contact us for detailed discussion
                     </div>
+                  ) : (
+                    <div>
+                      <div className={cx("pricingPlanPayment_price")}>
+                        <sup
+                          className={cx("pricingPlanPayment_currency")}
+                        ></sup>
+                        <span className={cx("pricingPlanPayment_amount")}>
+                          {plan.payment.basePrice ? (
+                            "$" +
+                            (
+                              plan.payment.basePrice +
+                              plan.payment.per20Users * userIndex
+                            ).toLocaleString() +
+                            "/ Year"
+                          ) : (
+                            <div className={"spinner"}></div>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <ul className={cx("pricingPlan_featureContainer")}>
+                  {plan.features.map((planFeature, i) => (
+                    <li
+                      key={planFeature.id + i}
+                      className={cx("pricingPlanFeature", {
+                        pricingPlanFeature__unavailable:
+                          !planFeature.isAvailable,
+                      })}
+                    >
+                      {planFeature.isAvailable ? (
+                        <div className={cx("pricingPlanFeature_icon")}>
+                          <Image
+                            src={"/icons/check_blue.svg"}
+                            alt="check icon"
+                            width={16}
+                            height={16}
+                          />
+                        </div>
+                      ) : (
+                        <div className={cx("pricingPlanFeature_icon")}>
+                          <Image
+                            src={"/icons/cross_grey.svg"}
+                            alt="cross icon"
+                            width={16}
+                            height={16}
+                          />
+                        </div>
+                      )}
+
+                      {planFeature.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div style={{width: "100%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                {plan.isCustom && (
+                  <div className={cx("pricingPlanQuoteButton")}>
+                    <Link href="/free-cli">
+                      <Button className={cx("pricingPlanButton")} inverse>
+                        Free CLI
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+                {!plan.isCustom && (
+                  <div className={cx("pricingPlanQuoteButton")}>
+                    <Link href="/register">
+                      <Button className={cx("pricingPlanButton")} inverse>
+                        Free Trial
+                      </Button>
+                    </Link>
+                    <Link
+                      href={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
+                    >
+                      <Button className={cx("pricingPlanButton")}>
+                        Buy Now
+                      </Button>
+                    </Link>
                   </div>
                 )}
               </div>
-
-              <ul className={cx("pricingPlan_featureContainer")}>
-                {plan.features.map((planFeature, i) => (
-                  <li
-                    key={planFeature.id + i}
-                    className={cx("pricingPlanFeature", {
-                      pricingPlanFeature__unavailable: !planFeature.isAvailable,
-                    })}
-                  >
-                    {planFeature.isAvailable ? (
-                      <div className={cx("pricingPlanFeature_icon")}>
-                        <Image
-                          src={"/icons/check_blue.svg"}
-                          alt="check icon"
-                          width={16}
-                          height={16}
-                        />
-                      </div>
-                    ) : (
-                      <div className={cx("pricingPlanFeature_icon")}>
-                        <Image
-                          src={"/icons/cross_grey.svg"}
-                          alt="cross icon"
-                          width={16}
-                          height={16}
-                        />
-                      </div>
-                    )}
-
-                    {planFeature.label}
-                  </li>
-                ))}
-              </ul>
-
-              {plan.isCustom && (
-                <div className={cx("pricingPlanQuoteButton")}>
-                  <Link href="/free-cli">
-                    <Button className={cx("pricingPlanButton")} inverse>
-                      Free CLI
-                    </Button>
-                  </Link>
-                </div>
-              )}
-              {!plan.isCustom && (
-                <div className={cx("pricingPlanQuoteButton")}>
-                  <Link href="/register">
-                    <Button className={cx("pricingPlanButton")} inverse>
-                      Free Trial
-                    </Button>
-                  </Link>
-                  <Link
-                    href={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
-                  >
-                    <Button className={cx("pricingPlanButton")}>Buy Now</Button>
-                  </Link>
-                </div>
-              )}
             </div>
           ))}
         </div>
