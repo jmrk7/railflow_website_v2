@@ -52,7 +52,7 @@ const PrettoSlider = styled(Slider)({
     padding: 0,
     width: 32,
     height: 32,
-    marginTop: "0.75rem"
+    marginTop: "0.75rem",
     // borderRadius: "50% 50% 50% 0",
     // backgroundColor: "#303fe1",
     // transformOrigin: "bottom left",
@@ -68,22 +68,22 @@ const PrettoSlider = styled(Slider)({
   "& .MuiSlider-markLabel": {
     color: "white",
     fontSize: "1rem",
-    marginTop: "0.5rem"
+    marginTop: "0.5rem",
   },
 });
 
 const marks = [
   {
     value: 0,
-    label: "0",
+    label: "0 Users",
   },
   {
     value: 50,
-    label: "500",
+    label: "500 Users",
   },
   {
     value: 100,
-    label: "1000",
+    label: "1000 Users",
   },
 ];
 
@@ -115,57 +115,34 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
 
   return (
     <div className={cx("pricingUserSelect")}>
-      <div className={cx("pricingUserSelect_title")}>
-        <span
-          role="button"
-          onClick={() => setDialogOpen(true)}
-          onKeyDown={() => setDialogOpen(true)}
-          tabIndex={0}
-          className={cx("pricingUserSelect_helpText")}
-        >
-          Number of TestRail Users
-        </span>
-        <IconButton
-          aria-label="help"
-          size="small"
-          onClick={() => setDialogOpen(true)}
-          className={cx("pricingUserSelect_helpButton")}
-        >
-          <HelpOutlineOutlinedIcon
-            className={cx("pricingUserSelect_helpIcon")}
-          />
-        </IconButton>
-        <Dialog onClose={() => setDialogOpen(false)} open={isDialogOpen}>
-          <MuiDialogTitle>
-            <Typography variant="h6">
-              How to calculate TestRail Users
-            </Typography>
-            <IconButton
-              aria-label="close"
-              className={cx("pricingUserSelect_dialogCloseIcon")}
-              onClick={() => setDialogOpen(false)}
+      <Dialog onClose={() => setDialogOpen(false)} open={isDialogOpen}>
+        <MuiDialogTitle>
+          <Typography variant="h6">How to calculate TestRail Users</Typography>
+          <IconButton
+            aria-label="close"
+            className={cx("pricingUserSelect_dialogCloseIcon")}
+            onClick={() => setDialogOpen(false)}
+          >
+            <CloseIcon />
+          </IconButton>
+        </MuiDialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <div
+              style={{
+                color: "rgba(255, 255, 255, 0.7)",
+                marginBottom: "12px",
+              }}
             >
-              <CloseIcon />
-            </IconButton>
-          </MuiDialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              <div
-                style={{
-                  color: "rgba(255, 255, 255, 0.7)",
-                  marginBottom: "12px",
-                }}
-              >
-                The number of TestRail user can be found by navigating to
-                TestRail Administration {">"} License {">"} Named Users
-              </div>
-            </DialogContentText>
-            <div className={cx("pricingUserSelect_dialogImage")}>
-              <Image alt="dialog-screenshot" src={dialogScreenshot} />
+              The number of TestRail user can be found by navigating to TestRail
+              Administration {">"} License {">"} Named Users
             </div>
-          </DialogContent>
-        </Dialog>
-      </div>
+          </DialogContentText>
+          <div className={cx("pricingUserSelect_dialogImage")}>
+            <Image alt="dialog-screenshot" src={dialogScreenshot} />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div style={{ width: "100%", display: "flex", marginTop: "0.5rem" }}>
         <IconButton
@@ -175,7 +152,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
           })}
           onClick={() => handleUserSelectClick("minus")}
           disabled={userIndex === 0}
-          style={{marginRight: "0.5rem"}}
+          style={{ marginRight: "0.5rem" }}
         >
           <RemoveCircleOutlinedIcon />
         </IconButton>
@@ -194,12 +171,25 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
           aria-label="add"
           onClick={() => handleUserSelectClick("plus")}
           className={cx("pricingUserSelect_button", {
-            pricingUserSelect_buttonActive: !(userIndex >= userTiers.length / 2),
+            pricingUserSelect_buttonActive: !(
+              userIndex >=
+              userTiers.length / 2
+            ),
           })}
-          style={{marginLeft: "0.5rem"}}
-          disabled={userIndex >= userTiers.length / 2 }
+          style={{ marginLeft: "0.5rem" }}
+          disabled={userIndex >= userTiers.length / 2}
         >
           <AddCircleOutlinedIcon />
+        </IconButton>
+        <IconButton
+          aria-label="help"
+          size="small"
+          onClick={() => setDialogOpen(true)}
+          className={cx("pricingUserSelect_helpButton")}
+        >
+          <HelpOutlineOutlinedIcon
+            className={cx("pricingUserSelect_helpIcon")}
+          />
         </IconButton>
       </div>
     </div>
