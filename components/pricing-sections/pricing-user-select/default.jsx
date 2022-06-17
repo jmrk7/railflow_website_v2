@@ -74,8 +74,8 @@ const PrettoSlider = styled(Slider)({
 
 const marks = [
   {
-    value: 0,
-    label: "0 Users",
+    value: 2,
+    label: "20 Users",
   },
   {
     value: 50,
@@ -151,7 +151,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
             pricingUserSelect_buttonActive: userIndex !== 0,
           })}
           onClick={() => handleUserSelectClick("minus")}
-          disabled={userIndex === 0}
+          disabled={userIndex <= 1}
           style={{ marginRight: "0.5rem" }}
         >
           <RemoveCircleOutlinedIcon />
@@ -166,6 +166,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
           valueLabelDisplay="auto"
           onChange={handleChange}
           marks={marks}
+          min={2}
         />
         <IconButton
           aria-label="add"

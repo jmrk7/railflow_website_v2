@@ -15,7 +15,7 @@ import { useEffect } from "react";
 const cx = classnames.bind(styles);
 
 const PricingPlans = () => {
-  const [userIndex, setUserIndex] = useState(0);
+  const [userIndex, setUserIndex] = useState(1);
 
   const [pricingPlans, setPricingPlans] = useState(basePricingPlans);
 
@@ -95,7 +95,7 @@ const PricingPlans = () => {
                           {plan.payment.basePrice ? (
                             "$" +
                             (
-                              plan.payment.basePrice +
+                              plan.payment.basePrice - plan.payment.per20Users/2 +
                               plan.payment.per20Users * userIndex
                             ).toLocaleString() +
                             "/ Year"
