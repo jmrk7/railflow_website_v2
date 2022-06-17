@@ -521,7 +521,7 @@ export const basePricingPlans = [
         label: 'Migration to TestRail',
         isAvailable: true,
       },
-      {
+      { 
         id: 'enterprise_4',
         label: 'Test Framework Development',
         isAvailable: true,
@@ -533,7 +533,7 @@ export const basePricingPlans = [
     id: 'professional',
     title: 'Professional',
     payment: {
-      per20Users: 300,
+      per20Users: 200,
       currency: 'USD',
     },
     features: [
@@ -579,7 +579,7 @@ export const basePricingPlans = [
     id: 'enterprise',
     title: 'Enterprise',
     payment: {
-      per20Users: 400,
+      per20Users: 250,
       currency: 'USD',
     },
     features: [
