@@ -3,19 +3,20 @@
 .pricingUserSelect {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 1rem;
   width: 100%;
+  &_inputWrapper {
+    width: 125px;
+  }
   &_title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1.125rem;
     line-height: 18px;
     font-weight: 500;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 400;
-    width: 100%;
+    width: 400px;
+    margin-top: 0.5rem;
   }
   &_button {
     padding-right: 8px !important;

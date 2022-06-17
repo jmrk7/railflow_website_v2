@@ -87,7 +87,6 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
       <div
         style={{
           display: "flex",
-          width: "100%",
           justifyContent: "flex-end",
         }}
       >

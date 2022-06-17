@@ -40,7 +40,7 @@ exports.getPrice = async (request, res) => {
     typeof data.license_years !== "undefined" &&
     typeof data.num_users !== "undefined"
   ) {
-    if (isNaN(data.num_users) || data.num_users < 0 || data.num_users > 49) {
+    if (isNaN(data.num_users) || data.num_users < 0 || data.num_users > 99) {
       return res.status(400).send({
         status: 400,
         data: {
