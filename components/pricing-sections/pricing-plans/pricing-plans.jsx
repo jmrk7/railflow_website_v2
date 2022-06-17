@@ -49,8 +49,7 @@ const PricingPlans = () => {
           </QuoteButton>
         </div>
         <p className={cx("pricing_subtitle")}>
-          Simple, affordable and transparent pricing. Don&apos;t ever talk to a
-          sales guy{" "}
+          Simple, affordable and transparent pricing. 
           <span
             className={cx("pricing_emoji")}
             role="img"
