@@ -56,7 +56,9 @@
     }
     &QuoteButton {
       display: flex;
-      margin-bottom: 14px;
+      flex-flow: column;
+      justify-content: space-between;
+      height: 90px;
     }
 
     &__popular {
