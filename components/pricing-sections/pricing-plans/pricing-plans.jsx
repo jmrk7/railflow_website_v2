@@ -142,7 +142,7 @@ const PricingPlans = () => {
                 <div className={cx("pricingPlanQuoteButton")}>
                   <Link href="/free-cli">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      Free CLI
+                      &nbsp;&nbsp;&nbsp;Free CLI&nbsp;&nbsp;&nbsp;
                     </Button>
                   </Link>
                 </div>
@@ -151,14 +151,14 @@ const PricingPlans = () => {
                 <div className={cx("pricingPlanQuoteButton")}>
                   <Link href="/register">
                     <Button className={cx("pricingPlanButton")} inverse>
-                      Free Trial
+                      &nbsp;&nbsp;&nbsp;Free Trial&nbsp;&nbsp;&nbsp;
                     </Button>
                   </Link>
                   <Button
                     to={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
                     className={cx("pricingPlanButton")}
                   >
-                    Buy Now
+                    &nbsp;&nbsp;&nbsp;Buy Now&nbsp;&nbsp;&nbsp;
                   </Button>
                 </div>
               )}
