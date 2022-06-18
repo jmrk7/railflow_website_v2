@@ -702,7 +702,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
             className={cx("quoteForm_submit")}
             onClick={handleSummarySubmit}
           >
-            Secure Payment
+            {buytype === "buy" ? "Secure Payment" : "Generate Quote"}
           </Button>
         </section>
       </div>
