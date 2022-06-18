@@ -8,13 +8,14 @@ import { TextField, PhoneField, CheckboxField } from "../form";
 import Button from "../button";
 
 import { requestSignUp } from "../../api";
+import { requestSignUpFree } from "../../api";
 import { initialFieldData } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
 import * as styles from "./sign-up-form.module.scss";
 
 const cx = classnames.bind(styles);
 
-const SignUpForm = () => {
+const SignUpForm = ({ free }) => {
   const [fieldData, setFieldData] = useState(initialFieldData);
   const [isRequestPending, setIsRequestPending] = useState(false);
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
@@ -43,6 +44,7 @@ const SignUpForm = () => {
 
   const handleSubmit = useCallback(
     async (event) => {
+      var signUpResponse;
       event.preventDefault();
 
       if (!isFieldDataValid || !isRecaptchaVerified) {
@@ -64,7 +66,13 @@ const SignUpForm = () => {
 
       try {
         setIsRequestPending(true);
-        const signUpResponse = await requestSignUp(requestData);
+        if (free) {
+          signUpResponse = await requestSignUpFree(requestData);
+        }
+        else {
+          signUpResponse = await requestSignUp(requestData);
+        }
+
         setIsResponseSuccessful(true);
         localStorage.setItem(
           "license_link",
@@ -101,7 +109,7 @@ const SignUpForm = () => {
     // TODO: replace with common form component
     <form onSubmit={handleSubmit} className={cx("signUpForm")}>
       <h2 className={cx("signUpForm_title")}>
-        Risk Free 14 Day Railflow Trial
+        {free ? "Risk Free 14 Day Railflow Trial CLI" : "Risk Free 14 Day Railflow Trial"}
       </h2>
 
       {!isRequestPending && isResponseSuccessful !== null && (

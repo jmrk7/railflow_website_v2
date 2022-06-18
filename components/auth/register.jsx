@@ -10,13 +10,13 @@ import * as styles from './auth.module.scss';
 
 const cx = classnames.bind(styles);
 
-const Register = () => {
+const Register = ({free}) => {
   return (
     <Layout isHeaderPresent={false} isFooterPresent={false}>
       <div className={cx('signUpWrapper')}>
         <SignUpHero />
         <FormContainer>
-          <SignUpForm />
+          <SignUpForm free={free}/>
         </FormContainer>
       </div>
     </Layout>
