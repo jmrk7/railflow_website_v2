@@ -31,7 +31,7 @@ const PrettoSlider = styled(Slider)({
     border: "none",
   },
   "&. MuiSlider-markLabel": {
-    left: "-0.5rem"
+    left: "-0.5rem",
   },
   "& .MuiSlider-thumb": {
     height: 24,
@@ -48,26 +48,7 @@ const PrettoSlider = styled(Slider)({
   "& .MuiSlider-mark": {
     display: "none",
   },
-  "& .MuiSlider-valueLabel": {
-    lineHeight: 1.2,
-    fontSize: 16,
-    background: "unset",
-    padding: 0,
-    width: 32,
-    height: 32,
-    marginTop: "0.75rem",
-    // borderRadius: "50% 50% 50% 0",
-    // backgroundColor: "#303fe1",
-    // transformOrigin: "bottom left",
-    // transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-    // "&:before": { display: "none" },
-    // "&.MuiSlider-valueLabelOpen": {
-    //   transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-    // },
-    // "& > *": {
-    //   transform: "rotate(45deg)",
-    // },
-  },
+
   "& .MuiSlider-markLabel": {
     color: "white",
     fontSize: "1rem",
@@ -78,20 +59,20 @@ const PrettoSlider = styled(Slider)({
 const marks = [
   {
     value: 2,
-    label: "20 Users",
+    label: "20 TestRail User",
   },
   {
     value: 50,
-    label: "500 Users",
+    label: "500 TestRail Users",
   },
   {
     value: 100,
-    label: "1000 Users",
+    label: "1000 TestRail Users",
   },
 ];
 
 function valueLabelFormat(value) {
-  return `${value * 10} TestRail Users`;
+  return `${value * 10}`;
 }
 
 const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
@@ -147,53 +128,62 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
         </DialogContent>
       </Dialog>
 
-      <div style={{ width: "100%", display: "flex", marginTop: "0.5rem", position: "relative" }}>
-        <IconButton
-          aria-label="remove"
-          className={cx("pricingUserSelect_button", {
-            pricingUserSelect_buttonActive: userIndex !== 0,
-          })}
-          onClick={() => handleUserSelectClick("minus")}
-          disabled={userIndex <= 1}
-          style={{ marginRight: "0.5rem" }}
-        >
-          <RemoveCircleOutlinedIcon />
-        </IconButton>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          marginTop: "0.5rem",
+        }}
+      >
+        <div style={{width: "100%", display: "flex" }}>
+          <IconButton
+            aria-label="remove"
+            className={cx("pricingUserSelect_button", {
+              pricingUserSelect_buttonActive: userIndex !== 0,
+            })}
+            onClick={() => handleUserSelectClick("minus")}
+            disabled={userIndex <= 1}
+            style={{ marginRight: "0.5rem" }}
+          >
+            <RemoveCircleOutlinedIcon />
+          </IconButton>
 
-        <PrettoSlider
-          aria-label="Custom marks"
-          value={userIndex * 2}
-          getAriaValueText={valueLabelFormat}
-          valueLabelFormat={valueLabelFormat}
-          step={1}
-          valueLabelDisplay="on"
-          onChange={handleChange}
-          marks={marks}
-          min={2}
-        />
-        <IconButton
-          aria-label="add"
-          onClick={() => handleUserSelectClick("plus")}
-          className={cx("pricingUserSelect_button", {
-            pricingUserSelect_buttonActive: !(
-              userIndex >=
-              userTiers.length / 2
-            ),
-          })}
-          style={{ marginLeft: "0.5rem" }}
-          disabled={userIndex >= userTiers.length / 2}
-        >
-          <AddCircleOutlinedIcon />
-        </IconButton>
+          <PrettoSlider
+            aria-label="Custom marks"
+            value={userIndex * 2}
+            getAriaValueText={valueLabelFormat}
+            valueLabelFormat={valueLabelFormat}
+            step={1}
+            valueLabelDisplay="on"
+            onChange={handleChange}
+            marks={marks}
+            min={2}
+          />
+          <IconButton
+            aria-label="add"
+            onClick={() => handleUserSelectClick("plus")}
+            className={cx("pricingUserSelect_button", {
+              pricingUserSelect_buttonActive: !(
+                userIndex >=
+                userTiers.length / 2
+              ),
+            })}
+            style={{ marginLeft: "0.5rem" }}
+            disabled={userIndex >= userTiers.length / 2}
+          >
+            <AddCircleOutlinedIcon />
+          </IconButton>
+        </div>
         <IconButton
           aria-label="help"
           size="small"
           onClick={() => setDialogOpen(true)}
           className={cx("pricingUserSelect_helpButton")}
-          style={{position: "absolute", right:"0.2rem", top: "-1.5rem"}}
+          style={{ padding: "0" }}
         >
           <HelpOutlineOutlinedIcon
             className={cx("pricingUserSelect_helpIcon")}
+            style={{ margin: "0" }}
           />
         </IconButton>
       </div>
