@@ -30,6 +30,9 @@ const PrettoSlider = styled(Slider)({
   "& .MuiSlider-track": {
     border: "none",
   },
+  "&. MuiSlider-markLabel": {
+    left: "-0.5rem"
+  },
   "& .MuiSlider-thumb": {
     height: 24,
     width: 24,
@@ -144,7 +147,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
         </DialogContent>
       </Dialog>
 
-      <div style={{ width: "100%", display: "flex", marginTop: "0.5rem" }}>
+      <div style={{ width: "100%", display: "flex", marginTop: "0.5rem", position: "relative" }}>
         <IconButton
           aria-label="remove"
           className={cx("pricingUserSelect_button", {
@@ -163,7 +166,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
           getAriaValueText={valueLabelFormat}
           valueLabelFormat={valueLabelFormat}
           step={1}
-          valueLabelDisplay="auto"
+          valueLabelDisplay="on"
           onChange={handleChange}
           marks={marks}
           min={2}
@@ -187,6 +190,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
           size="small"
           onClick={() => setDialogOpen(true)}
           className={cx("pricingUserSelect_helpButton")}
+          style={{position: "absolute", right:"0.2rem", top: "-1.5rem"}}
         >
           <HelpOutlineOutlinedIcon
             className={cx("pricingUserSelect_helpIcon")}
