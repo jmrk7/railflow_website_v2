@@ -10,7 +10,7 @@ const AuthPage = () => {
   // );
 
   return (
-    <Register />
+    <Register free={false} />
   );
 };
 

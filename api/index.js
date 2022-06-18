@@ -5,3 +5,4 @@ export { default as requestAccount } from './request-account';
 export { default as requestStripe } from './request-stripe';
 export { default as requestPricing } from './request-pricing';
 export { default as requestEmailValidate } from './request-email-validate';
+export { default as requestSignUpFree } from "./request-sign-up-free";
