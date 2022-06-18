@@ -20,9 +20,8 @@ async function sendMessage(data) {
           text: `Railflow Signup: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
         },
       });
-    } else if(data.type === "quote") {
+    } else if(data.type === "Quote") {
       logger.info(`sending slack notification ===>`, data);
-
       await apiClient.request({
         method: "POST",
         data: {
@@ -30,12 +29,11 @@ async function sendMessage(data) {
         },
       });
     } else {
-      logger.info(`sending slack notification ===>`, data);
-
+      logger.info(`sending slack notification ===>`, data);     
       await apiClient.request({
         method: "POST",
         data: {
-          text: `Occured Buy Railflow Product with $${data.price} event  :partying_face:`,
+          text: `Occured Buy Railflow Product with $ ${data.price} event  :partying_face:`,
         },
       });
     }
