@@ -5,7 +5,7 @@ const requestStripe = async (data) => {
 
   let url;
   data.pay_method === "quote"
-    ? (url = "/stripe/quote")
+    ? (url = "/quote")
     : (url = "/stripe/invoice")
 
   const response = await apiClient.request({

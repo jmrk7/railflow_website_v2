@@ -341,7 +341,8 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
         setIsRequestPending(true);
 
         const hiveageResult = await requestStripe(requestBody);
-
+        console.log(hiveageResult);
+        
         if (buytype === "buy") {
           router.push("/");
           setIsRequestPending(false);
