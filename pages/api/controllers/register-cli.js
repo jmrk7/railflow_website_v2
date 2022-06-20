@@ -99,12 +99,12 @@ async function create(request, res, next) {
     const reqData = {
       contact_id: contact.id,
       contact_first_name: contact.first_name,
-      contact_last_name: contact.last_name,
+      contact_last_name: contact.last_name, 
       contact_cf_company: contact.custom_field.cf_company,
       contact_email: contact.email,
     };
 
-    const cryptolensTokenObject = await licenseService.getCryptolensToken(
+    const cryptolensTokenObject = await licenseService.getCryptolensTokenByCli(
       reqData,
       "0"
     );
