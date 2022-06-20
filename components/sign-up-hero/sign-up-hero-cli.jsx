@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import classnames from "classnames/bind";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Logo from "../../public/images/logo.png";
 
 import * as styles from "./sign-up-hero.module.scss";
@@ -23,26 +23,22 @@ const signUpHeroContent = {
 const SignUpHero = () => {
   return (
     <div className={cx("signUpHero")}>
-      <Link href="/" passHref>
-        <a className={cx("signUpHeroLogo")}>
-          <div className={cx("signUpHeroLogo_image")}>
-            <Image src={Logo} alt="logo" />
-          </div>
-        </a>
+      <Link href={"/"}>
+        <img src={"/images/home_features/cli.png"} alt="cli" style={{cursor: "pointer"}} />
       </Link>
-      <img src={"/images/home_features/cli.png"} alt="cli" />
       {/* <h3 className={cx("signUpHero_title")}>{signUpHeroContent.title}</h3> */}
 
-      <ul className={cx("signUpHero_featureContainer")}>
+      <ul
+        className={cx("signUpHero_featureContainer")}
+        style={{ marginLeft: "50px" }}
+      >
         {signUpHeroContent.features.map((content, idx) => (
           <li key={idx} className={cx("signUpHeroFeature")}>
-            <div className={cx("signUpHeroFeature_icon")}>
-              <Image
-                src={"/icons/check_blue.svg"}
-                alt="check icon"
-                width={16}
-                height={16}
-              />
+            <div
+              className={cx("signUpHeroFeature_icon")}
+              style={{ height: "auto" }}
+            >
+              <CheckCircleIcon />
             </div>
             {content}
           </li>
