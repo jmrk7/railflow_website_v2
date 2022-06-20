@@ -29,11 +29,21 @@ body {
   border-bottom-right-radius: 0px;
 }
 .MuiOutlinedInput-notchedOutline {
-  border-color: white !important;
+  border: none;
+}
+.MuiOutlinedInput-notchedOutline:hover {
+  border: 3px solid #303fe1;
 }
 .MuiSelect-select {
-  padding-bottom: 8px;
+  background-color: #20222b;  
+  border: 3px solid transparent;
+  transition: 0.5s all;
+  padding: 10px 20px;
 }
+.MuiSelect-select:hover {  
+  border: 3px solid #303fe1;
+}
+
 .MuiSelect-root:hover {
   border-color: white !important;
 }
