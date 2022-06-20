@@ -1,7 +1,6 @@
 import apiClient from "./api-client";
 
 const requestStripe = async (data) => {
-  console.log(`> hiveage request received: ${apiClient}`);
 
   let url;
   data.pay_method === "quote"

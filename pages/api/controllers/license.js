@@ -180,7 +180,7 @@ async function sendLicenseExtensionEmail(body, text) {
     };
 
     const to = body.contact_email || "railflowio@yopmail.com";
-    const emailData = await emailService.sendEmail(to, text, extraInfo);
+    const emailData = await emailService.sendEmail(to, text, "Railflow: Your license key is here.", extraInfo);
     return emailData;
   } catch (error) {
     logger.error(`> error when sendLicenseExtensionEmail`, error);

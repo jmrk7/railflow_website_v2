@@ -12,14 +12,14 @@ import logger from "../config/logger";
  * @param {*} extraInfo Email extra info
  * @returns Promise
  */
-async function sendEmail(to, text, extraInfo = {}) {
+async function sendEmail(to, text, subjectText, extraInfo = {}) {
   const DOMAIN = process.env.DOMAIN;
   const mg = mailgun({ apiKey: process.env.MAILGUN_KEY, domain: DOMAIN });
   const data = {
     from: "Railflow Support <contact@railflow.io>",
     to,
     bcc: "jessicalee+7clznyo@railflow.myfreshworks.com",
-    subject: "Railflow: Your license key is here.",
+    subject: subjectText,
     ...extraInfo,
   };
 
