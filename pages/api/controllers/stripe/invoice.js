@@ -54,7 +54,6 @@ async function createInvoice(req, res, next) {
     res.send(sendData);
     
   } catch (err) {
-    console.log(err)
     res.status(500).send(err)
   }
   

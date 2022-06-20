@@ -74,7 +74,9 @@ async function create(request, res, next) {
     }
 
     if (process.env.SLACK_MESSAGE_ENABLED) {
-      await slackService.sendSlackMessage(`(Free CLI) ${contact.custom_field.cf_company}:slightly_smiling_face:`);
+      await slackService.sendSlackMessage(
+        `(Free CLI) ${contact.custom_field.cf_company}:slightly_smiling_face:`
+      );
     }
 
     const stripeAccountData = {
@@ -101,8 +103,6 @@ async function create(request, res, next) {
       contact_email: contact.email,
     };
 
-    console.log(contact);
-
     const cryptolensTokenObject = await licenseService.getCryptolensToken(
       reqData,
       "0"
@@ -125,82 +125,44 @@ async function create(request, res, next) {
     await taskService.create({ contact_id: reqData.contact_id });
     let eventData = {};
     // contact exists but license status is sent and key url exists
-    if (contact) {
-      reqData.cf_free_license_key = cryptolensTokenObject.key;
-      reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
-      const patchedContact = await contactService.updateByFree(reqData);
 
-      eventData = {
-        Name: patchedContact.first_name + patchedContact.last_name,
-        Email: data.email,
-        Address: patchedContact.address,
-        ZipCode: patchedContact.zipcode,
-        City: patchedContact.city,
-        State: patchedContact.state,
-        Country: patchedContact.country,
-      };
+    reqData.cf_free_license_key = cryptolensTokenObject.key;
+    reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
+    const patchedContact = await contactService.updateByFree(reqData);
 
-      sendDataToMixpanel("Free CLI", eventData);
-      return res.status(201).send({
-        status: 201,
-        data: {
-          message: `contact verified`,
-          contact_id: patchedContact.id,
-          account_id: patchedContact.custom_field.cf_account_id,
-          first_name: patchedContact.first_name,
-          last_name: patchedContact.last_name,
-          address: patchedContact.address,
-          city: patchedContact.city,
-          state: patchedContact.state,
-          zipcode: patchedContact.zipcode,
-          country: patchedContact.country,
-          license_key: cryptolensTokenObject.key,
-          license_link: mailgunResponse.licenseUrl,
+    eventData = {
+      Name: patchedContact.first_name + patchedContact.last_name,
+      Email: data.email,
+      Address: patchedContact.address,
+      ZipCode: patchedContact.zipcode,
+      City: patchedContact.city,
+      State: patchedContact.state,
+      Country: patchedContact.country,
+    };
 
-          account_id: account.id,
-          company_name: patchedContact.custom_field.cf_company,
-          mailgun_url: `${mailgunEmailUrl}${mailgunResponse.emailData.id}/history`,
-        },
-      });
-    } else {
-      reqData.cf_free_license_key = cryptolensTokenObject.key;
-      reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
-      const patchedContact = await contactService.updateByFree(reqData);
+    sendDataToMixpanel("Free CLI", eventData);
 
-      eventData = {
-        Name: patchedContact.first_name + patchedContact.last_name,
-        Email: data.email,
-        Address: patchedContact.address,
-        ZipCode: patchedContact.zipcode,
-        City: patchedContact.city,
-        State: patchedContact.state,
-        Country: patchedContact.country,
-      };
+    return res.status(201).send({
+      status: 201,
+      data: {
+        message: `contact verified`,
+        contact_id: patchedContact.id,
+        account_id: patchedContact.custom_field.cf_account_id,
+        first_name: patchedContact.first_name,
+        last_name: patchedContact.last_name,
+        address: patchedContact.address,
+        city: patchedContact.city,
+        state: patchedContact.state,
+        zipcode: patchedContact.zipcode,
+        country: patchedContact.country,
+        license_key: cryptolensTokenObject.key,
+        license_link: mailgunResponse.licenseUrl,
 
-      sendDataToMixpanel("Free CLI", eventData);
-
-      return res.status(201).send({
-        status: 201,
-        data: {
-          message: `contact verified`,
-          contact_id: patchedContact.id,
-          account_id: patchedContact.custom_field.cf_account_id,
-          first_name: patchedContact.first_name,
-          last_name: patchedContact.last_name,
-          address: patchedContact.address,
-          city: patchedContact.city,
-          state: patchedContact.state,
-          zipcode: patchedContact.zipcode,
-          country: patchedContact.country,
-          license_key: cryptolensTokenObject.key,
-          license_link: mailgunResponse.licenseUrl,
-
-          account_id: account.id,
-          company_name: patchedContact.custom_field.cf_company,
-          mailgun_url: `${mailgunEmailUrl}${mailgunResponse.emailData.id}/history`,
-        },
-      });
-    }
+        account_id: account.id,
+        company_name: patchedContact.custom_field.cf_company,
+        mailgun_url: `${mailgunEmailUrl}${mailgunResponse.emailData.id}/history`,
+      },
+    });
   } catch (error) {
     return hanldeCreateError(request, res, error);
   }
