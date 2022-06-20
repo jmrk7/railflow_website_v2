@@ -7,9 +7,6 @@ const requestPricing = async (params) => {
     url: "/pricing",
     params,
   });
-
-  console.log(`> signing up with url: ${apiClient.url}`);
-
   return response;
 };
 

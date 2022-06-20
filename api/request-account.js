@@ -8,8 +8,6 @@ const requestAccount = async (data) => {
     data,
   });
 
-  console.log(`> account PUT with url: ${apiClient.url}`);
-
   return response;
 };
 

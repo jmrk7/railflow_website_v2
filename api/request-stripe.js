@@ -14,8 +14,6 @@ const requestStripe = async (data) => {
     data,
   });
 
-  console.log(`> invoice POST url: ${apiClient.url}`);
-
   return response;
 };
 

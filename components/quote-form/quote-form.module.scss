@@ -108,14 +108,10 @@
     font-size: 1rem;
     line-height: 1.375rem;
     margin: 0;
-    background-color: $green;
-    border: 2px solid $lightgreen;
     max-width: 230px;
     &:hover {
-      transform: scale(1.1);
-      background-color: $green;
-      border: 2px solid $lightgreen;
-      color: white;
+      background-color: $color-1;
+      color: $color-3;
     }
     &:disabled {
       opacity: 0.5;
@@ -184,7 +180,12 @@
     max-width: 300px;
     align-self: center;
     margin: 0 auto;
+    background-color: $green;
+    border-color: $green;
     margin-bottom: 16px;
+    &:hover {
+      color: $green;
+    }
   }
   &_submitLink {
     color: inherit;

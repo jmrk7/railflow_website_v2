@@ -78,11 +78,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
 
   const [_emailsTo, _setEmailsTo] = useState([]);
   const [activeStep, setActiveStep] = React.useState(0);
-  const stepLabels = [
-    "About You",
-    "Company Info",
-    "Select License Type",
-  ];
+  const stepLabels = ["About You", "Company Info", "Select License Type"];
 
   const router = useRouter();
 
@@ -91,7 +87,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
       router.push("/pricing");
     }
     isNaN(Number(priceIndex))
-      ? setUserIndex(0)
+      ? setUserIndex(2)
       : setUserIndex(Number(priceIndex));
   }, []);
 
@@ -342,7 +338,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
 
         const hiveageResult = await requestStripe(requestBody);
         console.log(hiveageResult);
-        
+
         if (buytype === "buy") {
           router.push("/");
           setIsRequestPending(false);
@@ -353,14 +349,14 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
           setHiveageResponse(hiveageResult.data);
           setIsResponseSuccessful(true);
           setActiveStep(3);
-          
+
           setIsRequestPending(false);
           setIsResponseSuccessful(null);
         }
       } catch (error) {
         setIsResponseSuccessful(false);
         error.response && setResponseMessage(error.response.data.message);
-        
+
         setIsRequestPending(false);
         setIsResponseSuccessful(null);
       }
@@ -718,8 +714,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
     return (
       <div>
         <p className={cx("quoteForm_text")}>
-          Thanks for your interest in purchasing Railflow. To make your buying
-          process a breeze, we have generated a{" "}
+          Thanks for your interest in Railflow. We have generated a{" "}
           <a
             className={cx("quoteForm_link")}
             href={hiveageResponse?.link}
@@ -728,8 +723,9 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
           >
             secure quote
           </a>{" "}
-          and a{" "}
-          <a
+          for your review. You can view and download a copy in PDF. The quote is
+          valid for 30 days.
+          {/* <a
             className={cx("quoteForm_link")}
             href={hiveageResponse?.payment_link}
             rel="noopener noreferrer"
@@ -737,16 +733,17 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
           >
             secure instant buy
           </a>{" "}
-          links. These links have also been emailed to you.
+          links. These links have also been emailed to you. */}
         </p>
         <div className={cx("quoteForm_submitButtons")}>
-          <a
+          {/* <a
             href={hiveageResponse?.link}
             rel="noopener noreferrer"
             target="_blank"
             className={cx("quoteForm_submitLink")}
-          >
+          > */}
             <Button
+              to={hiveageResponse?.link}
               className={cx("quoteForm_submit", "quoteForm_viewQuote")}
               onClick={() => sendGTMEvent("quote")}
               inverse
@@ -754,8 +751,8 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
               <ProfileOutlined />
               View Quote
             </Button>
-          </a>
-          <a
+          {/* </a> */}
+          {/* <a
             href={hiveageResponse?.payment_link}
             rel="noopener noreferrer"
             target="_blank"
@@ -765,7 +762,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
               <ShoppingCartOutlined />
               Buy now
             </Button>
-          </a>
+          </a> */}
         </div>
       </div>
     );
@@ -774,7 +771,9 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
   return (
     // TODO: replace with common form component
     <div className={cx("quoteForm")}>
-      <h2 className={cx("quoteForm_title")}>{"Railflow - Buy Now"}</h2>
+      <h2 className={cx("quoteForm_title")}>
+        {buytype === "buy" ? "Railflow - Buy Now" : "Railflow - Instant Quote"}
+      </h2>
 
       <MuiStepper
         activeStep={activeStep}
@@ -808,7 +807,13 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
         {isRequestPending && (
           <div className={cx("quoteForm_loadingContainer")}>
             <div className={cx("quoteForm_spinner")} />
-            <div>Processing, please wait...</div>
+            <div>
+              {buytype === "quote"
+                ? activeStep === 3
+                  ? `Generating quote for ${contactResponse.data.company_name}`
+                  : `Processing, please wait ...`
+                : "Processing, please wait ..."}
+            </div>
           </div>
         )}
 

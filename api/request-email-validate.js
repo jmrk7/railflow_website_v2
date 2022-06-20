@@ -8,8 +8,6 @@ const requestEmailValidate = async (data) => {
     params: data,
   });
 
-  console.log(`> email validate with url: ${apiClient.url}`);
-
   return response;
 };
 

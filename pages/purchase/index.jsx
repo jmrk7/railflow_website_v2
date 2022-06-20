@@ -20,7 +20,7 @@ const GetQuotePage = (props) => {
       <div className={cx("purchaseWrapper")}>
         <QuoteHero />
         <FormContainer>
-          <QuoteFrom priceIndex={priceIndex} licenseType={licenseType} buytype={buytype} />
+          <QuoteFrom priceIndex={priceIndex * 2 - 1} licenseType={licenseType} buytype={buytype} />
         </FormContainer>
       </div>
     </Layout>
