@@ -63,13 +63,6 @@ async function create(request, res, next) {
       const response = await contactService.create(data);
       if (response && response.data && response.data.contact) {
         contact = response.data.contact;
-        if (typeof request.body.notify == "undefined" || request.body.notify) {
-          if (process.env.SLACK_MESSAGE_ENABLED) {
-            // await slackService.sendSlackMessage(
-            //   `Railflow Signup: ${account.name}> W(Free CLI) :slightly_smiling_face:`
-            // );
-          }
-        }
       } else {
         return res.status(500).send({
           status: 500,
@@ -78,6 +71,10 @@ async function create(request, res, next) {
           },
         });
       }
+    }
+
+    if (process.env.SLACK_MESSAGE_ENABLED) {
+      await slackService.sendSlackMessage(`(Free CLI) ${contact.custom_field.cf_company}:slightly_smiling_face:`);
     }
 
     const stripeAccountData = {
@@ -104,7 +101,12 @@ async function create(request, res, next) {
       contact_email: contact.email,
     };
 
-    const cryptolensTokenObject = await licenseService.getCryptolensToken(reqData, "0"); 
+    console.log(contact);
+
+    const cryptolensTokenObject = await licenseService.getCryptolensToken(
+      reqData,
+      "0"
+    );
 
     const mailgunResponse = await sendOnboardingEmailByFree(
       reqData,
@@ -123,9 +125,7 @@ async function create(request, res, next) {
     await taskService.create({ contact_id: reqData.contact_id });
     let eventData = {};
     // contact exists but license status is sent and key url exists
-    if (
-      contact
-    ) {
+    if (contact) {
       reqData.cf_free_license_key = cryptolensTokenObject.key;
       reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
       const patchedContact = await contactService.updateByFree(reqData);
@@ -154,7 +154,7 @@ async function create(request, res, next) {
           state: patchedContact.state,
           zipcode: patchedContact.zipcode,
           country: patchedContact.country,
-          license_key: patchedContact.custom_field.cf_license_key,
+          license_key: cryptolensTokenObject.key,
           license_link: mailgunResponse.licenseUrl,
 
           account_id: account.id,
@@ -163,9 +163,9 @@ async function create(request, res, next) {
         },
       });
     } else {
-      reqData.cf_license_key = cryptolensTokenObject.key;
-      reqData.cf_license_key_url = mailgunResponse.licenseUrl;
-      const patchedContact = await contactService.update(reqData);
+      reqData.cf_free_license_key = cryptolensTokenObject.key;
+      reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
+      const patchedContact = await contactService.updateByFree(reqData);
 
       eventData = {
         Name: patchedContact.first_name + patchedContact.last_name,
@@ -192,7 +192,7 @@ async function create(request, res, next) {
           state: patchedContact.state,
           zipcode: patchedContact.zipcode,
           country: patchedContact.country,
-          license_key: patchedContact.custom_field.cf_license_key,
+          license_key: cryptolensTokenObject.key,
           license_link: mailgunResponse.licenseUrl,
 
           account_id: account.id,

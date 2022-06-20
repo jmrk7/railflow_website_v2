@@ -6,20 +6,20 @@
   justify-content: center;
   text-align: center;
   width: fit-content;
-  border: 2px solid $green;
+  border: 2px solid $color-3;
   border-radius: 4px;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   white-space: nowrap;
   text-transform: capitalize;
   color: $color-1;
-  background-color: $green;
+  background-color: $color-3;
   transition: 0.25s;
   cursor: pointer;
   outline: none;
   text-decoration: none;
   &:hover {
-    color: $green;
+    color: $color-3;
     background-color: $color-1;
   }
 
@@ -40,7 +40,7 @@
   display: flex;
   position: absolute;
   top: 0;
-  right: 15%;
+  right: 14%;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -61,5 +61,6 @@
 
   .button {
     margin: 0;
+    width: 105px;
   }
 }
