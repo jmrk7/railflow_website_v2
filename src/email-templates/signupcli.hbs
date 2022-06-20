@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Railflow</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable= yes">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <style>
+        html {
+            width: 100%;
+        }
+
+        /*    My css framework begin*/
+        .row {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.67%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.67%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.67%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.67%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .text {
+            line-height: 30px;
+        }
+
+        .header {
+            /*        padding-left: 50px;*/
+            /*        background-color: #173647;*/
+            color: #173647;
+            font-size: 20px;
+        }
+
+        .imagebox {
+            text-align: center;
+        }
+
+        .img-responsive {
+            resize: both;
+        }
+
+        /*
+    img{
+        height: 150px;
+        }
+    */
+        /*
+
+    div{
+        min-height: 50px;
+    }
+    */
+
+        /*My css framework end*/
+
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        img {
+            width: 50%;
+        }
+
+        body {
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+
+        main {
+            width: 98%;
+            margin: 0 auto;
+            max-width: 650px
+        }
+
+        .jumbotron {
+            background-color: #173647;
+            height: 328px;
+            width: 100%;
+            color: white;
+            padding: 50px 19px;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        hr {
+            width: 100px;
+            height: 3px;
+            color: #0167ff;
+            background-color: #0167ff;
+            border-color: #0167ff;
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+
+        .jumbotron-main {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .jumbotron-text {
+            font-size: 17px;
+            /*            letter-spacing: 1px;*/
+            line-height: 30px
+        }
+
+        .btn {
+            color: white;
+            text-decoration: none;
+            background-color: #0167ff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 19px
+        }
+
+        .footer {
+            background-color: #173647;
+            width: 100%;
+            color: white;
+            padding-bottom: 60px;
+        }
+
+
+        .footer-row-container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 650px
+        }
+
+        .footer small {
+            font-size: 11px
+        }
+
+        .help-list a {
+            color: #0167ff;
+        }
+
+        span {
+            font-size: 35px;
+            margin-right: 13px;
+        }
+
+        span a {
+            text-decoration: none;
+            color: white;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .jumbotron-text {
+                font-size: 14px;
+                /*            letter-spacing: 1px;*/
+                line-height: 30px
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <main>
+        <br>
+        <br>
+        <div class='header'>
+            <img src="https://railflow-images.s3.amazonaws.com/railflow-logo-black.png">
+        </div>
+        <br>
+
+        <div class="row">
+            <div class='jumbotron'>
+                <h2 class="jumbotron-main">Welcome to Railflow Free Cli</h2>
+                <hr>
+                <p class="col-9 jumbotron-text">
+                    License Key: {{licenseKey}}
+                    <br>
+                    License File: <a href={{licenseUrl}}>Download License</a>
+                    <br>
+                </p>
+                <p>
+                    Please read the <a href="https://docs.railflow.io"> user documentation</a> to get started with your evalaution. If you run into any issues or have any questions, shoot us an email, slack message, website chat (real person), or <a href="https://railflow.io/contact">file a support ticket</a>. One of our support staff will respond back shortly to help you with the setup.
+                </p>
+
+                <p>
+                    Thanks for evaluating Railflow.
+                </p>
+                <br>
+            </div>
+        </div>
+    </main>
+    
+</body>
+
+</html>

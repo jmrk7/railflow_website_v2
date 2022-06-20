@@ -374,6 +374,53 @@ async function sendOnboardingEmail(body, cryptolensTokenObject) {
   }
 }
 
+async function sendOnboardingEmailByFree(body, cryptolensTokenObject) {
+  try {
+    // collate all the data. pass it to general email service send.
+    let text = getCryptolensTokenEmailContent(cryptolensTokenObject);
+    const contactId = body.contact_id;
+
+    cryptolensTokenObject.customerName = `${body.contact_first_name}_${body.contact_last_name}`;
+    const { url: licenseUrl, text: cryptolensLicenseFileTextContent } =
+      await getCryptolensFileUrl(cryptolensTokenObject);
+    cryptolensTokenObject.url = licenseUrl;
+    text += cryptolensLicenseFileTextContent;
+
+    logger.info(`Onboarding email text: ${text}`);
+
+    const template = fs.readFileSync(
+      path.join(process.cwd(), "/src/email-templates/signupcli.hbs"),
+      "utf8"
+    );
+
+    const compiled = Handlebars.compile(template);
+    const templateData = {
+      licenseKey: cryptolensTokenObject.key,
+      licenseUrl: cryptolensTokenObject.url,
+    };
+    const html = compiled(templateData);
+    const extraInfo = {
+      "v:contactId": contactId,
+      "o:tracking": "yes",
+      "o:tracking-clicks": "yes",
+      html,
+    };
+
+    const to = body.contact_email || "ali.raza@agiletestware.com";
+
+    const emailData = await emailService.sendEmail(to, text, extraInfo);
+    return {
+      emailData: emailData,
+      licenseUrl: licenseUrl,
+    };
+  } catch (error) {
+    throw new ApiError(
+      `There was some issue sending email to: ${body.contact_id} ${error}`
+    );
+    return;
+  }
+}
+
 /**
  * Function: Search for Contact
  * @param {*} request Request
@@ -439,4 +486,5 @@ module.exports = {
   updateContact,
   searchContact,
   sendOnboardingEmail,
+  sendOnboardingEmailByFree,
 };

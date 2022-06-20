@@ -16,7 +16,7 @@ import taskService from "../services/task";
 import slackService from "../services/slack";
 import { checkToken } from "../services/token";
 import { hanldeCreateError } from "../services/register";
-import { sendOnboardingEmail } from "./contact";
+import { sendOnboardingEmailByFree } from "./contact";
 import { sendDataToMixpanel } from "../services/mixpanel";
 import logger from "../config/logger";
 
@@ -106,7 +106,7 @@ async function create(request, res, next) {
 
     const cryptolensTokenObject = await licenseService.getCryptolensToken(reqData, "0"); 
 
-    const mailgunResponse = await sendOnboardingEmail(
+    const mailgunResponse = await sendOnboardingEmailByFree(
       reqData,
       cryptolensTokenObject
     );
