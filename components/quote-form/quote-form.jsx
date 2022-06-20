@@ -551,7 +551,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
       <div className={cx("quoteForm_summary")}>
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>License Type</span>
-          <FormControl style={{ minWidth: 180 }}>
+          <FormControl style={{ minWidth: 180, marginRight: "26px" }}>
             <Select
               value={selectedPlan.title}
               defaultValue={selectedPlan.title}
