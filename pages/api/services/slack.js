@@ -17,7 +17,7 @@ async function sendMessage(data) {
       await apiClient.request({
         method: "POST",
         data: {
-          text: `Railflow Signup: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
+          text: `${data.header}: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
         },
       });
     } else if(data.type === "Quote") {
