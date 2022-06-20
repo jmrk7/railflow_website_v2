@@ -13,10 +13,7 @@ import qs from "qs";
  * @param {*} body Input data
  * @returns Promise
  */
-async function getCryptolensToken(
-  body,
-  periods = process.env.EXTENSION_PERIOD
-) {
+async function getCryptolensToken( body, periods = process.env.EXTENSION_PERIOD ) {
   try {
     const apiClient = await getApiClient(process.env.CRYPTOLENS_BASE_URL);
     const response = await apiClient.request({
