@@ -125,10 +125,11 @@ async function updateByFree(data) {
           id: data.contact_id,
           contact_status_id: process.env.CONTACT_STATUS_ID,
           custom_field: {
-            cf_license_key: data.cf_free_license_key,
-            cf_license_key_url: data.cf_free_license_key_url,
+            cf_license_key: data.cf_license_key,
+            cf_license_key_url: data.cf_license_key_url,
             cf_license_status: "sent",
           },
+          tag: "free-cli",
         },
       },
     });

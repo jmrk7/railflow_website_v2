@@ -104,9 +104,7 @@ async function create(request, res, next) {
       contact_email: contact.email,
     };
 
-    const cryptolensTokenObject = await licenseService.getCryptolensToken(
-      reqData
-    );
+    const cryptolensTokenObject = await licenseService.getCryptolensToken(reqData, "0"); 
 
     const mailgunResponse = await sendOnboardingEmail(
       reqData,
@@ -130,7 +128,7 @@ async function create(request, res, next) {
     ) {
       reqData.cf_free_license_key = cryptolensTokenObject.key;
       reqData.cf_free_license_key_url = mailgunResponse.licenseUrl;
-      const patchedContact = await contactService.update(reqData);
+      const patchedContact = await contactService.updateByFree(reqData);
 
       eventData = {
         Name: patchedContact.first_name + patchedContact.last_name,
