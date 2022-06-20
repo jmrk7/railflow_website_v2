@@ -16,6 +16,18 @@ const cx = classnames.bind(styles);
 
 const features = [
   {
+    id: "testrail-cmd-line",
+    route: "testrail-cmd-line",
+    title: "TestRail Command Line Interface",
+    features: [
+      "Cross platform CLI for TestRail Cloud and Enterprise",
+      "Integrate with any CICD platform and workflows",
+      "Installable via NPM and Docker image",
+      "Zero-Code. Built-in support for many test frameworks",
+    ],
+    image: "/images/home_features/cli.webp",
+  },
+  {
     id: "jenkins-teamcity",
     route: "jenkins-teamcity",
     title: "Jenkins and TeamCity plugins",
@@ -74,18 +86,6 @@ const features = [
       "No need for external newman reporters",
     ],
     image: "/images/home_features/postman-min.webp",
-  },
-  {
-    id: "testrail-cmd-line",
-    route: "testrail-cmd-line",
-    title: "TestRail Command Line Interface",
-    features: [
-      "Cross platform CLI for TestRail Cloud and Enterprise",
-      "Integrate with any CICD platform and workflows",
-      "Installable via NPM and Docker image",
-      "Zero-Code. Built-in support for many test frameworks",
-    ],
-    image: "/images/home_features/cli.webp",
   },
   {
     id: "selenium-webdriver",
@@ -258,6 +258,9 @@ const Features = () => {
                 >
                   Learn more
                 </Button> */}
+                <Button to="/free-cli" type="button">
+                  Free CLI
+                </Button>
                 <Button to="/register" type="button">
                   Sign up
                 </Button>
