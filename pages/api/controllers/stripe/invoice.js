@@ -47,8 +47,10 @@ async function createInvoice(req, res, next) {
 
     const sendData = {
       price: priceResult.data.pricing.final_price,
-      payment_link: paymentLink.url
+      payment_link: paymentLink.url,
+      payment_id: paymentLink.id
     };
+    
     if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
     
     res.send(sendData);

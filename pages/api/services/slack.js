@@ -33,7 +33,7 @@ async function sendMessage(data) {
       await apiClient.request({
         method: "POST",
         data: {
-          text: `Occured Buy Railflow Product with $ ${data.price} event  :partying_face:`,
+          text: `Occured Buy Railflow Product with <https://dashboard.stripe.com/payment-links/${data.payment_id}|$${data.price}>event :partying_face:`,
         },
       });
     }
