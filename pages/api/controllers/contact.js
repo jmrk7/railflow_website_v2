@@ -89,6 +89,7 @@ async function createContact(request, res, next) {
       if (response && response.data && response.data.contact) {
         if (typeof request.body.notify == "undefined" || request.body.notify) {
           const notificationData = {
+            header: "Railflow Signup",
             contactId: response.data.contact.id,
             company: request.body.company,
           };

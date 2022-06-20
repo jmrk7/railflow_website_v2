@@ -73,11 +73,12 @@ async function create(request, res, next) {
       }
     }
 
-    if (process.env.SLACK_MESSAGE_ENABLED) {
-      await slackService.sendSlackMessage(
-        `(Free CLI) ${contact.custom_field.cf_company}:slightly_smiling_face:`
-      );
-    }
+    const notificationData = {
+      header: "(Free CLI)",
+      contactId: response.data.contact.id,
+      company: request.body.company,
+    };
+    if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);
 
     const stripeAccountData = {
       name: data.firstName + " " + data.lastName,
