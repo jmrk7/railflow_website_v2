@@ -36,7 +36,6 @@ async function create(request, res, next) {
     const license = request.body.license;
 
     const account = await createAccountIfNotExist(request.body.company);
-
     const data = {
       firstName: request.body.firstName,
       lastName: request.body.lastName,
@@ -53,7 +52,6 @@ async function create(request, res, next) {
       ],
       account_id: account.id,
     };
-
     // check if the contact is already there.
     let contact = await contactService.getContactIfAlreadyPresent(
       request.body.email
@@ -72,12 +70,12 @@ async function create(request, res, next) {
         });
       }
     }
-
     const notificationData = {
       header: "(Free CLI)",
-      contactId: response.data.contact.id,
+      contactId: account.id,
       company: request.body.company,
     };
+    
     if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);
 
     const stripeAccountData = {
@@ -89,7 +87,7 @@ async function create(request, res, next) {
         "CRM contact_id": contact.id,
       },
       description: contact.jobTitle,
-    };
+    }; 
 
     var customer = await searchCustomer(contact.email);
     customer.length === 0
