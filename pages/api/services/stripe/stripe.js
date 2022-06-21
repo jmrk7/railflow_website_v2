@@ -9,7 +9,7 @@ import logger from "../../config/logger";
  * @param {*} email The customer eamil
  * @returns Promise
  */
-const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
+const Stripe = new stripe(process.env.STRIPE_SECRET_LIVE_KEY);
 
 async function searchCustomer(email) {
   const customer = await Stripe.customers.search({
