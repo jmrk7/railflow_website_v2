@@ -508,22 +508,32 @@ export const basePricingPlans = [
     features: [
       {
         id: 'enterprise_1',
-        label: 'TestRail Consulting',
+        label: 'Full feature support for JUnit Reports',
         isAvailable: true,
       },
       {
         id: 'enterprise_2',
-        label: 'TestRail API Live Support',
+        label: 'NPM and Docker Support',
         isAvailable: true,
       },
       {
         id: 'enterprise_3',
-        label: 'Migration to TestRail',
+        label: 'Flexible Test Search Modes',
         isAvailable: true,
       },
       { 
         id: 'enterprise_4',
-        label: 'Test Framework Development',
+        label: 'Maps custom Test and Results Fields',
+        isAvailable: true,
+      },
+      { 
+        id: 'enterprise_5',
+        label: 'Maps custom Test and Results Fields',
+        isAvailable: true,
+      },
+      { 
+        id: 'enterprise_6',
+        label: 'Maps custom Test and Results Fields',
         isAvailable: true,
       },
     ],

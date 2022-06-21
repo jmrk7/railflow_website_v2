@@ -20,6 +20,7 @@ const features = [
     route: "testrail-cmd-line",
     title: "TestRail Command Line Interface",
     features: [
+      "Free version with full access to Railflow Support ",
       "Cross platform CLI for TestRail Cloud and Enterprise",
       "Integrate with any CICD platform and workflows",
       "Installable via NPM and Docker image",
@@ -259,10 +260,10 @@ const Features = () => {
                   Learn more
                 </Button> */}
                 <Button to="/free-cli" type="button">
-                  Free CLI
+                  CLI - Free
                 </Button>
                 <Button to="/register" type="button">
-                  Sign up
+                  Enterprise Trial
                 </Button>
                 <CalendlyButton />
               </div>

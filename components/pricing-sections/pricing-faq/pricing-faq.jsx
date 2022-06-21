@@ -42,7 +42,7 @@ const frequentlyAskedQuestions = [
   {
     question: "How many licenses do I need?",
     answer:
-      "Railflow pricing is based on the number of your TestRail Licenses and offered in increments of 20 users.",
+      "Railflow pricing is based on the number of your TestRail Licenses and offered in increments of 10 users.",
   },
   {
     question: "Does Railflow accept purchase orders?",
@@ -68,6 +68,16 @@ const frequentlyAskedQuestions = [
     question: "I registered online and haven't received my license?",
     answer:
       "Once you register online using your corporate email address, it takes about 6-12 hours for our team to send you a welcome email with an evaluation license. If you haven't received this email and have checked your spam folder, please contact our support team and we can sort this out.",
+  },
+  {
+    question: "Is the CLI really free? What is the catch?",
+    answer:
+      "Yes. The free CLI fully supports the JUnit reporting format. There are no gimmicks and tricks. We do hope that in the future you will consider upgrading to Professional or Enterprise to experience the full power of Railflow and enjoy world class support. ",
+  },
+  {
+    question: "Can I purchase Support for the free CLI?",
+    answer:
+      "If you have business critical needs, you can definitely purchase stand alone Support License for the free CLI. Please contact our support team for details. ",
   },
 ];
 

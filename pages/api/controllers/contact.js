@@ -363,7 +363,7 @@ async function sendOnboardingEmail(body, cryptolensTokenObject) {
 
     const to = body.contact_email || "ali.raza@agiletestware.com";
 
-    const emailData = await emailService.sendEmail(to, text, "Railflow: Your license key is here.", extraInfo);
+    const emailData = await emailService.sendEmail(to, text, "Railflow Enterprise Trail License Key", extraInfo);
     return {
       emailData: emailData,
       licenseUrl: licenseUrl,
@@ -410,7 +410,7 @@ async function sendOnboardingEmailByFree(body, cryptolensTokenObject) {
 
     const to = body.contact_email || "ali.raza@agiletestware.com";
 
-    const emailData = await emailService.sendEmail(to, text, "Free CLI", extraInfo);
+    const emailData = await emailService.sendEmail(to, text, "Railflow Free CLI License Key", extraInfo);
     return {
       emailData: emailData,
       licenseUrl: licenseUrl,
