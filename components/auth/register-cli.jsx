@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from "../Layout";
 import FormContainer from '../form-container';
-import SignUpForm from '../sign-up-form';
+import SignUpForm from '../sign-up-form/sign-up-form-cli';
 import SignUpHero from '../sign-up-hero/sign-up-hero-cli';
 
 import classnames from 'classnames/bind';
