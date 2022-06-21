@@ -1,0 +1,68 @@
+@import "../../../styles/globals.scss";
+
+.steps {
+  display: flex;
+  background-color: $color-2;
+  color: $color-1;
+  font-family: 'Space Grotesk', sans-serif;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+
+  &_sectionContainer {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  &_title {
+    line-height: 2.93rem;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &_list {
+    line-height: 2.3rem;
+    font-size: 1.1rem;
+    margin-top: 1.6rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    counter-reset: li;
+    margin-left: 20px;
+    li {
+      margin-bottom: 1rem;
+      counter-increment: li;
+      list-style: none;
+      &::before {
+        color: $color-3;
+        content: counter(li) ".";
+        display: inline-block;
+        width: 30px;
+        margin-left: -30px;
+        @media (max-width: 768px) {
+          width: 50px;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
+
+  &_text {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #c2c3c5;
+    font-family: "Inter", sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 40px;
+  }
+
+  @media (min-width: 769px) {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+}
