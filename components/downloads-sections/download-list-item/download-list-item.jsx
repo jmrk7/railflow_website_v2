@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames/bind";
-
+import Image from "next/image";
 import {LayoutSectionContainer} from "../../Layout";
 import Button from "../../button";
 import {DownloadOutlined} from '@ant-design/icons';
@@ -27,11 +27,12 @@ const DownloadListItem = ({ download }) => {
     <div className={cx('downloadListItem')}>
       <LayoutSectionContainer>
         <div className={cx('downloadListItem_sectionContainer')}>
-          <img
-            className={cx('downloadListItem_img')}
-            src={download.image}
-            alt={download.name}
-          />
+          <div style={{width: "60px", marginRight: "40px", display: "flex"}}>
+            <Image
+              src={download.image}
+              alt={download.name}
+            />
+          </div>
           <div className={cx('downloadListItem_section')}>
             <h1 className={cx('downloadListItem_title')}>
               {download.name}

@@ -90,10 +90,10 @@ async function create(request, res, next) {
       description: contact.jobTitle,
     }; 
 
-    var customer = await searchCustomer(contact.email);
-    customer.length === 0
-      ? (customer = await createUser(stripeAccountData))
-      : (customer = customer[0]);
+    // var customer = await searchCustomer(contact.email);
+    // customer.length === 0
+    //   ? (customer = await createUser(stripeAccountData))
+    //   : (customer = customer[0]);
 
     const reqData = {
       contact_id: contact.id,
