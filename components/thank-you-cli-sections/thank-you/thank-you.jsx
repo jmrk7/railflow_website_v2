@@ -50,7 +50,7 @@ const ThankYou = () => {
           <div className={cx("thankYou_linkitem")}>
             <Image src={DownloadImage} alt="download" />
             <span>
-              Railflow 2 week trial license file:{" "}
+              Railflow Free CLI license file:{" "}
               <a href={licenseLink} download>
                 {licenseLink ? "Railflow License File" : ""}
               </a>
@@ -58,7 +58,7 @@ const ThankYou = () => {
           </div>
           <div className={cx("thankYou_linkitem")}>
             <Image src={NotePadIcon} alt="notepad" />
-            <span>Railflow 2 week trial license key: {licenseKey}</span>
+            <span>Railflow Free CLI license key: {licenseKey}</span>
           </div>
           <div className={cx("thankYou_linkitem")}>
             <Image src={DocsImage} alt="download" />
