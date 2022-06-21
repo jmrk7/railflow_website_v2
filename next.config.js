@@ -8,6 +8,7 @@ const nextConfig = {
   },
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
+    RECAPTCHA_ENABLED: false,
     ALLOWED_PARTY_SECRET: "ALL",
     FRESHSALES_API_KEY: "fPjGQStTY1ffGqtyAj9RVw",
     FRESHSALES_BASE_URL: "https://railflow.myfreshworks.com",

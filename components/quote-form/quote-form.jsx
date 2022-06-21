@@ -158,7 +158,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
   const [responseMessage, setResponseMessage] = useState(null);
 
-  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(true);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(process.env.RECAPTCHA_ENABLED);
 
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);

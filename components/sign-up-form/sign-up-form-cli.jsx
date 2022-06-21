@@ -32,7 +32,7 @@ const SignUpForm = ({ free }) => {
     }));
   }, []);
 
-  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(true);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(process.env.RECAPTCHA_ENABLED);
 
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);
