@@ -285,7 +285,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
       if (!isCompanyFieldDataValid || !isRecaptchaVerified) {
         return;
       }
-
+      console.log(contactResponse)
       const requestData = getRequestData(fieldData);
       const requestBody = {
         account_id: contactResponse.data.account_id,
@@ -295,7 +295,8 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
         state: requestData.companyState,
         zipcode: requestData.companyZipCode,
         country: requestData.companyCountry,
-        stripe_id: contactResponse.data.stripe_account,
+        email: contactResponse.data.email,
+        // stripe_id: contactResponse.data.stripe_account,
       };
       try {
         setIsRequestPending(true);
@@ -325,7 +326,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype }) => {
       const requestBody = {
         account_id: contactResponse.data.account_id,
         contact_id: contactResponse.data.contact_id,
-        stripe_id: contactResponse.data.stripe_account,
+        // stripe_id: contactResponse.data.stripe_account,
         num_users: userIndex,
         license_type: selectedPlan.id,
         license_years: years,

@@ -8,6 +8,12 @@ import * as styles from "./download-posts.module.scss";
 
 const cx = classnames.bind(styles);
 
+import JenkinsImage from "/public/images/jenkins.png";
+import TeamCityImage from "/public/images/teamcity.png";
+import NpmImage from "/public/images/npm.png";
+import DockerImage from "/public/images/docker-2.png";
+import ReadyApiImage from "/public/images/readyapi.png";
+
 export const downloads = [
   {
      id: 'jenkins',
@@ -47,10 +53,9 @@ export const downloads = [
         text: '[bug] Cannot set value for custom multiselect field',
       },
     ],
-
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.4/railflow-jenkins-plugin.hpi",
-    image: "/images/jenkins.png",
+    image: JenkinsImage,
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/jenkins",
     hashes: true,
   },
@@ -89,10 +94,9 @@ export const downloads = [
         text: '[bug] Cannot set value for custom multiselect field',
       },
     ],
-
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.5/railflow-testrail-addon.zip",
-    image: "/images/teamcity.png",
+    image: TeamCityImage,
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/teamcity",
     hashes: true,
   },
@@ -122,9 +126,8 @@ export const downloads = [
         text: '[bug] JUnit report: read error and failure from //error/@message element',
       },
     ],
-
     downloadUrl: "https://www.npmjs.com/package/railflow",
-    image: "/images/npm.png",
+    image: NpmImage,
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
@@ -154,9 +157,8 @@ export const downloads = [
         text: '[bug] JUnit report: read error and failure from //error/@message element',
       },
     ],
-
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
-    image: "/images/docker-2.png",
+    image: DockerImage,
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
@@ -171,7 +173,6 @@ export const downloads = [
         text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it',
       },
     ],
-
     downloadUrl: "",
     downloadItem: [
       {
@@ -196,7 +197,7 @@ export const downloads = [
         href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
       }
     ],
-    image: "/images/readyapi.png",
+    image: ReadyApiImage,
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/readyapi",
     hashes: false,
   },

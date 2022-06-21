@@ -94,11 +94,11 @@ async function create(request, res, next) {
       description: contact.jobTitle,
     }
 
-    var customer = await searchCustomer(contact.email);
-;
-    customer.length === 0
-    ? (customer = await createUser(stripeAccountData))
-    : (customer = customer[0]);
+    // var customer = await searchCustomer(contact.email);
+
+    // customer.length === 0
+    // ? (customer = await createUser(stripeAccountData))
+    // : (customer = customer[0]);
 
     // contact exists but license status is sent and key url exists
     if (
@@ -123,7 +123,7 @@ async function create(request, res, next) {
           license_key: contact.custom_field.cf_license_key,
           license_url: contact.custom_field.cf_license_key_url,
           company_name: contact.custom_field.cf_company,
-          stripe_account: customer.id,
+          // stripe_account: customer.id,
           email: contact.email,
         },
       });
@@ -153,7 +153,7 @@ async function create(request, res, next) {
             country: contact.country,
             license_key: contact.custom_field.cf_license_key,
             company_name: contact.custom_field.cf_company,
-            stripe_account: customer.id,
+            // stripe_account: customer.id,
             email: contact.email,
           },
         });

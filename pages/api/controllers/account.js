@@ -11,7 +11,7 @@ import ApiError from "../errors/badrequest";
 import accountService from "../services/account";
 import { checkToken } from "../services/token";
 
-import { updateCustomer } from "../services/stripe/stripe";
+import { updateCustomer, searchCustomer } from "../services/stripe/stripe";
 
 /**
  * update an account based on the account_id in the request body
@@ -52,10 +52,13 @@ async function updateAccount(req, res, next) {
       "Company Name": req.body.company_name,
     },
   };
+  // const stripeAccount = searchCustomer(req.body.email);
+  // console.log(req.body)
+  res.send({message: "success"})
 
-  const result = await updateCustomer(req.body.stripe_id, updateData);
+  // const result = await updateCustomer(req.body.stripe_id, updateData);
 
-  res.send(result);
+  // res.send(result);
 }
 
 module.exports = {
