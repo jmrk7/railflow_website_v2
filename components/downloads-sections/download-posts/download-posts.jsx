@@ -49,7 +49,7 @@ export const downloads = [
     ],
 
     downloadUrl:
-      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.3/railflow-jenkins-plugin.hpi",
+      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.4/railflow-jenkins-plugin.hpi",
     image: "/images/jenkins.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/jenkins",
     hashes: true,
@@ -91,7 +91,7 @@ export const downloads = [
     ],
 
     downloadUrl:
-      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.3/railflow-teamcity-testrail-connector.zip",
+      "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.5/railflow-testrail-addon.zip",
     image: "/images/teamcity.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/teamcity",
     hashes: true,
