@@ -6,7 +6,7 @@ import contactService from "../../services/contact";
 import { sendDataToMixpanel } from "../../services/mixpanel";
 import slackService from "../../services/slack";
 
-const Stripe = new stripe(process.env.STRIPE_SECRET_KEY);
+const Stripe = new stripe(process.env.STRIPE_SECRET_LIVE_KEY);
 
 async function createInvoice(req, res, next) {
   try{
@@ -28,7 +28,7 @@ async function createInvoice(req, res, next) {
     const priceObject = await Stripe.prices.create({
       unit_amount: priceResult.data.pricing.final_price * 100,
       currency: "usd",
-      product: process.env.STRIPE_TEST_PRODUCT,
+      product: process.env.STRIPE_LIVE_PRODUCT,
     });
     
     const paymentLink = await Stripe.paymentLinks.create({
