@@ -10,40 +10,44 @@ const cx = classnames.bind(styles);
 
 export const downloads = [
   {
-    id: "Jenkins",
-    name: "Jenkins plugin - 2.3",
+     id: 'jenkins',
+    name: 'Jenkins plugin - 2.4',
     features: [
       {
-        text: "[feature] Add support for Robot native reports",
+        text: '[feature] Pytest reports: add support for custom test steps',
       },
       {
-        text: "[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)",
+        text: '[feature] Robot reports: map robot tests into existing TestRail test cases by reading ID from "testrail.id" tag in robot report',
       },
       {
-        text: "[feature] Add support for SpecFlow NUnit reports",
+        text: '[feature] Set case title into the field defined by "Case Search Field" parameter on case creation',
       },
       {
-        text: "[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)",
+        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
       },
       {
-        text: "[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)",
+        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
       },
       {
-        text: '[feature] Add "Fully Qualified Test Name" parameter which allows exporting fully qualified test names into TestRail',
+        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
       },
       {
-        text: '[feature] Add "Case Search Field" parameter which allows Railflow to search for existing tests cases by the value of some custom field',
+        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
       },
       {
-        text: "[feature] Railflow searches for the existing tests in TestRail in case-insensitive way",
+        text: '[bug] "JSONObject["jobConfigurations"] is not a JSONObject" error while saving multiple Railflow upload configurations',
       },
       {
-        text: '[feature] Add "Upload Mode" parameter which controls whether Railflow should create new tests and update existing tests in TestRail',
+        text: '[bug] Robot reports: incorrect calculation of Elapsed time',
       },
       {
-        text: "[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report",
+        text: '[bug] Pytest reports: failed tests in one class are always assigned to the first user from the list',
+      },
+      {
+        text: '[bug] Cannot set value for custom multiselect field',
       },
     ],
+
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-jenkins-plugin/2.3/railflow-jenkins-plugin.hpi",
     image: "/images/jenkins.png",
@@ -51,40 +55,41 @@ export const downloads = [
     hashes: true,
   },
   {
-    id: "Teamcity",
-    name: "TeamCity Plugin - 2.3",
+    id: 'teamcity',
+    name: 'TeamCity Plugin - 2.5',
     features: [
       {
-        text: "[feature] Add support for Robot native reports",
+        text: '[feature] Pytest reports: add support for custom test steps',
       },
       {
-        text: "[feature] Add support for custom Railflow Python reports (https://docs.railflow.io/docs/testing-frameworks/pytest)",
+        text: '[feature] Robot reports: map robot tests into existing TestRail test cases by reading ID from "testrail.id" tag in robot report',
       },
       {
-        text: "[feature] Add support for SpecFlow NUnit reports",
+        text: '[feature] Set case title into the field defined by "Case Search Field" parameter on case creation',
       },
       {
-        text: "[feature] Add support for customized xUnit reports (https://github.com/railflow/railflow-xunit-examples)",
+        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
       },
       {
-        text: "[feature] Add support for custom MSTest (TRX) reports (https://github.com/railflow/railflow-mstest-examples)",
+        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
       },
       {
-        text: '[feature] Add "Fully Qualified Test Name" parameter which allows exporting fully qualified test names into TestRail',
+        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
       },
       {
-        text: '[feature] Add "Case Search Field" parameter which allows Railflow to search for existing tests cases by the value of some custom field',
+        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
       },
       {
-        text: "[feature] Railflow searches for the existing tests in TestRail in case-insensitive way",
+        text: '[bug] Robot reports: incorrect calculation of Elapsed time',
       },
       {
-        text: '[feature] Add "Upload Mode" parameter which controls whether Railflow should create new tests and update existing tests in TestRail',
+        text: '[bug] Pytest reports: failed tests in one class are always assigned to the first user from the list',
       },
       {
-        text: "[bug] MSTest (TRX) reports: incorrect handling of Smart Failure Assignment from the report",
+        text: '[bug] Cannot set value for custom multiselect field',
       },
     ],
+
     downloadUrl:
       "https://railflow.sfo3.digitaloceanspaces.com/downloads/railflow-teamcity-plugin/2.3/railflow-teamcity-testrail-connector.zip",
     image: "/images/teamcity.png",
@@ -92,45 +97,81 @@ export const downloads = [
     hashes: true,
   },
   {
-    id: "NPM",
-    name: "Railflow NPM CLI - 2.1.10",
+     id: 'NPM',
+    name: 'Railflow NPM CLI - 2.1.11',
     features: [
       {
-        text: "[feature] Set test case title into the field defined by -csf parameter on test case creation",
-      },      
+        text: '[feature] Release for free license model. Support for JUnit reports',
+      },
+      {
+        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
+      },
+      {
+        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
+      },
+      {
+        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
+      },
+      {
+        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
+      },
+      {
+        text: '[bug] Not all warning are displayed in the end of export',
+      },
+      {
+        text: '[bug] JUnit report: read error and failure from //error/@message element',
+      },
     ],
+
     downloadUrl: "https://www.npmjs.com/package/railflow",
     image: "/images/npm.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
   {
-    id: "Docker",
-    name: "Railflow Docker Image - 2.1.10",
+   id: 'Docker',
+    name: 'Railflow Docker Image - 2.1.11',
     features: [
       {
-        text: "[feature] Set test case title into the field defined by -csf parameter on test case creation",
+        text: '[feature] Release for free license model. Support for JUnit reports',
+      },
+      {
+        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
+      },
+      {
+        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
+      },
+      {
+        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
+      },
+      {
+        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
+      },
+      {
+        text: '[bug] Not all warning are displayed in the end of export',
+      },
+      {
+        text: '[bug] JUnit report: read error and failure from //error/@message element',
       },
     ],
+
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
     image: "/images/docker-2.png",
     releaseNotesUrl: "https://docs.railflow.io/docs/release-notes/cli",
     hashes: false,
   },
   {
-    id: "Readyapi",
-    name: "ReadyApi plugin - 2.1",
+     id: 'readyapi',
+    name: 'ReadyApi plugin - 2.1',
     features: [
       {
-        text: "[feature] Add license activation screen into the installer",
+        text: '[feature] Add license activation screen into the installer',
       },
       {
-        text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it'
-      },
-      {
-        text: ''
+        text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it',
       },
     ],
+
     downloadUrl: "",
     downloadItem: [
       {
