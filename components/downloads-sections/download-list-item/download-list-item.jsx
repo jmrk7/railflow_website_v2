@@ -1,14 +1,13 @@
 import React from "react";
 import classnames from "classnames/bind";
-import Image from "next/image";
 
-import { LayoutSectionContainer } from "../../Layout";
+import {LayoutSectionContainer} from "../../Layout";
 import Button from "../../button";
-import { DownloadOutlined } from '@ant-design/icons';
+import {DownloadOutlined} from '@ant-design/icons';
 import axios from "axios"
 
 import * as styles from "./download-list-item.module.scss";
- 
+
 const cx = classnames.bind(styles);
 
 const DownloadListItem = ({ download }) => {
@@ -79,12 +78,12 @@ const DownloadListItem = ({ download }) => {
               )}
               {download.downloadUrl && (
                 <a
-                  className={cx('downloadListItem_link')}
-                  // href={download.downloadUrl}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  onClick={sendDatatoMixpanel}
-                  style={{marginRight: "0px"}}
+                    className={cx('downloadListItem_link')}
+                    href={download.downloadUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    onClick={sendDatatoMixpanel}
+                    style={{marginRight: "0px"}}
                 >
                   <Button className={cx('downloadListItem_button')}>
                     <DownloadOutlined />
