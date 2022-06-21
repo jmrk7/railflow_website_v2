@@ -253,15 +253,13 @@ const Features = () => {
                 </ul>
               </div>
               <div className={cx("features_buttonWrapper")}>
-                {/* <Button
-                  to={`/features/${feature.route}`}
-                  type="button"
-                >
-                  Learn more
-                </Button> */}
-                <Button to="/free-cli" type="button">
-                  CLI - Free
-                </Button>
+                {feature.id === "testrail-cmd-line" ? 
+                (<Button to="/free-cli" type="button">
+                    CLI - Free
+                  </Button>
+                ) : (
+                  <></>
+                )}
                 <Button to="/register" type="button">
                   Enterprise Trial
                 </Button>
@@ -272,7 +270,7 @@ const Features = () => {
             <div className={cx("featuresRight", "features_section")}>
               <div className={cx("featuresRight_image")}>
                 <img
-                  className={cx('featuresRight_image')}
+                  className={cx("featuresRight_image")}
                   src={feature.image}
                   alt="features"
                 />
