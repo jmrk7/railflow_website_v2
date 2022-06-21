@@ -14,7 +14,7 @@ const signUpHeroContent = {
   title:
     "Railflow in the only solution in the market that offers out of the box solutions for all your integration needs. Integrate CICD workflows, test frameworks, open source and commerical tools without wasting your precious engineering resources.",
   features: [
-    "14 day free trial. No credit card required",
+    "Unlimited use and completly free. No credit card required",
     "Access to free enterprise support (real humans)",
     "Happier and more relaxed QA teams and management",
     "Prepare to super charge your engineering productivity",

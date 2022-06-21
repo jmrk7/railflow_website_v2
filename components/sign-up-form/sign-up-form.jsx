@@ -109,7 +109,7 @@ const SignUpForm = ({ free }) => {
     // TODO: replace with common form component
     <form onSubmit={handleSubmit} className={cx("signUpForm")}>
       <h2 className={cx("signUpForm_title")}>
-        {free ? "Risk Free 14 Day Railflow Trial CLI" : "Risk Free 14 Day Railflow Trial"}
+        {free ? "Railflow Free CLI Signup" : "Railflow Free CLI Signup"}
       </h2>
 
       {!isRequestPending && isResponseSuccessful !== null && (

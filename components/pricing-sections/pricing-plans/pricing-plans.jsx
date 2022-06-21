@@ -83,7 +83,7 @@ const PricingPlans = () => {
                 <div className={cx("pricingPlanPayment")}>
                   {plan.isCustom ? (
                     <div className={cx("pricingPlanPayment_price")}>
-                      Contact us for detailed discussion
+                      $ 0.00 / YEAR
                     </div>
                   ) : (
                     <div>
@@ -147,7 +147,7 @@ const PricingPlans = () => {
                   <div className={cx("pricingPlanQuoteButton")}>
                     <Link href="/free-cli">
                       <Button className={cx("pricingPlanButton")} inverse>
-                        Free CLI
+                        CLI - Free
                       </Button>
                     </Link>
                   </div>
@@ -156,14 +156,14 @@ const PricingPlans = () => {
                   <div className={cx("pricingPlanQuoteButton")}>
                     <Link href="/register">
                       <Button className={cx("pricingPlanButton")} inverse>
-                        Free Trial
+                      Enterprise Trial
                       </Button>
                     </Link>
                     <Link
                       href={`/purchase?price-index=${userIndex}&license-type=${plan.id}&type=buy`}
                     >
                       <Button className={cx("pricingPlanButton")}>
-                        Buy Now
+                        Instant Purchase
                       </Button>
                     </Link>
                   </div>
