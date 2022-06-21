@@ -74,6 +74,7 @@ async function create(request, res, next) {
       header: "(Free CLI)",
       contactId: account.id,
       company: request.body.company,
+      type: "Sign"
     };
     
     if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);

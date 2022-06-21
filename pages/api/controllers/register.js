@@ -69,6 +69,7 @@ async function create(request, res, next) {
             header: "Railflow Signup",
             contactId: response.data.contact.id,
             company: request.body.company,
+            type: "Sign"
           };
           if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(notificationData);
         }

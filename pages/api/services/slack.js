@@ -11,16 +11,16 @@ import logger from "../config/logger";
 async function sendMessage(data) {
   try {
     const apiClient = await getApiClient(process.env.SLACK_API_BASE_URL);
-    if(data.contactId){
-      logger.info(`sending slack notification: ${data.contactId}`);
 
+    if (data.type === "Invoice") {
+      logger.info(`sending slack notification ===>`, data);
       await apiClient.request({
         method: "POST",
         data: {
-          text: `${data.header}: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
+          text: `Invoice - $${data.price} <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
         },
       });
-    } else if(data.type === "Quote") {
+    } else if (data.type === "Quote") {
       logger.info(`sending slack notification ===>`, data);
       await apiClient.request({
         method: "POST",
@@ -29,11 +29,12 @@ async function sendMessage(data) {
         },
       });
     } else {
-      logger.info(`sending slack notification ===>`, data);     
+      logger.info(`sending slack notification: ${data.contactId}`);
+
       await apiClient.request({
         method: "POST",
         data: {
-          text: `Occured Buy Railflow Product with <https://dashboard.stripe.com/payment-links/${data.payment_id}|$${data.price}>event :partying_face:`,
+          text: `${data.header}: <https://railflow.myfreshworks.com/crm/sales/contacts/${data.contactId}|${data.company}> :partying_face:`,
         },
       });
     }

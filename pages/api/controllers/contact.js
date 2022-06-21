@@ -92,6 +92,7 @@ async function createContact(request, res, next) {
             header: "Railflow Signup",
             contactId: response.data.contact.id,
             company: request.body.company,
+            type: "Sign"
           };
           logger.info(
             `contact created. sending slack notification: ${response.data.contact.id}`
