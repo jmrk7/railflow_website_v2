@@ -92,6 +92,7 @@ async function update(data) {
             cf_license_key_url: data.cf_license_key_url,
             cf_license_status: "sent",
           },
+          tags: "testrail-trial",
         },
       },
     });
@@ -129,7 +130,7 @@ async function updateByFree(data) {
             cf_free_license_key_url: data.cf_free_license_key_url,
             cf_license_status: "sent",
           },
-          tag: "free-cli",
+          tags: "testrail-cli",
         },
       },
     });
