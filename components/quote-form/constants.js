@@ -523,17 +523,17 @@ export const basePricingPlans = [
       },
       { 
         id: 'enterprise_4',
-        label: 'Maps custom Test and Results Fields',
+        label: 'Map custom Test and Results Fields',
         isAvailable: true,
       },
       { 
         id: 'enterprise_5',
-        label: 'Maps custom Test and Results Fields',
+        label: 'Configure Milestones and Test Plans',
         isAvailable: true,
       },
       { 
         id: 'enterprise_6',
-        label: 'Maps custom Test and Results Fields',
+        label: 'Talk to our team on Slack for Free',
         isAvailable: true,
       },
     ],
