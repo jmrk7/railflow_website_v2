@@ -64,6 +64,15 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/contact',
+        destination: 'https://railflow.atlassian.net/servicedesk/customer/portal/1',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
