@@ -29,6 +29,7 @@ async function getCryptolensToken( body, periods = process.env.EXTENSION_PERIOD 
         Period: periods,
         F1: true,
         F2: true,
+        F4: true,
         NewCustomer: true,
         Name: `${body.contact_first_name} ${body.contact_last_name}`,
         Email: body.contact_email,
