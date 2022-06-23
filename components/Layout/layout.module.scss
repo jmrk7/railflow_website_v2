@@ -56,6 +56,15 @@
       &:last-of-type {
         flex: 1;
       }
+      &_slack {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 16px;
+        @media (max-width: 992px) {
+          display: none;
+        }
+      }
     }
 
     &Logo {
@@ -196,6 +205,13 @@
 
       &:last-of-type {
         flex: 1;
+      }
+      &_slack {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-left: 8px;
       }
     }
 

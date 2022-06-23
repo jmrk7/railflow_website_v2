@@ -15,6 +15,10 @@ const cx = classnames.bind(styles);
 const LayoutSidebar = (props) => {
   const { isOpen, closeSidebar } = props;
 
+  const joinSlack = () => {
+    Router.push('https://join.slack.com/t/railflow/shared_invite/zt-1ahbv867n-nS0_ULIOATOvkSGuC33ZNQ');
+  }
+
   return (
     <aside
       className={cx("layoutSidebar", {
@@ -38,6 +42,20 @@ const LayoutSidebar = (props) => {
       </section>
 
       <section className={cx("layoutSidebar_section")}>
+        <div className={cx("layoutSidebar_section_slack")}>
+          <p style={{marginRight: "8px"}}>Join us on</p>
+          <div style={{cursor: "pointer"}} onClick={joinSlack}>
+            <Image
+              src={"/icons/slack-logo.svg"}
+              alt="Slack"
+              height={30}
+              width={30}
+            />
+          </div>              
+          <div style={{marginLeft: "8px", color: "white"}} >
+            <p onClick={joinSlack} style={{textDecoration: "underline", cursor: "pointer"}}>Slack</p>
+          </div>
+        </div>
         {navigationLinks.map((navigationLink) => {
           const onClick = () =>
             scrollToSection(navigationLink.sectionElementId);
