@@ -150,7 +150,7 @@ const PricingPlans = () => {
                         CLI - Free Download
                       </Button>
                     </Link>
-                    <Link href={`/purchase?license-type=enterprise&type=buy&support=true`}>
+                    <Link href={`/free-cli-support`}>
                       <Button className={cx("pricingPlanButton")}>
                         Enterprise Support (optional)
                       </Button>
