@@ -25,7 +25,7 @@ async function createInvoice(req, res, next) {
       `${apiBaseUrl}/api/routes/pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
     );
 
-    const priceValue = req.body.support ? 5000 : priceResult.data.pricing.final_price;
+    const priceValue = req.body.support ? 500 : priceResult.data.pricing.final_price;
     
     const priceObject = await Stripe.prices.create({
       unit_amount: priceValue * 100,
