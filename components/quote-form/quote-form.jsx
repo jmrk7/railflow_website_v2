@@ -70,7 +70,7 @@ const MuiStep = styled(Step)(({ theme }) => ({
   },
 }));
 
-const QuoteFrom = ({ priceIndex, licenseType, buytype, support }) => {
+const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
   const [fieldData, setFieldData] = useState(initialFieldData);
   const [contactResponse, setContactResponse] = useState({});
   const [_accountResponse, setAccountResponse] = useState({});
@@ -142,11 +142,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, support }) => {
       };
       const response = await requestPricing(data);
 
-      let pricingObject = pricingResponse;
-      pricingObject.base_price = 5000;
-      pricingObject.total_price = 5000;
-      pricingObject.final_price = 5000;
-      support ? setPricingResponse(pricingObject) : setPricingResponse(response.data.pricing);      
+      setPricingResponse(response.data.pricing);      
     }
     fetchData();
   }, [userIndex, years, selectedPlan.id, activeStep]);
@@ -290,7 +286,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, support }) => {
       if (!isCompanyFieldDataValid || !isRecaptchaVerified) {
         return;
       }
-      console.log(contactResponse)
+      
       const requestData = getRequestData(fieldData);
       const requestBody = {
         account_id: contactResponse.data.account_id,
@@ -337,7 +333,6 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, support }) => {
         license_years: years,
         pay_method: buytype,
         email: contactResponse.data.email,
-        support: true,
       };
 
       try {
@@ -556,84 +551,80 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, support }) => {
     
     return (
       <div className={cx("quoteForm_summary")}>
-        {
-          !support && 
-          <div className={cx("quoteForm_summaryRow")}>
-            <span className={cx("quoteForm_summaryRow_title")}>License Type</span>
-            <FormControl style={{ minWidth: 180, marginRight: "26px" }}>
-              <Select
-                value={selectedPlan.title}
-                defaultValue={selectedPlan.title}
-                onChange={handleLicenseTypeChange}
-                className={cx("quoteForm_select_title")}
-              >
-                {selectablePlans.map((plan) => (
-                  <MenuItem key={plan.id} value={plan.title}>
-                    {plan.title}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-        }
-        {
-          !support &&
-          <div className={cx("quoteForm_summaryRow")}>
-            <PricingUserSelect
-              userIndex={userIndex}
-              userTiers={userTiers}
-              setUserIndex={setUserIndex}
-              small
-            />
-          </div>
-        }        
-        {
-          !support && 
-          <div className={cx("quoteForm_summaryRow", "quoteForm_summaryRow_discountGroup")}>
-            <FormControl component="fieldset">
-              <FormLabel>
-                <span className={cx("quoteForm_summaryRow_title")}>
-                  Multi-Year Discount (Optional)
-                </span>
-              </FormLabel>
-              <FormGroup className={cx("quoteForm_summaryRow_discountOptions")}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={years === "2"}
-                      onChange={handleYearChannge}
-                      name="2"
-                    />
-                  }
-                  label="2 Year License - 10% Discount"
-                  value={"2"}
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={years === "3"}
-                      onChange={handleYearChannge}
-                      name="3"
-                    />
-                  }
-                  label="3 Year License - 20% Discount"
-                  value={"3"}
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={years === "0"}
-                      onChange={handleYearChannge}
-                      name="0"
-                    />
-                  }
-                  label="Perpetual License (never expiring)"
-                  value={"0"}
-                />
-              </FormGroup>
-            </FormControl>
-          </div>
-        }        
+
+
+        <div className={cx("quoteForm_summaryRow")}>
+          <span className={cx("quoteForm_summaryRow_title")}>License Type</span>
+          <FormControl style={{ minWidth: 180, marginRight: "26px" }}>
+            <Select
+              value={selectedPlan.title}
+              defaultValue={selectedPlan.title}
+              onChange={handleLicenseTypeChange}
+              className={cx("quoteForm_select_title")}
+            >
+              {selectablePlans.map((plan) => (
+                <MenuItem key={plan.id} value={plan.title}>
+                  {plan.title}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div className={cx("quoteForm_summaryRow")}>
+          <PricingUserSelect
+            userIndex={userIndex}
+            userTiers={userTiers}
+            setUserIndex={setUserIndex}
+            small
+          />
+        </div>
+        
+        <div className={cx("quoteForm_summaryRow", "quoteForm_summaryRow_discountGroup")}>
+          <FormControl component="fieldset">
+            <FormLabel>
+              <span className={cx("quoteForm_summaryRow_title")}>
+                Multi-Year Discount (Optional)
+              </span>
+            </FormLabel>
+            <FormGroup className={cx("quoteForm_summaryRow_discountOptions")}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={years === "2"}
+                    onChange={handleYearChannge}
+                    name="2"
+                  />
+                }
+                label="2 Year License - 10% Discount"
+                value={"2"}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={years === "3"}
+                    onChange={handleYearChannge}
+                    name="3"
+                  />
+                }
+                label="3 Year License - 20% Discount"
+                value={"3"}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={years === "0"}
+                    onChange={handleYearChannge}
+                    name="0"
+                  />
+                }
+                label="Perpetual License (never expiring)"
+                value={"0"}
+              />
+            </FormGroup>
+          </FormControl>
+        </div>
+         
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
             License Price{" "}
