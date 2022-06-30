@@ -32,7 +32,7 @@ const nextConfig = {
     SLACK_API_BASE_URL:
       "https://hooks.slack.com/services/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",
     SLACK_SLASH_COMMAND_TOKEN: "kBWbldLF6g11eDX5rpyRQUY4",
-    SLACK_MESSAGE_ENABLED: true,
+    SLACK_MESSAGE_ENABLED: false,
     CRYPTOLENS_LICENSE_EXTENSION_KEY:
       "WyI1NTkwNTYzIiwidE1WQ1NjaUlwR05adHhZK1BaaEZlamVpUEZ5RElJQ3ZBZGlPVzFkUCJd",
     CRYPTOLENS_RSA_PUB_KEY:
@@ -56,8 +56,10 @@ const nextConfig = {
     STRIPE_PUBLIC_KEY:
       "pk_test_51JSOmHDhvP6DurKSsGw6QBpRN9zmuFKeJ3RzvnvGMy2GoVnKlVUBj49jQjhb8xFL6pMugawFeZYkYDAWMGk3bJlA00bI135spV",
     MIXPANEL_KEY: "97d58733e64400bf0e1a0b23ce3c488b",
-    STRIPE_LIVE_PRODUCT: "prod_LkYOTh3gWcc2ma",
-    STRIPE_TEST_PRODUCT: "prod_LsWxQNfMecr3gh"
+    STRIPE_LIVE_LICENSE_PRODUCT: "prod_LkYOTh3gWcc2ma",
+    STRIPE_LIVE_SUPPORT_PRICE: "price_1LGTmZDhvP6DurKSNDWA75tO",
+    STRIPE_TEST_LICENSE_PRODUCT: "prod_LsWxQNfMecr3gh",
+    STRIPE_TEST_SUPPORT_PRICE: "price_1LGTZqDhvP6DurKSlZtcMrfa",
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

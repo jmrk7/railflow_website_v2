@@ -76,7 +76,6 @@ const QuoteFrom = () => {
   const [_accountResponse, setAccountResponse] = useState({});
   const [hiveageResponse, setHiveageResponse] = useState({});
 
-  const [_emailsTo, _setEmailsTo] = useState([]);
   const [activeStep, setActiveStep] = React.useState(0);
   const stepLabels = ["About You", "Company Info", "Select License Type"];
 
@@ -201,7 +200,7 @@ const QuoteFrom = () => {
       }
       
       const requestData = getRequestData(fieldData);
-      
+
       const requestBody = {
         account_id: contactResponse.data.account_id,
         company_name: requestData.companyName,
@@ -212,6 +211,7 @@ const QuoteFrom = () => {
         country: requestData.companyCountry,
         email: contactResponse.data.email,
       };
+
       try {
         setIsRequestPending(true);
 
@@ -235,7 +235,7 @@ const QuoteFrom = () => {
   const handleSummarySubmit = useCallback(
     async (event) => {
       event.preventDefault();
-
+      
       const requestBody = {
         pay_method: buytype,
         email: contactResponse.data.email,
@@ -272,7 +272,7 @@ const QuoteFrom = () => {
         setIsResponseSuccessful(null);
       }
     },
-    []
+    [fieldData, contactResponse]
   );
 
   const renderCustomerFields = () => {
