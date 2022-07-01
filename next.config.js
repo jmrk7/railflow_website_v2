@@ -49,20 +49,31 @@ const nextConfig = {
     SALESPANEL_API_KEY: "4cab75dab8852f0fe87cbc4e6821fe352e660650",
     SALESPANEL_BASE_URL: "https://salespanel.io",
     LOG_RESPONSE: true,
-    STRIPE_SECRET_KEY:
+    STRIPE_SECRET_TEST_KEY:
       "sk_test_51JSOmHDhvP6DurKSDkjAvTFevDpMxKU2lEUe1IeM3NFACU4d60Ri0dOv7SwaPOEpfqsxeBUOUZmo5veR06ImbCoo00glQVFsmB",
     STRIPE_SECRET_LIVE_KEY:
       "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",
     STRIPE_PUBLIC_KEY:
       "pk_test_51JSOmHDhvP6DurKSsGw6QBpRN9zmuFKeJ3RzvnvGMy2GoVnKlVUBj49jQjhb8xFL6pMugawFeZYkYDAWMGk3bJlA00bI135spV",
     MIXPANEL_KEY: "97d58733e64400bf0e1a0b23ce3c488b",
-    STRIPE_LIVE_PRODUCT: "prod_LkYOTh3gWcc2ma",
-    STRIPE_TEST_PRODUCT: "prod_LsWxQNfMecr3gh"
+    STRIPE_LIVE_LICENSE_PRODUCT: "prod_LkYOTh3gWcc2ma",
+    STRIPE_LIVE_SUPPORT_PRICE: "price_1LGTmZDhvP6DurKSNDWA75tO",
+    STRIPE_TEST_LICENSE_PRODUCT: "prod_LsWxQNfMecr3gh",
+    STRIPE_TEST_SUPPORT_PRICE: "price_1LGTZqDhvP6DurKSlZtcMrfa",
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/contact',
+        destination: 'https://railflow.atlassian.net/servicedesk/customer/portal/1',
+        permanent: true,
+      },
+    ]
   },
 };
 

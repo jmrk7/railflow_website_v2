@@ -54,7 +54,7 @@ const LayoutHeader = (props) => {
           </section>
 
           <section className={cx("layoutHeader_section", "layoutHeader_left")}>
-            <div style={{display: "flex", justifyContent: "center", alignItems: "center" ,marginRight:"16px"}}>
+            <div className={cx("layoutHeader_section_slack")}>
               <p style={{marginRight: "8px", fontSize: "1.1rem"}}>Join us on</p>
               <div style={{cursor: "pointer"}} onClick={joinSlack}>
                 <Image
