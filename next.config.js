@@ -8,7 +8,7 @@ const nextConfig = {
   },
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
-    RECAPTCHA_ENABLED: true,
+    RECAPTCHA_ENABLED: false,
     ALLOWED_PARTY_SECRET: "ALL",
     FRESHSALES_API_KEY: "fPjGQStTY1ffGqtyAj9RVw",
     FRESHSALES_BASE_URL: "https://railflow.myfreshworks.com",
@@ -49,7 +49,7 @@ const nextConfig = {
     SALESPANEL_API_KEY: "4cab75dab8852f0fe87cbc4e6821fe352e660650",
     SALESPANEL_BASE_URL: "https://salespanel.io",
     LOG_RESPONSE: true,
-    STRIPE_SECRET_KEY:
+    STRIPE_SECRET_TEST_KEY:
       "sk_test_51JSOmHDhvP6DurKSDkjAvTFevDpMxKU2lEUe1IeM3NFACU4d60Ri0dOv7SwaPOEpfqsxeBUOUZmo5veR06ImbCoo00glQVFsmB",
     STRIPE_SECRET_LIVE_KEY:
       "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",
