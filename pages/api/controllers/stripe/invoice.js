@@ -5,7 +5,7 @@ import absoluteUrl from "next-absolute-url";
 import contactService from "../../services/contact";
 import { sendDataToMixpanel } from "../../services/mixpanel";
 import slackService from "../../services/slack";
-
+ 
 const Stripe = new stripe(process.env.STRIPE_SECRET_LIVE_KEY);
 
 async function createInvoice(req, res, next) {
@@ -19,22 +19,35 @@ async function createInvoice(req, res, next) {
       contact_cf_company: contact.custom_field.cf_company,
       contact_email: contact.email,
     };
-
-    const apiBaseUrl = absoluteUrl(req).origin;
-    const priceResult = await axios.get(
-      `${apiBaseUrl}/api/routes/pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
-    );
-
-    const priceObject = await Stripe.prices.create({
-      unit_amount: priceResult.data.pricing.final_price * 100,
-      currency: "usd",
-      product: process.env.STRIPE_LIVE_PRODUCT,
-    });
     
-    const paymentLink = await Stripe.paymentLinks.create({
-      line_items: [{ price: priceObject.id, quantity: 1 }],
-    });
+    let paymentLink;
+    let priceValue;
+    if(!req.body.support){
 
+      let apiBaseUrl = absoluteUrl(req).origin;
+      let priceResult = await axios.get(
+        `${apiBaseUrl}/api/routes/pricing?license_years=${req.body.license_years}&license_type=${req.body.license_type}&num_users=${req.body.num_users}`
+      );
+  
+      priceValue = priceResult.data.pricing.final_price;
+
+      let priceObject = await Stripe.prices.create({
+        unit_amount: priceValue * 100,
+        currency: "usd",
+        product: process.env.STRIPE_LIVE_LICENSE_PRODUCT,
+      });
+
+      paymentLink = await Stripe.paymentLinks.create({
+        line_items: [{ price: priceObject.id, quantity: 1 }],
+      });  
+    } 
+    else {
+      priceValue = 500 * Number(req.body.license_years);
+      paymentLink = await Stripe.paymentLinks.create({
+        line_items: [{ price: process.env.STRIPE_LIVE_SUPPORT_PRICE, quantity: Number(req.body.license_years) }],
+      }); 
+    }    
+    
     const eventData = {
       Name: contact.first_name + " " + contact.last_name,
       Email: contact.email,
@@ -46,7 +59,7 @@ async function createInvoice(req, res, next) {
     await sendDataToMixpanel("Buy Event", eventData);
 
     const sendData = {
-      price: priceResult.data.pricing.final_price,
+      price: priceValue,
       payment_link: paymentLink.url,
       payment_id: paymentLink.id,
       company: reqData.contact_cf_company,
@@ -56,8 +69,7 @@ async function createInvoice(req, res, next) {
     
     if(process.env.SLACK_MESSAGE_ENABLED) await slackService.sendMessage(sendData);
     
-    res.send(sendData);
-    
+    res.send(sendData);    
   } catch (err) {
     res.status(500).send(err)
   }

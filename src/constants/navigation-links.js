@@ -52,8 +52,7 @@ const navigationLinks = [
       {
         id: 'resources_support',
         label: 'Customer Support',
-        to: 'https://railflow.io/contact',
-        isExternal: true,
+        to: '/contact',
       },
     ],
   },
@@ -71,8 +70,7 @@ const navigationLinks = [
       {
         id: 'about_contact',
         label: 'Contact Us',
-        to: 'https://railflow.io/contact',
-        isExternal: true,
+        to: '/contact',
       },
       { id: 'about_company', label: 'Company', to: '/about/company' },
       { id: 'about_careers', label: 'Careers', to: '/about/careers' },

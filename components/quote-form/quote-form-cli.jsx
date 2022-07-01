@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import classnames from "classnames/bind";
 import { useRouter } from "next/router";
@@ -9,30 +9,22 @@ import {
   requestSignUp,
   requestAccount,
   requestStripe,
-  requestPricing,
 } from "../../api";
 
 import { TextField, PhoneField, SelectField } from "../form";
 import Button from "../button";
-import { initialFieldData, basePricingPlans } from "./constants";
+import SecureButton from "../button/securebutton";
+import { initialFieldData } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
 import { styled } from "@mui/material/styles";
 import {
-  Checkbox,
   FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
   Step,
   StepLabel,
   Stepper,
   Select,
   MenuItem,
 } from "@mui/material";
-import { ProfileOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-
-import PricingUserSelect from "../pricing-sections/pricing-user-select";
-
 import * as styles from "./quote-form.module.scss";
 
 const cx = classnames.bind(styles);
@@ -70,90 +62,38 @@ const MuiStep = styled(Step)(({ theme }) => ({
   },
 }));
 
-const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
+const QuoteFrom = () => {
   const [fieldData, setFieldData] = useState(initialFieldData);
   const [contactResponse, setContactResponse] = useState({});
   const [_accountResponse, setAccountResponse] = useState({});
   const [hiveageResponse, setHiveageResponse] = useState({});
 
-  const [_emailsTo, _setEmailsTo] = useState([]);
-  const [activeStep, setActiveStep] = React.useState(0);
-  const stepLabels = ["About You", "Company Info", "Select License Type"];
+  const [selectedPlan, setSelectedPlan] = useState(0);
+  const plans = [
+    {
+      id: 1, text: "1 Year"
+    },
+    {
+      id: 2, text: "2 Years"
+    },
+    {
+      id: 3, text: "3 Years"
+    },
+    {
+      id: 4, text: "4 Years"
+    },
+    {
+      id: 5, text: "5 Years"
+    },
+  ]
 
+  const [activeStep, setActiveStep] = React.useState(0);
+  const stepLabels = ["About You", "Company Info", "Summary"];
+
+  const buytype = "buy";
   const router = useRouter();
 
-  React.useEffect(() => {
-    if (!priceIndex || !licenseType) {
-      router.push("/pricing");
-    }
-    isNaN(Number(priceIndex))
-      ? setUserIndex(2)
-      : setUserIndex(Number(priceIndex));
-  }, []);
-
-  const [userIndex, setUserIndex] = useState(priceIndex);
-
-  const [years, setYears] = React.useState("1");
-
-  const [pricingPlans, setPricingPlans] = useState(basePricingPlans);
-  const [selectedPlan, setSelectedPlan] = useState({
-    id: 0 || licenseType,
-  });
-  const [userTiers, setUserTiers] = useState([]);
-  const [pricingResponse, setPricingResponse] = useState({
-    base: 0,
-    base_price: 0,
-    total_price: 0,
-    discount_amt: 0,
-    final_price: 0,
-  });
-
-  useEffect(() => {
-    const updatePricingSettings = async () => {
-      const response = await requestPricing();
-      const newPricingPlans = pricingPlans.map((plan) => {
-        return {
-          ...plan,
-          payment: {
-            ...plan.payment,
-            basePrice: response.data?.pricing?.[plan.id]?.base,
-          },
-        };
-      });
-      setUserTiers(response.data.users.tiers);
-      setPricingPlans(newPricingPlans);
-
-      const initialSelectedPlan = newPricingPlans.find(
-        (plan) => plan.id === licenseType
-      );
-
-      setSelectedPlan(initialSelectedPlan);
-    };
-
-    updatePricingSettings();
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = {
-        num_users: userIndex,
-        license_years: years,
-        license_type: selectedPlan.id,
-      };
-      const response = await requestPricing(data);
-
-      setPricingResponse(response.data.pricing);      
-    }
-    fetchData();
-  }, [userIndex, years, selectedPlan.id, activeStep]);
-
-  const handleYearChannge = (event) => {
-    if (event.target.value === years) {
-      setYears("1");
-    } else {
-      setYears(event.target.value);
-    }
-  };
+  const basePrice = 500;
 
   const [isRequestPending, setIsRequestPending] = useState(false);
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
@@ -164,20 +104,6 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
   const handleVerifyRecaptcha = useCallback((value) => {
     setIsRecaptchaVerified(value);
   }, []);
-
-  const sendGTMEvent = (type) => {
-    const shortLicenseType = selectedPlan.id.slice(0, 3);
-    window.dataLayer = window.dataLayer || [];
-    if (type) {
-      window.dataLayer.push({
-        event: `${shortLicenseType}_quote_step_${activeStep + 1}_${type}`,
-      });
-    } else {
-      window.dataLayer.push({
-        event: `${shortLicenseType}_quote_step_${activeStep + 1}_OK`,
-      });
-    }
-  };
 
   const handleChangeField = useCallback((name, value) => {
     setFieldData((currentFieldData) => ({
@@ -244,14 +170,11 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         setIsRequestPending(true);
 
         const result = await requestSignUp(requestBody);
-
-        sendGTMEvent();
         setContactResponse(result.data);
         setIsResponseSuccessful(true);
         setActiveStep(1);
       } catch (error) {
         if (error.response.status === 409) {
-          sendGTMEvent();
           setContactResponse(error.response.data);
           setIsResponseSuccessful(true);
           setActiveStep(1);
@@ -279,6 +202,10 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
     [fieldData, isCustomerFieldDataValid, isRecaptchaVerified]
   );
 
+  const handleLicenseTypeChange = (e) => {
+    setSelectedPlan(plans.filter(plan => plan.text === e.target.value)[0].id - 1);
+  }
+
   const handleCompanySubmit = useCallback(
     async (event) => {
       event.preventDefault();
@@ -288,6 +215,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
       }
       
       const requestData = getRequestData(fieldData);
+
       const requestBody = {
         account_id: contactResponse.data.account_id,
         company_name: requestData.companyName,
@@ -297,15 +225,14 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         zipcode: requestData.companyZipCode,
         country: requestData.companyCountry,
         email: contactResponse.data.email,
-        // stripe_id: contactResponse.data.stripe_account,
       };
+
       try {
         setIsRequestPending(true);
 
         // TODO implemented company sign up step
         const result = await requestAccount(requestBody);
 
-        sendGTMEvent();
         setAccountResponse(result.data);
         setIsResponseSuccessful(true);
         setActiveStep(2);
@@ -323,16 +250,14 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
   const handleSummarySubmit = useCallback(
     async (event) => {
       event.preventDefault();
-
+      
       const requestBody = {
-        account_id: contactResponse.data.account_id,
-        contact_id: contactResponse.data.contact_id,
-        // stripe_id: contactResponse.data.stripe_account,
-        num_users: userIndex,
-        license_type: selectedPlan.id,
-        license_years: years,
         pay_method: buytype,
         email: contactResponse.data.email,
+        support: true,
+        license_years: selectedPlan + 1,
+        license_type: "enterprise",
+        num_users: 0
       };
 
       try {
@@ -346,7 +271,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           setIsResponseSuccessful(null);
           window.open(hiveageResult.data.payment_link);
         } else {
-          sendGTMEvent();
+
           setHiveageResponse(hiveageResult.data);
           setIsResponseSuccessful(true);
           setActiveStep(3);
@@ -362,7 +287,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         setIsResponseSuccessful(null);
       }
     },
-    [fieldData, contactResponse, years, userIndex]
+    [fieldData, contactResponse, selectedPlan]
   );
 
   const renderCustomerFields = () => {
@@ -533,147 +458,55 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
     );
   };
 
-  const handleLicenseTypeChange = (e) => {
-    const planId = e.target.value;
-    const newSelectedPlan = pricingPlans.find((plan) => plan.title === planId);
-    setSelectedPlan(newSelectedPlan);
-  };
-
   const renderSummaryPage = () => {
     const renderYearsText = () => (
       <span>
-        {years} Year{years > 1 && "s"}
+        {plans[selectedPlan].text}
       </span>
     );
-
-    const isPerpetual = years === "0";
-    const selectablePlans = pricingPlans.filter((plan) => plan.showBuyNow);
+    const renderPrice = () => {
+      let totalPrice = (basePrice * (selectedPlan + 1)).toString()
+      if(totalPrice.length > 3) {
+        totalPrice = totalPrice.charAt(0)+","+totalPrice.substring(1,4)
+      }
+      return <span>{totalPrice}</span>
+    }
     
     return (
-      <div className={cx("quoteForm_summary")}>
-
-
-        <div className={cx("quoteForm_summaryRow")}>
-          <span className={cx("quoteForm_summaryRow_title")}>License Type</span>
-          <FormControl style={{ minWidth: 180, marginRight: "26px" }}>
-            <Select
-              value={selectedPlan.title}
-              defaultValue={selectedPlan.title}
-              onChange={handleLicenseTypeChange}
-              className={cx("quoteForm_select_title")}
-            >
-              {selectablePlans.map((plan) => (
-                <MenuItem key={plan.id} value={plan.title}>
-                  {plan.title}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
-        <div className={cx("quoteForm_summaryRow")}>
-          <PricingUserSelect
-            userIndex={userIndex}
-            userTiers={userTiers}
-            setUserIndex={setUserIndex}
-            small
-          />
-        </div>
-        
-        <div className={cx("quoteForm_summaryRow", "quoteForm_summaryRow_discountGroup")}>
-          <FormControl component="fieldset">
-            <FormLabel>
-              <span className={cx("quoteForm_summaryRow_title")}>
-                Multi-Year Discount (Optional)
-              </span>
-            </FormLabel>
-            <FormGroup className={cx("quoteForm_summaryRow_discountOptions")}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={years === "2"}
-                    onChange={handleYearChannge}
-                    name="2"
-                  />
-                }
-                label="2 Year License - 10% Discount"
-                value={"2"}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={years === "3"}
-                    onChange={handleYearChannge}
-                    name="3"
-                  />
-                }
-                label="3 Year License - 20% Discount"
-                value={"3"}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={years === "0"}
-                    onChange={handleYearChannge}
-                    name="0"
-                  />
-                }
-                label="Perpetual License (never expiring)"
-                value={"0"}
-              />
-            </FormGroup>
-          </FormControl>
-        </div>
-         
+      <div className={cx("quoteForm_summary")}> 
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
-            License Price{" "}
-            {!isPerpetual && (
-              <span>
-                (${pricingResponse.base_price} x {renderYearsText()})
-              </span>
-            )}
+            Annual Enterprise Support
           </span>
-
           <span
             className={cx(
               "quoteForm_summaryRow_value",
               "quoteForm_summaryRow_basePrice"
             )}
           >
-            {!isPerpetual ? (
-              <span>
-                {pricingResponse.total_price.toLocaleString()}{" "}
-                {selectedPlan.payment.currency}
-              </span>
-            ) : (
-              <span>N/A</span>
-            )}
+            {basePrice.toLocaleString()}{" USD"}
           </span>
         </div>
         <div className={cx("quoteForm_summaryRow")}>
-          <span className={cx("quoteForm_summaryRow_title")}>
-            Multi-Year Discount
-          </span>
-          <span
-            className={cx(
-              "quoteForm_summaryRow_value",
-              "quoteForm_summaryRow_discountPrice"
-            )}
-          >
-            {!isPerpetual ? (
-              <span>
-                - {pricingResponse.discount_amt?.toLocaleString() || 0}{" "}
-                {selectedPlan.payment.currency}
-              </span>
-            ) : (
-              <span>N/A</span>
-            )}
-          </span>
+          <span className={cx("quoteForm_summaryRow_title")}>Number of Years</span>
+          <FormControl style={{ minWidth: 180}}>
+            <Select
+              value={plans[selectedPlan].text}
+              defaultValue={plans[selectedPlan].text}
+              onChange={handleLicenseTypeChange}
+              className={cx("quoteForm_select_title")}
+            >
+              {plans.map((plan) => (
+                <MenuItem key={plan.id} value={plan.text}>
+                  {plan.text}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
-            Total Price {!isPerpetual && <span>for {renderYearsText()}</span>}
+            Total Price <span>for {renderYearsText()}</span>
           </span>
           <span
             className={cx(
@@ -681,8 +514,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
               "quoteForm_summaryRow_totalPrice"
             )}
           >
-            {pricingResponse.final_price.toLocaleString()}{" "}
-            {selectedPlan.payment.currency}
+            {renderPrice()}{" USD"}            
           </span>
         </div>
         <section className={cx("quoteForm_buttonContainer")}>
@@ -693,76 +525,14 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           >
             Back
           </Button>
-          <Button
+          <SecureButton
             type="submit"
             className={cx("quoteForm_submit")}
             onClick={handleSummarySubmit}
           >
-            {buytype === "buy" ? "Secure Payment" : "Generate Quote"}
-          </Button>
+            Secure Payment
+          </SecureButton>
         </section>
-      </div>
-    );
-  };
-
-  const handleBuyNow = (event) => {
-    event.preventDefault();
-  };
-
-  const renderDownloadStep = () => {
-    return (
-      <div>
-        <p className={cx("quoteForm_text")}>
-          Thanks for your interest in Railflow. We have generated a{" "}
-          <a
-            className={cx("quoteForm_link")}
-            href={hiveageResponse?.link}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            secure quote
-          </a>{" "}
-          for your review. You can view and download a copy in PDF. The quote is
-          valid for 30 days.
-          {/* <a
-            className={cx("quoteForm_link")}
-            href={hiveageResponse?.payment_link}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            secure instant buy
-          </a>{" "}
-          links. These links have also been emailed to you. */}
-        </p>
-        <div className={cx("quoteForm_submitButtons")}>
-          {/* <a
-            href={hiveageResponse?.link}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={cx("quoteForm_submitLink")}
-          > */}
-            <Button
-              to={hiveageResponse?.link}
-              className={cx("quoteForm_submit", "quoteForm_viewQuote")}
-              onClick={() => sendGTMEvent("quote")}
-              inverse
-            >
-              <ProfileOutlined />
-              View Quote
-            </Button>
-          {/* </a> */}
-          {/* <a
-            href={hiveageResponse?.payment_link}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={cx("quoteForm_submitLink")}
-          >
-            <Button className={cx("quoteForm_submit", "quoteForm_viewQuote")}>
-              <ShoppingCartOutlined />
-              Buy now
-            </Button>
-          </a> */}
-        </div>
       </div>
     );
   };
@@ -771,7 +541,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
     // TODO: replace with common form component
     <div className={cx("quoteForm")}>
       <h2 className={cx("quoteForm_title")}>
-        {buytype === "buy" ? "Railflow - Buy Now" : "Railflow - Instant Quote"}
+        Railflow CLI - Enterprise Support
       </h2>
 
       <MuiStepper
@@ -817,13 +587,11 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         )}
 
         {!isRequestPending &&
-          isResponseSuccessful === null &&
-          selectedPlan?.payment && (
+          isResponseSuccessful === null && (
             <>
               {activeStep === 0 && renderCustomerFields()}
               {activeStep === 1 && renderCompanyFields()}
               {activeStep === 2 && renderSummaryPage()}
-              {activeStep === 3 && renderDownloadStep()}
             </>
           )}
       </div>

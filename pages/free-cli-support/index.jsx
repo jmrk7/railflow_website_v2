@@ -4,31 +4,24 @@ import classnames from "classnames/bind";
 import FormContainer from "../../components/form-container";
 
 import Layout from "../../components/Layout";
-import QuoteFrom from "../../components/quote-form";
-import QuoteHero from "../../components/quote-hero";
+import QuoteFrom from "../../components/quote-form/quote-form-cli";
+import QuoteHero from "../../components/sign-up-hero/sign-up-hero-cli";
 // import ComingSoon from '../components/coming-soon';
 import * as styles from "./purchase.module.scss";
 
 const cx = classnames.bind(styles);
 const GetQuotePage = (props) => {
-  const priceIndex = props["price-index"] || "1";
-  const licenseType = props["license-type"] || "professional";
-  const buytype = props["type"] || "buy";
 
   return (
     <Layout isHeaderPresent={false} isFooterPresent={false}>
       <div className={cx("purchaseWrapper")}>
         <QuoteHero />
         <FormContainer>
-          <QuoteFrom priceIndex={priceIndex * 2 - 1} licenseType={licenseType} buytype={buytype}/>
+          <QuoteFrom/>
         </FormContainer>
       </div>
     </Layout>
   );
-};
-
-GetQuotePage.getInitialProps = async ({ query }) => {
-  return query;
 };
 
 export default GetQuotePage;

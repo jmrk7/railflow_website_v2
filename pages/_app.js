@@ -37,6 +37,7 @@ export default function MyApp(props) {
           padding: 20,
           lineHeight: 1.8,
           margin: 8,
+          justifyContent: "end"
         }}
         buttonStyle={{
           color: "white",
