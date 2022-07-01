@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import classnames from "classnames/bind";
 import { useRouter } from "next/router";
@@ -9,30 +9,21 @@ import {
   requestSignUp,
   requestAccount,
   requestStripe,
-  requestPricing,
 } from "../../api";
 
 import { TextField, PhoneField, SelectField } from "../form";
 import Button from "../button";
-import { initialFieldData, basePricingPlans } from "./constants";
+import { initialFieldData } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
 import { styled } from "@mui/material/styles";
 import {
-  Checkbox,
   FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
   Step,
   StepLabel,
   Stepper,
   Select,
   MenuItem,
 } from "@mui/material";
-import { ProfileOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-
-import PricingUserSelect from "../pricing-sections/pricing-user-select";
-
 import * as styles from "./quote-form.module.scss";
 
 const cx = classnames.bind(styles);
@@ -75,6 +66,25 @@ const QuoteFrom = () => {
   const [contactResponse, setContactResponse] = useState({});
   const [_accountResponse, setAccountResponse] = useState({});
   const [hiveageResponse, setHiveageResponse] = useState({});
+
+  const [selectedPlan, setSelectedPlan] = useState(0);
+  const plans = [
+    {
+      id: 1, text: "1 Year"
+    },
+    {
+      id: 2, text: "2 Years"
+    },
+    {
+      id: 3, text: "3 Years"
+    },
+    {
+      id: 4, text: "4 Years"
+    },
+    {
+      id: 5, text: "5 Years"
+    },
+  ]
 
   const [activeStep, setActiveStep] = React.useState(0);
   const stepLabels = ["About You", "Company Info", "Select License Type"];
@@ -191,6 +201,10 @@ const QuoteFrom = () => {
     [fieldData, isCustomerFieldDataValid, isRecaptchaVerified]
   );
 
+  const handleLicenseTypeChange = (e) => {
+    setSelectedPlan(plans.filter(plan => plan.text === e.target.value)[0].id - 1);
+  }
+
   const handleCompanySubmit = useCallback(
     async (event) => {
       event.preventDefault();
@@ -240,7 +254,7 @@ const QuoteFrom = () => {
         pay_method: buytype,
         email: contactResponse.data.email,
         support: true,
-        license_years: 1,
+        license_years: selectedPlan + 1,
         license_type: "enterprise",
         num_users: 0
       };
@@ -272,7 +286,7 @@ const QuoteFrom = () => {
         setIsResponseSuccessful(null);
       }
     },
-    [fieldData, contactResponse]
+    [fieldData, contactResponse, selectedPlan]
   );
 
   const renderCustomerFields = () => {
@@ -446,7 +460,7 @@ const QuoteFrom = () => {
   const renderSummaryPage = () => {
     const renderYearsText = () => (
       <span>
-        1 Year
+        {plans[selectedPlan].text}
       </span>
     );
     
@@ -454,24 +468,39 @@ const QuoteFrom = () => {
       <div className={cx("quoteForm_summary")}> 
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
-            License Price{" "}
-            <span>
-              (${basePrice} x {renderYearsText()})
-            </span>
+            Annual Enterprise Support
+          </span>
+        </div>
+        <div className={cx("quoteForm_summaryRow")}>
+          <span className={cx("quoteForm_summaryRow_title")}>Number of Years</span>
+          <FormControl style={{ minWidth: 180}}>
+            <Select
+              value={plans[selectedPlan].text}
+              defaultValue={plans[selectedPlan].text}
+              onChange={handleLicenseTypeChange}
+              className={cx("quoteForm_select_title")}
+            >
+              {plans.map((plan) => (
+                <MenuItem key={plan.id} value={plan.text}>
+                  {plan.text}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className={cx("quoteForm_summaryRow")}>
+          <span className={cx("quoteForm_summaryRow_title")}>
+            Total Price <span>for {renderYearsText()}</span>
           </span>
           <span
             className={cx(
               "quoteForm_summaryRow_value",
-              "quoteForm_summaryRow_basePrice"
+              "quoteForm_summaryRow_totalPrice"
             )}
           >
-            <span>
-              {basePrice}{" "}
-              {"USD"}
-            </span>
+            {basePrice*(selectedPlan+1)}{" USD"}            
           </span>
         </div>
-        
         <section className={cx("quoteForm_buttonContainer")}>
           <Button
             onClick={() => setActiveStep(1)}

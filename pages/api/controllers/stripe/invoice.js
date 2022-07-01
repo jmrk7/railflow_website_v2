@@ -42,9 +42,9 @@ async function createInvoice(req, res, next) {
       });  
     } 
     else {
-      priceValue = 500;
+      priceValue = 500 * Number(req.body.license_years);
       paymentLink = await Stripe.paymentLinks.create({
-        line_items: [{ price: process.env.STRIPE_TEST_SUPPORT_PRICE, quantity: 1 }],
+        line_items: [{ price: process.env.STRIPE_TEST_SUPPORT_PRICE, quantity: Number(req.body.license_years) }],
       }); 
     }    
     
