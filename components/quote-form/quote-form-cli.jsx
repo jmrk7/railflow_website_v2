@@ -13,6 +13,7 @@ import {
 
 import { TextField, PhoneField, SelectField } from "../form";
 import Button from "../button";
+import SecureButton from "../button/securebutton";
 import { initialFieldData } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
 import { styled } from "@mui/material/styles";
@@ -87,7 +88,7 @@ const QuoteFrom = () => {
   ]
 
   const [activeStep, setActiveStep] = React.useState(0);
-  const stepLabels = ["About You", "Company Info", "Select License Type"];
+  const stepLabels = ["About You", "Company Info", "Summary"];
 
   const buytype = "buy";
   const router = useRouter();
@@ -463,12 +464,27 @@ const QuoteFrom = () => {
         {plans[selectedPlan].text}
       </span>
     );
+    const renderPrice = () => {
+      let totalPrice = (basePrice * (selectedPlan + 1)).toString()
+      if(totalPrice.length > 3) {
+        totalPrice = totalPrice.charAt(0)+","+totalPrice.substring(1,4)
+      }
+      return <span>{totalPrice}</span>
+    }
     
     return (
       <div className={cx("quoteForm_summary")}> 
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
             Annual Enterprise Support
+          </span>
+          <span
+            className={cx(
+              "quoteForm_summaryRow_value",
+              "quoteForm_summaryRow_basePrice"
+            )}
+          >
+            {basePrice.toLocaleString()}{" USD"}
           </span>
         </div>
         <div className={cx("quoteForm_summaryRow")}>
@@ -498,7 +514,7 @@ const QuoteFrom = () => {
               "quoteForm_summaryRow_totalPrice"
             )}
           >
-            {basePrice*(selectedPlan+1)}{" USD"}            
+            {renderPrice()}{" USD"}            
           </span>
         </div>
         <section className={cx("quoteForm_buttonContainer")}>
@@ -509,13 +525,13 @@ const QuoteFrom = () => {
           >
             Back
           </Button>
-          <Button
+          <SecureButton
             type="submit"
             className={cx("quoteForm_submit")}
             onClick={handleSummarySubmit}
           >
             Secure Payment
-          </Button>
+          </SecureButton>
         </section>
       </div>
     );
