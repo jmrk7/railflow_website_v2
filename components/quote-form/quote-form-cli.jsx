@@ -473,20 +473,7 @@ const QuoteFrom = () => {
     }
     
     return (
-      <div className={cx("quoteForm_summary")}> 
-        <div className={cx("quoteForm_summaryRow")}>
-          <span className={cx("quoteForm_summaryRow_title")}>
-            Annual Enterprise Support
-          </span>
-          <span
-            className={cx(
-              "quoteForm_summaryRow_value",
-              "quoteForm_summaryRow_basePrice"
-            )}
-          >
-            {basePrice.toLocaleString()}{" USD"}
-          </span>
-        </div>
+      <div className={cx("quoteForm_summary")}>         
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>Number of Years</span>
           <FormControl style={{ minWidth: 180}}>
@@ -503,6 +490,19 @@ const QuoteFrom = () => {
               ))}
             </Select>
           </FormControl>
+        </div>
+        <div className={cx("quoteForm_summaryRow")}>
+          <span className={cx("quoteForm_summaryRow_title")}>
+            Enterprise Support Price
+          </span>
+          <span
+            className={cx(
+              "quoteForm_summaryRow_value",
+              "quoteForm_summaryRow_basePrice"
+            )}
+          >
+            {basePrice.toLocaleString()}{" USD"}
+          </span>
         </div>
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>
