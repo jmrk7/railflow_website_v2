@@ -14,6 +14,7 @@ import {
 
 import { TextField, PhoneField, SelectField } from "../form";
 import Button from "../button";
+import SecureButton from "../button/securebutton";
 import { initialFieldData, basePricingPlans } from "./constants";
 import { validateField, formatFieldValue, getRequestData } from "./utils";
 import { styled } from "@mui/material/styles";
@@ -693,13 +694,25 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           >
             Back
           </Button>
-          <Button
-            type="submit"
-            className={cx("quoteForm_submit")}
-            onClick={handleSummarySubmit}
-          >
-            {buytype === "buy" ? "Secure Payment" : "Generate Quote"}
-          </Button>
+          {
+            buytype === "buy" 
+            ?
+            <SecureButton
+              type="submit"
+              className={cx("quoteForm_submit")}
+              onClick={handleSummarySubmit}
+            >
+              Secure Payment
+              </SecureButton>
+            : 
+            <Button
+              type="submit"
+              className={cx("quoteForm_submit")}
+              onClick={handleSummarySubmit}
+            >
+              Generate Quote
+            </Button>
+          }
         </section>
       </div>
     );
