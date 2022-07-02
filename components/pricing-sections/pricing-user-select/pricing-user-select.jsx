@@ -106,7 +106,7 @@ const PricingUserSelect = ({ userIndex, userTiers, setUserIndex, small }) => {
               pricingUserSelect_buttonActive: userIndex !== 0,
             })}
             onClick={() => handleUserSelectClick("minus")}
-            disabled={userIndex === 0}
+            disabled={userIndex === 1}
           >
             <RemoveCircleOutlinedIcon />
           </IconButton>
