@@ -27,7 +27,7 @@ const Button = (props) => {
     <Link href={to} passHref>
       <a className={cx("linkButton")}>{buttonComponent}</a>
     </Link>
-  ) : (
+  ) : ( 
     buttonComponent
   );
 };
