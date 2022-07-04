@@ -170,6 +170,7 @@
        });
      }
      const quote = await quoteService.create(data);
+
      if (quote.error != null) {
        return res.status(400).send({
          status: 400,
@@ -190,7 +191,7 @@
      );
  
      await slackService.sendSlackMessage(
-       `Railflow Quote: <https://railflow.myfreshworks.com/crm/sales/accounts/${account.id}|${account.name}> <https://railflow.hiveage.com/estm/${quote.estimate.hash_key}|Quote> :slightly_smiling_face:`
+       `Railflow Quote: $${Math.floor(quote.estimate.billed_total)} <https://railflow.myfreshworks.com/crm/sales/accounts/${account.id}|${account.name}>, <https://railflow.hiveage.com/estm/${quote.estimate.hash_key}|Hiveage Quote> :slightly_smiling_face:`
      );
      const taskData1 = {
        owner_id: 16000006416,
