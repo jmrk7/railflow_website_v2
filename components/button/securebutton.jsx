@@ -20,7 +20,8 @@ const Button = (props) => {
           [className]: true,
         })}
       >
-        <img src="/images/lock.png" alt="lock" height={20} width={20} style={{margin: "0px 8px"}}></img>{children}
+        {children}
+        <img src="/images/lock.png" alt="lock" height={20} width={20} style={{margin: "0px 0px 0px 8px"}}></img>
       </button>
     ),
     [onClick, type, isDisabled, inverse, className, children]
