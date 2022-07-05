@@ -73,124 +73,13 @@ async function create(data) {
         unit: "Year",
       });
     }
-    const estimateData = {
-      estimate: {
-        connection_id: data.network.id,
-        expire_date: "2022 -10-01",
-        date: new Date(),
-        summary: `Railflow ${capitalize(data.license_type)} Quote: ${license_term} License: ${
-          10 * price_option
-        }-${10 * (price_option + 1)} Users`,
-        send_reminders: false,
-
-        items_attributes: items_attributes,
-      },
-    };
-
-    const apiClient = await getApiClient(process.env.HIVEAGE_BASE_URL);
-    const response = await apiClient.request({
-      method: "POST",
-      url: "/api/estm",
-      headers: {
-        // TODO: use environment variable
-        "Content-Type": "application/json",
-      },
-      data: estimateData,
-      auth: {
-        username: process.env.HIVEAGE_API_KEY,
-        password: "",
-      },
-    });
-
-    logger.info(`Estimate created successfully for connection_id: ${data.network.id}`);
-
-    if (data.hiveage_contact_email == false) {
-      const deliver_response = await apiClient.request({
-        method: "POST",
-        url: `/api/estm/${response.data.estimate.hash_key}/deliver`,
-        headers: {
-          // TODO: use environment variable
-          "Content-Type": "application/json",
-        },
-        auth: {
-          username: process.env.HIVEAGE_API_KEY,
-          password: "",
-        },
-      });
-      logger.info(
-        `Estimate sent - default settings, for /api/estm/${response.data.estimate.hash_key}/deliver `
-      );
-    } else {
-      const deliverEmailSubject = `Estimate ${
-        response.data.estimate.statement_no
-      } Railflow ${capitalize(data.license_type)} ${license_term} License Quote ${
-        10 * price_option
-      } - ${10 * (price_option + 1)} Users`;
-      const deliverEmailContent = `\nHi ${data.user.display_name},
-            \nA new estimate has been generated for you by Railflow Customer Support Team. Here's a quick summary:
-            \nEstimate details: ${response.data.estimate.statement_no} - Railflow ${capitalize(
-        data.license_type
-      )} Quote: ${license_term} License: ${10 * price_option} - ${10 * (price_option + 1)} Users
-            \nEstimate total: USD ${parseFloat(response.data.estimate.billed_total).toLocaleString(
-              "en-US",
-              2
-            )}
-            \n\nYou can view or download a PDF by going to: http://billing.railflow.io/estm/${
-              response.data.estimate.hash_key
-            }
-            \n\nBest regards,
-            \nRailflow Customer Support Team.`;
-      const deliver_response = await apiClient.request({
-        method: "POST",
-        url: `/api/estm/${response.data.estimate.hash_key}/deliver`,
-        headers: {
-          // TODO: use environment variable
-          "Content-Type": "application/json",
-        },
-        auth: {
-          username: process.env.HIVEAGE_API_KEY,
-          password: "",
-        },
-        data: {
-          delivery: {
-            recipients: data.hiveage_contact_email,
-            blind_copies: data.hiveage_notification_emails,
-            subject: deliverEmailSubject,
-            message: deliverEmailContent,
-            attachment: true,
-          },
-        },
-      });
-      logger.info(`/api/estm/${response.data.estimate.hash_key}/deliver`);
-    }
-
-    const sent_response = await apiClient.request({
-      method: "PUT",
-      url: `/api/estm/${response.data.estimate.hash_key}`,
-      headers: {
-        // TODO: use environment variable
-        "Content-Type": "application/json",
-      },
-      data: {
-        estimate: {
-          state: "sent",
-        },
-      },
-      auth: {
-        username: process.env.HIVEAGE_API_KEY,
-        password: "",
-      },
-    });
-    logger.info(
-      `> estimate status updated to sent , url : /api/estm/${response.data.estimate.hash_key}`
-    );
 
     const fsOpportunityData = {
       deal: {
         name: `${data.account.name}: ${capitalize(data.license_type)}: ${license_term} License: ${
           10 * price_option
         }-${10 * (price_option + 1)} Users`,
-        amount: response.data.estimate.billed_total, // created quote amount
+        amount: data.estimate.billed_total, // created quote amount
         sales_account_id: data.account.id,
         expected_close: addDays(new Date(), 30),
         deal_stage_id: 16000263413,
@@ -228,10 +117,10 @@ async function create(data) {
         },
       });
     }
-    response.data.fsOpportunity = fsOpportunity;
-    return response.data;
+    data.fsOpportunity = fsOpportunity;
+    return data;
   } catch (error) {
-    logger.error(`error:quote:service,`, error);
+    logger.error(`error:Invoice:service,`, error);
     throw new ApiError(`Error while creating estimate`);
   }
 }
