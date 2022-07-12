@@ -72,7 +72,7 @@ async function create(request, res, next) {
     }
     const notificationData = {
       header: "(Free CLI)",
-      contactId: account.id,
+      contactId: contact.id,
       company: request.body.company,
       type: "Sign"
     };
