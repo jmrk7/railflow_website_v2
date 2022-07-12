@@ -24,7 +24,7 @@ const DownloadListItem = ({ download }) => {
   }
 
   return (
-    <div className={cx('downloadListItem')}>
+    <div className={cx('downloadListItem')} id={download.id}>
       <LayoutSectionContainer>
         <div className={cx('downloadListItem_sectionContainer')}>
           <div style={{width: "60px", marginRight: "40px", display: "flex"}}>
