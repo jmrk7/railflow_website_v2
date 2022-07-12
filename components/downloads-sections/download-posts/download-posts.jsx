@@ -16,7 +16,7 @@ import ReadyApiImage from "/public/images/readyapi.png";
 
 export const downloads = [
   {
-     id: 'jenkins',
+    id: 'jenkins',
     name: 'Jenkins plugin - 2.4',
     features: [
       {
@@ -101,7 +101,7 @@ export const downloads = [
     hashes: true,
   },
   {
-     id: 'NPM',
+    id: 'npm',
     name: 'Railflow NPM CLI - 2.1.11',
     features: [
       {
@@ -132,7 +132,7 @@ export const downloads = [
     hashes: false,
   },
   {
-   id: 'Docker',
+    id: 'docker',
     name: 'Railflow Docker Image - 2.1.11',
     features: [
       {
@@ -163,7 +163,7 @@ export const downloads = [
     hashes: false,
   },
   {
-     id: 'readyapi',
+    id: 'readyapi',
     name: 'ReadyApi plugin - 2.1',
     features: [
       {
