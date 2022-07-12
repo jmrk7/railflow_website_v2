@@ -100,13 +100,8 @@ export const downloads = [
     hashes: true,
   },
   {
-<<<<<<< HEAD
     id: 'npm',
     name: 'Railflow NPM CLI - 2.1.11',
-=======
-    id: 'NPM',
-    name: 'Railflow NPM CLI - 2.1.12',
->>>>>>> ea0bd8d55be592444a4b5f7dd74b240d8400b50e
     features: [
       {
         text: '[feature] Robot: Read test case ID from `testrail.id` tag',
@@ -136,13 +131,8 @@ export const downloads = [
     hashes: false,
   },
   {
-<<<<<<< HEAD
     id: 'docker',
     name: 'Railflow Docker Image - 2.1.11',
-=======
-    id: 'Docker',
-    name: 'Railflow Docker Image - 2.1.12',
->>>>>>> ea0bd8d55be592444a4b5f7dd74b240d8400b50e
     features: [
       {
         text: '[feature] Robot: Read test case ID from `testrail.id` tag',
