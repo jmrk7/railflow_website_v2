@@ -1,18 +1,17 @@
 import React from "react";
 import classnames from "classnames/bind";
 
-import { LayoutSectionContainer } from "../../Layout";
+import {LayoutSectionContainer} from "../../Layout";
 import DownloadListItem from "../download-list-item";
 
 import * as styles from "./download-posts.module.scss";
-
-const cx = classnames.bind(styles);
-
 import JenkinsImage from "/public/images/jenkins.png";
 import TeamCityImage from "/public/images/teamcity.png";
 import NpmImage from "/public/images/npm.png";
 import DockerImage from "/public/images/docker-2.png";
 import ReadyApiImage from "/public/images/readyapi.png";
+
+const cx = classnames.bind(styles);
 
 export const downloads = [
   {
@@ -101,29 +100,34 @@ export const downloads = [
     hashes: true,
   },
   {
+<<<<<<< HEAD
     id: 'npm',
     name: 'Railflow NPM CLI - 2.1.11',
+=======
+    id: 'NPM',
+    name: 'Railflow NPM CLI - 2.1.12',
+>>>>>>> ea0bd8d55be592444a4b5f7dd74b240d8400b50e
     features: [
       {
-        text: '[feature] Release for free license model. Support for JUnit reports',
+        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
       },
       {
-        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
+        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
       },
       {
-        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
+        text: '[bug] Cucumber: Data tables should be displayed in test steps',
       },
       {
-        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
+        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
       },
       {
-        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
+        text: '[bug] Cannot set value for custom multiselect field',
       },
       {
-        text: '[bug] Not all warning are displayed in the end of export',
+        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
       },
       {
-        text: '[bug] JUnit report: read error and failure from //error/@message element',
+        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -132,29 +136,34 @@ export const downloads = [
     hashes: false,
   },
   {
+<<<<<<< HEAD
     id: 'docker',
     name: 'Railflow Docker Image - 2.1.11',
+=======
+    id: 'Docker',
+    name: 'Railflow Docker Image - 2.1.12',
+>>>>>>> ea0bd8d55be592444a4b5f7dd74b240d8400b50e
     features: [
       {
-        text: '[feature] Release for free license model. Support for JUnit reports',
+        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
       },
       {
-        text: '[feature] Cucumber reports: Do not create separate steps for before/after hooks',
+        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
       },
       {
-        text: '[feature] Cucumber reports: Add ability to map cucumber tests into existing test cases in TestRail by providing the ID in "testrail.id" cucumber tag',
+        text: '[bug] Cucumber: Data tables should be displayed in test steps',
       },
       {
-        text: '[feature] Allure reports: Add ability to map allure tests into existing test cases in TestRail by providing the ID in "testrail.id" tag',
+        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
       },
       {
-        text: '[feature] Robot reports: Add only fail and warn messages into step\'s "Actual" field',
+        text: '[bug] Cannot set value for custom multiselect field',
       },
       {
-        text: '[bug] Not all warning are displayed in the end of export',
+        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
       },
       {
-        text: '[bug] JUnit report: read error and failure from //error/@message element',
+        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
