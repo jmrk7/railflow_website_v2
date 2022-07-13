@@ -100,8 +100,8 @@ export const downloads = [
     hashes: true,
   },
   {
-    id: 'NPM',
-    name: 'Railflow NPM CLI - 2.1.12',
+    id: 'npm',
+    name: 'Railflow NPM CLI - 2.1.11',
     features: [
       {
         text: '[feature] Robot: Read test case ID from `testrail.id` tag',
@@ -131,8 +131,8 @@ export const downloads = [
     hashes: false,
   },
   {
-    id: 'Docker',
-    name: 'Railflow Docker Image - 2.1.12',
+    id: 'docker',
+    name: 'Railflow Docker Image - 2.1.11',
     features: [
       {
         text: '[feature] Robot: Read test case ID from `testrail.id` tag',
@@ -162,7 +162,7 @@ export const downloads = [
     hashes: false,
   },
   {
-     id: 'readyapi',
+    id: 'readyapi',
     name: 'ReadyApi plugin - 2.1',
     features: [
       {
