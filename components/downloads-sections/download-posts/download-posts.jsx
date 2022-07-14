@@ -212,7 +212,7 @@ const DownloadPosts = () => {
               Railflow Downloads
             </h1>
 
-            <div className={cx('downloadPosts_list')}>
+            <div>
               {downloads.map((item) => (
                 <DownloadListItem key={item.id} download={item} />
               ))}
