@@ -1,10 +1,10 @@
 "use strict";
 
 import ApiError from "../errors/api";
-import { machineId } from "node-machine-id";
+import {machineId} from "node-machine-id";
 import cryptolens from "cryptolens";
 import AWS from "aws-sdk";
-import { v4 } from "uuid";
+import {v4} from "uuid";
 import axios from "axios";
 import querystring from "querystring";
 
@@ -39,6 +39,8 @@ async function uploadLicence(data) {
       productId: PRODUCT_ID,
       Key: data.key,
       machineCode: code,
+      Sign: true,
+      SignMethod: 1
     };
 
     try {
