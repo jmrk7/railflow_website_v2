@@ -101,28 +101,16 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.11',
+    name: 'Railflow NPM CLI - 2.1.13',
     features: [
       {
-        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
+        text: '[feature] Support for Robot enhanced format',
       },
       {
-        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
+        text: '[bug] Cucumber: duration of hooks should be added to the duration of the first/last step',
       },
       {
-        text: '[bug] Cucumber: Data tables should be displayed in test steps',
-      },
-      {
-        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
-      },
-      {
-        text: '[bug] Cannot set value for custom multiselect field',
-      },
-      {
-        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
-      },
-      {
-        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
+        text: '[bug] "npx railflow -v" command does not show the version',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -132,28 +120,16 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.11',
+    name: 'Railflow Docker Image - 2.1.13',
     features: [
       {
-        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
+        text: '[feature] Support for Robot enhanced format',
       },
       {
-        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
+        text: '[bug] Cucumber: duration of hooks should be added to the duration of the first/last step',
       },
       {
-        text: '[bug] Cucumber: Data tables should be displayed in test steps',
-      },
-      {
-        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
-      },
-      {
-        text: '[bug] Cannot set value for custom multiselect field',
-      },
-      {
-        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
-      },
-      {
-        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
+        text: '[bug] "npx railflow -v" command does not show the version',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
