@@ -101,16 +101,13 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.13',
+    name: 'Railflow NPM CLI - 2.1.14',
     features: [
       {
-        text: '[feature] Support for Robot enhanced format',
+        text: '[bug] "No file attached or upload size was exceeded." error happens under some conditions',
       },
       {
-        text: '[bug] Cucumber: duration of hooks should be added to the duration of the first/last step',
-      },
-      {
-        text: '[bug] "npx railflow -v" command does not show the version',
+        text: '[bug] Allure: error stack trace is not displayed in TR if error happens outside the test steps',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -120,16 +117,13 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.13',
+    name: 'Railflow Docker Image - 2.1.14',
     features: [
       {
-        text: '[feature] Support for Robot enhanced format',
+        text: '[bug] "No file attached or upload size was exceeded." error happens under some conditions',
       },
       {
-        text: '[bug] Cucumber: duration of hooks should be added to the duration of the first/last step',
-      },
-      {
-        text: '[bug] "npx railflow -v" command does not show the version',
+        text: '[bug] Allure: error stack trace is not displayed in TR if error happens outside the test steps',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
