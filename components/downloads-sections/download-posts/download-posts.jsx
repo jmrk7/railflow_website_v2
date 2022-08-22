@@ -101,13 +101,10 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.14',
+    name: 'Railflow NPM CLI - 2.1.15',
     features: [
       {
-        text: '[bug] "No file attached or upload size was exceeded." error happens under some conditions',
-      },
-      {
-        text: '[bug] Allure: error stack trace is not displayed in TR if error happens outside the test steps',
+        text: '[bug] "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -117,13 +114,10 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.14',
+    name: 'Railflow Docker Image - 2.1.15',
     features: [
       {
-        text: '[bug] "No file attached or upload size was exceeded." error happens under some conditions',
-      },
-      {
-        text: '[bug] Allure: error stack trace is not displayed in TR if error happens outside the test steps',
+        text: '[bug] "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
