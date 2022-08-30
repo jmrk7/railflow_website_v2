@@ -101,10 +101,16 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.15',
+    name: 'Railflow NPM CLI - 2.1.16',
     features: [
       {
-        text: '[bug] "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines',
+        text: '[feature] Improve parameter logging',
+      },
+      {
+        text: '[bug] "Request body larger than maxBodyLength limit" error on large attachments',
+      },
+      {
+        text: '[bug] Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -114,10 +120,16 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.15',
+    name: 'Railflow Docker Image - 2.1.16',
     features: [
       {
-        text: '[bug] "Incorrect test path. Must start with the name of Master Suite: Master" error while uploading results into baselines',
+        text: '[feature] Improve parameter logging',
+      },
+      {
+        text: '[bug] "Request body larger than maxBodyLength limit" error on large attachments',
+      },
+      {
+        text: '[bug] Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
