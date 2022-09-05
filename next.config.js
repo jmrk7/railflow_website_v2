@@ -1,10 +1,15 @@
+const { withSentryConfig } = require('@sentry/nextjs');
 const path = require("path");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   webpack(config, options) {
     config.resolve.modules.push(path.resolve("./"));
     return config;
+  },
+  sentry: {
+    hideSourceMaps: true,
   },
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
@@ -77,4 +82,13 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+
+/**
+ * Sentry webpack plugin options.
+ */
+
+const sentryWebpackPluginOptions = {
+  silent: true, // Suppresses all logs
+};
+
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);

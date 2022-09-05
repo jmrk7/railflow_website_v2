@@ -33,3 +33,6 @@ newrelic_agent.log
 
 # vercel
 .vercel
+
+# Sentry
+.sentryclirc
