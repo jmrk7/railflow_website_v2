@@ -78,6 +78,17 @@ const nextConfig = {
         destination: 'https://railflow.atlassian.net/servicedesk/customer/portal/1',
         permanent: true,
       },
+      {
+        source: '/privacy',
+        destination: 'https://docs.railflow.io/docs/legal/privacy',
+        permanent: true,
+      },
+      {
+        source: '/terms',
+        destination: 'https://docs.railflow.io/docs/legal/terms',
+        permanent: true,
+      },
+      
     ]
   },
 };
