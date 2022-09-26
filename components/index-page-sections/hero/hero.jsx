@@ -3,7 +3,7 @@ import classnames from "classnames/bind";
 
 import { LayoutSectionContainer } from "../../Layout";
 import Button from "../../button";
-
+import * as Sentry from "@sentry/nextjs";
 import * as styles from "./hero.module.scss";
 
 const cx = classnames.bind(styles);
