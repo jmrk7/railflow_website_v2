@@ -139,14 +139,11 @@ export const downloads = [
   },
   {
     id: 'readyapi',
-    name: 'ReadyApi plugin - 2.1',
+    name: 'ReadyApi plugin - 2.2',
     features: [
       {
-        text: '[feature] Add license activation screen into the installer',
-      },
-      {
-        text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it',
-      },
+        text: '[bug] Fix license activation for auto-generated trial licenses',
+      }
     ],
     downloadUrl: "",
     downloadItem: [
