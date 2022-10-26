@@ -101,16 +101,28 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.16',
+    name: 'Railflow NPM CLI - 2.1.17',
     features: [
       {
-        text: '[feature] Improve parameter logging',
+        text: '[feature] Add support for Playwright reports',
       },
       {
-        text: '[bug] "Request body larger than maxBodyLength limit" error on large attachments',
+        text: '[feature] Add a new `JUnit-Steps` report type',
       },
       {
-        text: '[bug] Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail',
+        text: '[feature] Add `--attachment-max-size` switch for limiting attachment size',
+      },
+      {
+        text: '[feature] Add `--attachment-type-whitelist` and `--attachment-type-blacklist` switches for limiting attachment types allowed to be uploaded',
+      },
+      {
+        text: '[feature] Improve logging',
+      },
+      {
+        text: '[bug] Duplicate test cases/sections are created when test report contains sections with the same name',
+      },
+      {
+        text: '[bug] Railflow ignores license file if `RAILFLOW_LICENSE` environment variable is set',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -120,16 +132,28 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.16',
+    name: 'Railflow Docker Image - 2.1.17',
     features: [
       {
-        text: '[feature] Improve parameter logging',
+        text: '[feature] Add support for Playwright reports',
       },
       {
-        text: '[bug] "Request body larger than maxBodyLength limit" error on large attachments',
+        text: '[feature] Add a new `JUnit-Steps` report type',
       },
       {
-        text: '[bug] Allure reports: When test case has steps, attachments on test case level are not uploaded into TestRail',
+        text: '[feature] Add `--attachment-max-size` switch for limiting attachment size',
+      },
+      {
+        text: '[feature] Add `--attachment-type-whitelist` and `--attachment-type-blacklist` switches for limiting attachment types allowed to be uploaded',
+      },
+      {
+        text: '[feature] Improve logging',
+      },
+      {
+        text: '[bug] Duplicate test cases/sections are created when test report contains sections with the same name',
+      },
+      {
+        text: '[bug] Railflow ignores license file if `RAILFLOW_LICENSE` environment variable is set',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
