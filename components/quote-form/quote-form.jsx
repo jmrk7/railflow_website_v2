@@ -79,7 +79,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
 
   const [_emailsTo, _setEmailsTo] = useState([]);
   const [activeStep, setActiveStep] = React.useState(0);
-  const stepLabels = ["About You", "Company Info", "Select License Type"];
+  const stepLabels = ["Select License Type", "About You", "Company Info"];
 
   const router = useRouter();
 
@@ -93,13 +93,12 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
   }, []);
 
   const [userIndex, setUserIndex] = useState(priceIndex);
-
   const [years, setYears] = React.useState("1");
-
   const [pricingPlans, setPricingPlans] = useState(basePricingPlans);
   const [selectedPlan, setSelectedPlan] = useState({
     id: 0 || licenseType,
   });
+
   const [userTiers, setUserTiers] = useState([]);
   const [pricingResponse, setPricingResponse] = useState({
     base: 0,
@@ -159,7 +158,6 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
   const [isRequestPending, setIsRequestPending] = useState(false);
   const [isResponseSuccessful, setIsResponseSuccessful] = useState(null);
   const [responseMessage, setResponseMessage] = useState(null);
-
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(process.env.RECAPTCHA_ENABLED);
 
   const handleVerifyRecaptcha = useCallback((value) => {
@@ -249,13 +247,13 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         sendGTMEvent();
         setContactResponse(result.data);
         setIsResponseSuccessful(true);
-        setActiveStep(1);
+        setActiveStep(2);
       } catch (error) {
         if (error.response.status === 409) {
           sendGTMEvent();
           setContactResponse(error.response.data);
           setIsResponseSuccessful(true);
-          setActiveStep(1);
+          setActiveStep(2);
         }
 
         setIsResponseSuccessful(false);
@@ -300,32 +298,8 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         email: contactResponse.data.email,
         // stripe_id: contactResponse.data.stripe_account,
       };
-      try {
-        setIsRequestPending(true);
 
-        // TODO implemented company sign up step
-        const result = await requestAccount(requestBody);
-
-        sendGTMEvent();
-        setAccountResponse(result.data);
-        setIsResponseSuccessful(true);
-        setActiveStep(2);
-      } catch (error) {
-        setIsResponseSuccessful(false);
-        setResponseMessage(error.response.data.message);
-      } finally {
-        setIsRequestPending(false);
-        setIsResponseSuccessful(null);
-      }
-    },
-    [fieldData, isCompanyFieldDataValid, isRecaptchaVerified]
-  );
-
-  const handleSummarySubmit = useCallback(
-    async (event) => {
-      event.preventDefault();
-
-      const requestBody = {
+      const hiveageRequestBody = {
         account_id: contactResponse.data.account_id,
         contact_id: contactResponse.data.contact_id,
         // stripe_id: contactResponse.data.stripe_account,
@@ -339,7 +313,14 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
       try {
         setIsRequestPending(true);
 
-        const hiveageResult = await requestStripe(requestBody);
+        // TODO implemented company sign up step
+        const result = await requestAccount(requestBody);
+
+        sendGTMEvent();
+        setAccountResponse(result.data);
+        setIsResponseSuccessful(true);
+
+        const hiveageResult = await requestStripe(hiveageRequestBody);
 
         if (buytype === "buy") {
           // router.push("/");
@@ -357,11 +338,20 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         }
       } catch (error) {
         setIsResponseSuccessful(false);
-        error.response && setResponseMessage(error.response.data.message);
-
+        setResponseMessage(error.response.data.message);
+      } finally {
         setIsRequestPending(false);
         setIsResponseSuccessful(null);
       }
+    },
+    [fieldData, isCompanyFieldDataValid, isRecaptchaVerified]
+  );
+
+  const handleSummarySubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+
+      setActiveStep(1);
     },
     [fieldData, contactResponse, years, userIndex]
   );
@@ -833,9 +823,9 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           isResponseSuccessful === null &&
           selectedPlan?.payment && (
             <>
-              {activeStep === 0 && renderCustomerFields()}
-              {activeStep === 1 && renderCompanyFields()}
-              {activeStep === 2 && renderSummaryPage()}
+              {activeStep === 0 && renderSummaryPage()}
+              {activeStep === 1 && renderCustomerFields()}
+              {activeStep === 2 && renderCompanyFields()}
               {activeStep === 3 && renderDownloadStep()}
             </>
           )}
