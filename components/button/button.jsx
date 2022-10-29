@@ -7,7 +7,7 @@ import * as styles from "./button.module.scss";
 const cx = classnames.bind(styles);
 
 const Button = (props) => {
-  const { onClick, to, type, isDisabled, inverse, className, children } = props;
+  const { onClick, to, type, isDisabled, inverse, className, children, style } = props;
 
   const buttonComponent = useMemo(
     () => (
@@ -15,6 +15,7 @@ const Button = (props) => {
         onClick={onClick}
         type={type}
         disabled={isDisabled}
+        style={style}
         className={cx("button", {
           button__inverse: !!inverse,
           [className]: true,
