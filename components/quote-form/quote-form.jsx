@@ -55,6 +55,9 @@ const MuiStepLabel = styled(StepLabel)(({ theme }) => ({
     "&.Mui-active": {
       color: "#3f51b5",
     },
+    "&.Mui-completed": {
+      color: 'green'
+    }
   },
 }));
 
@@ -79,7 +82,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
 
   const [_emailsTo, _setEmailsTo] = useState([]);
   const [activeStep, setActiveStep] = React.useState(0);
-  const stepLabels = ["Select License Type", "About You", "Company Info"];
+  const stepLabels = ["License Type", "About You", "Company Info"];
 
   const router = useRouter();
 
@@ -358,7 +361,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
 
   const renderCustomerFields = () => {
     const showRecaptcha = process.env.RECAPTCHA_SITE_KEY;
-
+    
     return (
       <form onSubmit={handleCustomerSubmit} autoComplete="off">
         <section className={cx("quoteForm_fieldContainer")}>
@@ -430,13 +433,21 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           )}
         </section>
         <section className={cx("quoteForm_buttonContainer")}>
-          <div />
+          <Button
+            onClick={() => setActiveStep(0)}
+            className={cx("quoteForm_back")}
+            style={{backgroundColor: '#303fe1'}}
+            inverse
+          >
+            {'Back'}
+          </Button>
+
           <Button
             type="submit"
-            className={cx("quoteForm_submit")}
+            className={cx("quoteForm_back")}
             isDisabled={!isCustomerFieldDataValid || !isRecaptchaVerified}
           >
-            Next
+            {'Next'}
           </Button>
         </section>
       </form>
@@ -506,15 +517,16 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
         </section>
         <section className={cx("quoteForm_buttonContainer")}>
           <Button
-            onClick={() => setActiveStep(0)}
+            onClick={() => setActiveStep(1)}
             className={cx("quoteForm_back")}
+            style={{backgroundColor: '#303fe1'}}
             inverse
           >
             Back
           </Button>
           <Button
             type="submit"
-            className={cx("quoteForm_submit")}
+            className={cx("quoteForm_back")}
             isDisabled={!isCompanyFieldDataValid}
           >
             Next
@@ -546,7 +558,7 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
 
         <div className={cx("quoteForm_summaryRow")}>
           <span className={cx("quoteForm_summaryRow_title")}>License Type</span>
-          <FormControl style={{ minWidth: 180, marginRight: "26px" }}>
+          <FormControl style={{ minWidth: 205 }}>
             <Select
               value={selectedPlan.title}
               defaultValue={selectedPlan.title}
@@ -677,13 +689,6 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           </span>
         </div>
         <section className={cx("quoteForm_buttonContainer")}>
-          <Button
-            onClick={() => setActiveStep(1)}
-            className={cx("quoteForm_back")}
-            inverse
-          >
-            Back
-          </Button>
           {
             buytype === "buy" 
             ?
@@ -694,14 +699,22 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
             >
               Secure Payment
               </SecureButton>
-            : 
-            <Button
-              type="submit"
-              className={cx("quoteForm_submit")}
-              onClick={handleSummarySubmit}
-            >
-              Generate Quote
-            </Button>
+            : (
+              <>
+                <div/>
+                <div/>
+
+                <Button
+                  type="submit"
+                  className={cx("quoteForm_back")}
+                  style={{marginRight: "0px"}}
+                  onClick={handleSummarySubmit}
+                >
+                {'Next'}
+              </Button>
+              </>
+            )
+           
           }
         </section>
       </div>
