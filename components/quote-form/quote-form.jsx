@@ -689,33 +689,19 @@ const QuoteFrom = ({ priceIndex, licenseType, buytype, }) => {
           </span>
         </div>
         <section className={cx("quoteForm_buttonContainer")}>
-          {
-            buytype === "buy" 
-            ?
-            <SecureButton
+          <>
+            <div/>
+            <div/>
+
+            <Button
               type="submit"
-              className={cx("quoteForm_submit")}
+              className={cx("quoteForm_back")}
+              style={{marginRight: "0px"}}
               onClick={handleSummarySubmit}
             >
-              Secure Payment
-              </SecureButton>
-            : (
-              <>
-                <div/>
-                <div/>
-
-                <Button
-                  type="submit"
-                  className={cx("quoteForm_back")}
-                  style={{marginRight: "0px"}}
-                  onClick={handleSummarySubmit}
-                >
-                {'Next'}
-              </Button>
-              </>
-            )
-           
-          }
+              {'Next'}
+            </Button>
+          </> 
         </section>
       </div>
     );
