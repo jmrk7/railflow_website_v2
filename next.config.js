@@ -1,4 +1,5 @@
-// const { withSentryConfig } = require('@sentry/nextjs');
+const { withSentryConfig } = require('@sentry/nextjs');
+
 const path = require("path");
 
 /** @type {import('next').NextConfig} */
@@ -8,9 +9,11 @@ const nextConfig = {
     config.resolve.modules.push(path.resolve("./"));
     return config;
   },
-  // sentry: {
-  //   hideSourceMaps: true,
-  // },
+  sentry: {
+    hideSourceMaps: true,
+    autoInstrumentServerFunctions: false
+  },
+
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
     RECAPTCHA_ENABLED: false,
@@ -65,6 +68,7 @@ const nextConfig = {
     STRIPE_LIVE_SUPPORT_PRICE: "price_1LH6FjDhvP6DurKSQ1S7QS9b",
     STRIPE_TEST_LICENSE_PRODUCT: "prod_LsWxQNfMecr3gh",
     STRIPE_TEST_SUPPORT_PRICE: "price_1LGTZqDhvP6DurKSlZtcMrfa",
+    POST_HOG_API_KEY: "phc_FtJftK2TrWqi9kbAqPeVolXtQ1FZ3JIXu7AjMPhj3Dx",
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
@@ -98,8 +102,8 @@ const nextConfig = {
  * Sentry webpack plugin options.
  */
 
-// const sentryWebpackPluginOptions = {
-//   silent: true, // Suppresses all logs
-// };
+const sentryWebpackPluginOptions = {
+  silent: true, // Suppresses all logs
+};
 
-module.exports = nextConfig;
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
