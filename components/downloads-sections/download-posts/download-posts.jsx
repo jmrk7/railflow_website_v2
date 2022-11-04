@@ -101,28 +101,28 @@ export const downloads = [
   },
   {
     id: 'npm',
-    name: 'Railflow NPM CLI - 2.1.11',
+    name: 'Railflow NPM CLI - 2.1.17',
     features: [
       {
-        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
+        text: '[feature] Add support for Playwright reports',
       },
       {
-        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
+        text: '[feature] Add a new `JUnit-Steps` report type',
       },
       {
-        text: '[bug] Cucumber: Data tables should be displayed in test steps',
+        text: '[feature] Add `--attachment-max-size` switch for limiting attachment size',
       },
       {
-        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
+        text: '[feature] Add `--attachment-type-whitelist` and `--attachment-type-blacklist` switches for limiting attachment types allowed to be uploaded',
       },
       {
-        text: '[bug] Cannot set value for custom multiselect field',
+        text: '[feature] Improve logging',
       },
       {
-        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
+        text: '[bug] Duplicate test cases/sections are created when test report contains sections with the same name',
       },
       {
-        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
+        text: '[bug] Railflow ignores license file if `RAILFLOW_LICENSE` environment variable is set',
       },
     ],
     downloadUrl: "https://www.npmjs.com/package/railflow",
@@ -132,28 +132,28 @@ export const downloads = [
   },
   {
     id: 'docker',
-    name: 'Railflow Docker Image - 2.1.11',
+    name: 'Railflow Docker Image - 2.1.17',
     features: [
       {
-        text: '[feature] Robot: Read test case ID from `testrail.id` tag',
+        text: '[feature] Add support for Playwright reports',
       },
       {
-        text: '[feature] Add new RAILFLOW_TR_URL environment variable',
+        text: '[feature] Add a new `JUnit-Steps` report type',
       },
       {
-        text: '[bug] Cucumber: Data tables should be displayed in test steps',
+        text: '[feature] Add `--attachment-max-size` switch for limiting attachment size',
       },
       {
-        text: '[bug] Cucumber: "TypeError: The "data" argument must be of type string or an instance.... Received undefined" error',
+        text: '[feature] Add `--attachment-type-whitelist` and `--attachment-type-blacklist` switches for limiting attachment types allowed to be uploaded',
       },
       {
-        text: '[bug] Cannot set value for custom multiselect field',
+        text: '[feature] Improve logging',
       },
       {
-        text: '[bug] When project does not have users and Smart Failure Assignment is set, no warning is displayed',
+        text: '[bug] Duplicate test cases/sections are created when test report contains sections with the same name',
       },
       {
-        text: '[bug] "error data: Field :custom_required_field is a required field" is displayed instead of a nice validation error message when user provides empty value for a required field',
+        text: '[bug] Railflow ignores license file if `RAILFLOW_LICENSE` environment variable is set',
       },
     ],
     downloadUrl: "https://hub.docker.com/r/railflow/railflow",
@@ -163,14 +163,11 @@ export const downloads = [
   },
   {
     id: 'readyapi',
-    name: 'ReadyApi plugin - 2.1',
+    name: 'ReadyApi plugin - 2.2',
     features: [
       {
-        text: '[feature] Add license activation screen into the installer',
-      },
-      {
-        text: '[feature] Add a new "TR_update_cases" property which tells testrunner and testengine to export test cases into TestRail instead of running it',
-      },
+        text: '[bug] Fix license activation for auto-generated trial licenses',
+      }
     ],
     downloadUrl: "",
     downloadItem: [
@@ -179,21 +176,21 @@ export const downloads = [
         img: "/images/windows.png",
         alt: "windows",
         id: "Readyapi-Windows",
-        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.2/Railflow_windows-x64_2.2.exe"
       },
       {
         text: 'Mac OS Installer',
         img: "/images/apple_white.png",
         id: "Readyapi-Mac",
         alt: "MacOS",
-        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/Railflow_macos_2.1.dmg"
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.2/Railflow_macos_2.2.dmg"
       },
       {
         text: 'Linux Installer',
         img: "/images/linux.png",
         id: "Readyapi-Linux",
         alt: "Linux",
-        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.1/railflow-readyapi-plugin-2.1-distribution.jar"
+        href: "https://railflow.sfo3.digitaloceanspaces.com/downloads/ready-api-plugin/2.2/railflow-readyapi-plugin-2.2-distribution.jar"
       }
     ],
     image: ReadyApiImage,
