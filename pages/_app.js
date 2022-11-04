@@ -7,12 +7,16 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../src/createEmotionCache";
 import CookieConsent from "react-cookie-consent";
 
+import { usePostHog } from "next-use-posthog";
+
 import "../styles/app.css";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  usePostHog(process.env.POST_HOG_API_KEY, { api_host: 'https://app.posthog.com' })
 
   return (
     <CacheProvider value={emotionCache}>
