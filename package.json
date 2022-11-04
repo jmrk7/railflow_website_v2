@@ -36,6 +36,7 @@
     "newrelic": "^8.10.0",
     "next": "12.1.6",
     "next-absolute-url": "^1.2.2",
+    "next-use-posthog": "^1.16.1",
     "node-machine-id": "^1.1.12",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
