@@ -66,6 +66,7 @@ const nextConfig = {
     STRIPE_LIVE_SUPPORT_PRICE: "price_1LH6FjDhvP6DurKSQ1S7QS9b",
     STRIPE_TEST_LICENSE_PRODUCT: "prod_LsWxQNfMecr3gh",
     STRIPE_TEST_SUPPORT_PRICE: "price_1LGTZqDhvP6DurKSlZtcMrfa",
+    POST_HOG_API_KEY: "phc_FtJftK2TrWqi9kbAqPeVolXtQ1FZ3JIXu7AjMPhj3Dx",
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
