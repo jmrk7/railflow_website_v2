@@ -52,7 +52,8 @@
     "stripe": "^8.222.0",
     "uuid": "^8.3.2",
     "winston": "^3.3.3",
-    "winston-logzio": "^5.1.4"
+    "winston-logzio": "^5.1.4",
+    "winston-loki": "^6.0.6"
   },
   "devDependencies": {
     "eslint": "8.14.0",
