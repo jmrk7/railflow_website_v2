@@ -13,7 +13,6 @@ const nextConfig = {
     hideSourceMaps: true,
     autoInstrumentServerFunctions: false
   },
-
   env: {
     RECAPTCHA_SITE_KEY: "6Le1WecZAAAAAJHHNtF0A1yOx642M8M0Us5HoJn7",
     RECAPTCHA_ENABLED: false,
@@ -69,6 +68,10 @@ const nextConfig = {
     STRIPE_TEST_LICENSE_PRODUCT: "prod_LsWxQNfMecr3gh",
     STRIPE_TEST_SUPPORT_PRICE: "price_1LGTZqDhvP6DurKSlZtcMrfa",
     POST_HOG_API_KEY: "phc_FtJftK2TrWqi9kbAqPeVolXtQ1FZ3JIXu7AjMPhj3Dx",
+    GRAFANA_USER_ID: "189245",
+    GRAFANA_API_KEY: "eyJrIjoiYjU1MWMxNDhkMGRlZWRmZmQxZDAzMTg2MDU2YzYwMDU0ZDc3OWM5MyIsIm4iOiJyYWlsZmxvdyIsImlkIjo2MjQ3NjJ9",
+    GRAFANA_URL: "logs-prod3.grafana.net",
+    GRAFANA_APP_NAME: "railflow"
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
